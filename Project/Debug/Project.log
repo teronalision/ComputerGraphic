@@ -1,7 +1,0 @@
-﻿  World.cpp
-  Physic.cpp
-  main.cpp
-d:\2dcg\computergraphic\project\main.cpp(65): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Graphic.cpp
-  코드를 생성하고 있습니다...
-  Project.vcxproj -> D:\2DCG\ComputerGraphic\Debug\Project.exe
