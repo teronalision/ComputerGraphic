@@ -13,6 +13,7 @@ public:
 };
 
 class Box :private Graphic {
+public:
 	Box();
 	~Box();
 
