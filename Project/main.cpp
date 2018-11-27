@@ -1,12 +1,9 @@
 #include <gl/freeglut.h>
-#include "Physic.h"
-#include "Graphic.h"
 #include "World.h"
+#include "Controler.h"
 
-#define FPS 30
-#define WIN_H 400.0
-#define WIN_W 500.0
-#define DIS 500
+
+World world;
 
 
 void Timerf(int value) {
@@ -21,15 +18,13 @@ GLvoid DrawScene(GLvoid) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	glPushMatrix();
-	/*for (int i = 0; i < World::getObjNum; i++) {
-		World::ObjList[i].myG.draw()
-	}*/
+	
 
 	//юс╫ц
 	glRotated(15,-1,0,0);
 	glRotated(15,0,-1,0);
-	Box g;
-	g.draw();
+	
+	world.worlddraw();
 
 
 	glPopMatrix();
@@ -53,9 +48,6 @@ GLvoid Reshape(int w, int h) {
 	glShadeModel(GL_SMOOTH);
 	//glEnable(GL_LIGHTING);
 }
-void Keybord(unsigned char key, int x, int y) {}
-void MouseClick(int button, int state, int x, int y){}
-void MouseMove(int x, int y) {}
 
 
 void main(int argc, char *argv[]) {
@@ -65,6 +57,8 @@ void main(int argc, char *argv[]) {
 	glutInitWindowSize(WIN_W*2, WIN_H*2);
 	glutCreateWindow("Window");
 
+
+	ctrinit(world.objects[0]);
 	glutDisplayFunc(DrawScene);
 	glutReshapeFunc(Reshape);
 	glutKeyboardFunc(Keybord);

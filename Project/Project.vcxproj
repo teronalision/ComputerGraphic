@@ -111,12 +111,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controler.cpp" />
+    <ClCompile Include="Define.h" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physic.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Controler.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Physic.h" />
     <ClInclude Include="World.h" />
