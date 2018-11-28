@@ -12,3 +12,9 @@ struct status
 	int degree;
 	int xsize, ysize, zsize;
 };
+struct Camera {
+	double eyex, eyey, eyez;
+	double centerx, centery, centerz;
+	double upx, upy, upz;
+};
+double zoom = 10.0;

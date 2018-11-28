@@ -21,8 +21,6 @@ GLvoid DrawScene(GLvoid) {
 	
 
 	//юс╫ц
-	glRotated(15,-1,0,0);
-	glRotated(15,0,-1,0);
 	
 	world.worlddraw();
 
@@ -36,7 +34,7 @@ GLvoid Reshape(int w, int h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(60.0, WIN_W/WIN_H, 1.0, 1000.0);
+	gluPerspective(zoom, WIN_W/WIN_H, 1.0, 1000.0);
 	glTranslated(0.0, 0.0, -5.0);
 	glOrtho(-DIS, DIS, -DIS, DIS, -DIS, DIS);
 

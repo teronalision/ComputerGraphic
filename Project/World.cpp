@@ -17,7 +17,8 @@ World::~World()
 
 void World::worlddraw() {
 	
-
+	gluLookAt(objects[0]->myS->x, objects[0]->myS->y-1, objects[0]->myS->z+3, objects[0]->myS->x, 0, objects[0]->myS->z, 0, 1, 0);
+	glRotated(objects[0]->myS->degree, 0, 1, 0);
 	glBegin(GL_QUADS);
 	glColor3f(0.5,0.5,0);
 	for (int i = 0; i < 100; i++) {

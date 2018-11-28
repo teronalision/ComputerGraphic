@@ -9,6 +9,7 @@ void Keybord(unsigned char key, int x, int y) {
 	switch (key)
 	{
 	case 'w':
+
 		taget->myS->z += 5;
 		break;
 	case 'a':
@@ -23,7 +24,7 @@ void Keybord(unsigned char key, int x, int y) {
 	default:
 		break;
 	}
-
 }
+
 void MouseClick(int button, int state, int x, int y) {}
 void MouseMove(int x, int y) {}
