@@ -9,13 +9,13 @@ void Keybord(unsigned char key, int x, int y) {
 	switch (key)
 	{
 	case 'w':
-		taget->myS.z += 1;
+		taget->myS.z -= 1;
 		break;
 	case 'a':
 		taget->myS.x -= 1;
 		break;
 	case 's':
-		taget->myS.z -= 1;
+		taget->myS.z += 1;
 		break;
 	case 'd':
 		taget->myS.x += 1;

@@ -35,7 +35,7 @@ GLvoid Reshape(int w, int h) {
 	glLoadIdentity();
 
 	gluPerspective(60.0, WIN_W/(float)WIN_H, 1.0, 1000.0);
-	glTranslated(0.0, 0.0, -1000.0);
+	glTranslated(0.0, 0.0, 0.0);
 	
 
 	glMatrixMode(GL_MODELVIEW);
