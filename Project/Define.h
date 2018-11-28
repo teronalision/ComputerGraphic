@@ -17,4 +17,3 @@ struct Camera {
 	double centerx, centery, centerz;
 	double upx, upy, upz;
 };
-double zoom = 10.0;
