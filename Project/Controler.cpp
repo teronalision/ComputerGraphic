@@ -9,13 +9,13 @@ void Keybord(unsigned char key, int x, int y) {
 	switch (key)
 	{
 	case 'w':
-		taget->myS.speed += 1;
+		taget->myS.speed = -3;
 		break;
 	case 'a':
 		//taget->myS.x -= 1;
 		break;
 	case 's':
-		taget->myS.speed -= 1;
+		taget->myS.speed = 3;
 		break;
 	case 'd':
 		//taget->myS.x += 1;
@@ -27,8 +27,12 @@ void Keybord(unsigned char key, int x, int y) {
 
 void MouseClick(int button, int state, int x, int y) {}
 void MouseMove(int x, int y) {
-	if (x < WIN_W - 100)
-		taget->myS.degree -= 1;
-	else if (x > WIN_W + 100)
+	static int oldx =0, oldy =0;
+
+	if(oldx >x)
 		taget->myS.degree += 1;
+	else
+		taget->myS.degree -= 1;
+	oldx = x;
+	oldy = y;
 }

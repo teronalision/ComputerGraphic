@@ -13,8 +13,10 @@ Physic::~Physic()
 void Physic::PhyUpdate(){
 	status& s = *st;
 
-	s.x += s.speed*sin(s.degree);
-	s.z += s.speed*cos(s.degree);
+	
+
+	s.x -= s.speed*sin(s.degree*R);
+	s.z += s.speed*cos(s.degree*R);
 
 
 }
