@@ -11,6 +11,7 @@ struct status
 	int x, y, z;
 	int degree;
 	int xsize, ysize, zsize;
+	double vx, vy, vz;
 };
 struct Camera {
 	double eyex, eyey, eyez;

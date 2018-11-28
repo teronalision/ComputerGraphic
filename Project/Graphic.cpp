@@ -1,21 +1,24 @@
 #include "Graphic.h"
 
 
-Graphic::Graphic()
+Graphic::Graphic(status* in)
 {
+	st = in;
 }
 
 Graphic::~Graphic()
 {
 }
 
-Box::Box(){}
+Box::Box(status* in):Graphic(in) {
+
+}
 
 Box::~Box(){}
 
-void Box::draw(status s) {
+void Box::draw() {
 	glPushMatrix();
-	glTranslated(s.x,s.y,s.z);
+	glTranslated(st->x,st->y,st->z);
 
 	glColor3f(1.0, 0.0, 0.0);
 	glutWireCube(100);

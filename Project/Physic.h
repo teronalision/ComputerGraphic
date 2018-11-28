@@ -1,8 +1,10 @@
+#include "Define.h"
 #pragma once
 class Physic
 {
 public:
-	Physic();
+	status* st;
+	Physic(status* in);
 	~Physic();
 	void PhyUpdate();
 };

@@ -6,17 +6,18 @@
 class Graphic
 {
 public:
-	Graphic();
+	status* st;
+	Graphic(status* in);
 	~Graphic();
 
-	virtual void draw(status s) = 0;
+	virtual void draw() = 0;
 };
 
 class Box :public Graphic {
 public:
-	Box();
+	Box(status* in);
 	~Box();
 
-	void draw(status s);
+	void draw();
 
 };

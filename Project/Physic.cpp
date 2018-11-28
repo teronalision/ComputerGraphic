@@ -1,12 +1,15 @@
 #include "Physic.h"
+#include "Define.h"
 
 
-
-Physic::Physic()
+Physic::Physic(status* in)
+{
+	st = in;
+}
+Physic::~Physic()
 {
 }
 
-
-Physic::~Physic()
-{
+void Physic::PhyUpdate(){
+	st->vx = st->vx > 5 ? 5 : st->vx*0.7;
 }

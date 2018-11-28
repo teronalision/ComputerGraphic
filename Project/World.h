@@ -6,7 +6,7 @@
 
 class Object {
 public:
-	status* myS;
+	status myS;
 	Graphic* myG;
 	Physic* myP;
 	Object();
