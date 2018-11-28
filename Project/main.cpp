@@ -34,7 +34,7 @@ GLvoid Reshape(int w, int h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(zoom, WIN_W/WIN_H, 1.0, 1000.0);
+	gluPerspective(10.0, WIN_W/WIN_H, 1.0, 1000.0);
 	glTranslated(0.0, 0.0, -5.0);
 	glOrtho(-DIS, DIS, -DIS, DIS, -DIS, DIS);
 
