@@ -8,7 +8,7 @@ World world;
 
 void Timerf(int value) {
 	
-
+	world.worldupdate();
 
 	glutPostRedisplay();
 	glutTimerFunc(1000 / FPS, Timerf, 1);

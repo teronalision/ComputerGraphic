@@ -11,5 +11,10 @@ Physic::~Physic()
 }
 
 void Physic::PhyUpdate(){
-	st->vx = st->vx > 5 ? 5 : st->vx*0.7;
+	status& s = *st;
+	
+	s.x += s.speed*sin(s.degree);
+	s.z += s.speed*cos(s.degree);
+
+	
 }
