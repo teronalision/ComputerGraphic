@@ -10,9 +10,8 @@
 struct status
 {
 	int x, y, z;
-	int degree;
+	double degree;
 	int xsize, ysize, zsize;
-	double speed;
 };
 struct Camera {
 	double eyex, eyey, eyez;
