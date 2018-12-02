@@ -39,13 +39,6 @@ void World::worlddraw() {
 	}
 }
 
-void World::worldupdate() {
-	for (int i = 0; i < 100; i++) {
-		if (objects[i] != NULL)
-			objects[i]->myP->PhyUpdate();
-	}
-}
-
 Object::Object() {
 	myG, myP= NULL;
 }

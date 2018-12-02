@@ -21,5 +21,4 @@ public:
 	World();
 	~World();
 	void worlddraw();
-	void worldupdate();
 };
