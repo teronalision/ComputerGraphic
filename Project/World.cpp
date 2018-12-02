@@ -16,7 +16,7 @@ World::~World()
 }
 
 void World::add_Zaku(int x, int z) {
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < OBJMAX; i++) {
 		if (objects[i].myP == NULL) {
 			objects[i].myS.set_position(500, 0, 500);
 			objects[i].myS.set_size(300,300,300);
@@ -47,19 +47,15 @@ void World::worlddraw() {
 	glEnd();*/
 
 
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < OBJMAX; i++) {
 		if (objects[i].myG != NULL)
 			objects[i].myG->draw();
 	}
 }
 
 void World::worldupdate() {
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < OBJMAX; i++) {
 		if (objects[i].myP != NULL)
 			objects[i].myP->PhyUpdate();
 	}
-}
-
-Object::Object() {
-	myG, myP= NULL;
 }
