@@ -17,7 +17,7 @@ World::~World()
 
 void World::worlddraw() {
 	
-	gluLookAt(300*cos((objects[0].myS.degree + 90.0)*R), objects[0].myS.y + 150, 300*sin((objects[0].myS.degree + 90.0)*R), 0, 0, 0, 0, 1, 0);
+	gluLookAt(300*cos((objects[0].myS.degree + 90.0)*R), 150, 300*sin((objects[0].myS.degree + 90.0)*R), 0, 0, 0, 0, 1, 0);
 
 
 	/*glBegin(GL_QUADS);
