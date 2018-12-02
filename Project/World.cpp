@@ -4,6 +4,7 @@
 
 World::World()
 {
+	
 	objects[0] = new G(0,0);
 
 }
@@ -26,7 +27,7 @@ void World::worlddraw() {
 	glColor3f(0.5,0.5,0);
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			int x = i * 100, y = feild[i][j], z = -j * 100;
+			int x = i * 100, y = field[i][j], z = -j * 100;
 			glColor3f(0.5,0.5,i/100.0);
 			glVertex3i(x, y, z);
 			glVertex3i(x, y, z + 100);
