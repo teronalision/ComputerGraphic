@@ -12,6 +12,17 @@ struct status
 	int x, y, z;
 	double degree;
 	int xsize, ysize, zsize;
+
+	void set_position(int ix, int iy, int iz) {
+		x = ix;
+		y = iy;
+		z = iz;
+	}
+	void set_size(int ix, int iy, int iz) {
+		xsize = ix;
+		ysize = iy;
+		zsize = iz;
+	}
 };
 struct Camera {
 	double eyex, eyey, eyez;

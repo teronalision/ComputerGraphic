@@ -22,4 +22,5 @@ public:
 	~World();
 	void worlddraw();
 	void worldupdate();
+	void add_Zaku(int x, int y);
 };

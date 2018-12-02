@@ -15,6 +15,18 @@ World::~World()
 {
 }
 
+void World::add_Zaku(int x, int z) {
+	for (int i = 0; i < 100; i++) {
+		if (objects[i].myP == NULL) {
+			objects[i].myS.set_position(500, 0, 500);
+			objects[i].myS.set_size(300,300,300);
+
+			objects[i].myP = new Physic(&(objects[i].myS));
+			objects[i].myG = new Gundam(&(objects[i].myS));
+		}
+	}
+}
+
 void World::worlddraw() {
 	
 	gluLookAt(300*cos((objects[0].myS.degree + 90.0)*R), 150, 300*sin((objects[0].myS.degree + 90.0)*R), 0, 0, 0, 0, 1, 0);
