@@ -9,11 +9,10 @@ class World
 {
 public:
 	int feild[100][100];
-	Object objects[OBJMAX];
+	Object* objects[OBJMAX];
 
 	World();
 	~World();
 	void worlddraw();
 	void worldupdate();
-	void add_Zaku(int x, int y);
 };
