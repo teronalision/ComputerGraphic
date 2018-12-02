@@ -4,6 +4,8 @@
 
 World::World()
 {
+	objects[0].myG = new Gundam(&(objects[0].myS));
+	objects[0].myP = new Physic(&(objects[0].myS));
 	objects[1].myG = new Field(&(objects[0].myS));
 	objects[1].myP = new Physic(&(objects[1].myS));
 }
@@ -13,6 +15,17 @@ World::~World()
 {
 }
 
+void World::add_Zaku(int x, int z) {
+	for (int i = 0; i < OBJMAX; i++) {
+		if (objects[i].myP == NULL) {
+			objects[i].myS.set_position(500, 0, 500);
+			objects[i].myS.set_size(300,300,300);
+
+			objects[i].myP = new Physic(&(objects[i].myS));
+			objects[i].myG = new Gundam(&(objects[i].myS));
+		}
+	}
+}
 
 void World::worlddraw() {
 	
