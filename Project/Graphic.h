@@ -21,3 +21,19 @@ public:
 	void draw();
 
 };
+
+class Gundam : public Graphic {
+public:
+	Gundam(status*in);
+	~Gundam();
+
+	void draw();
+};
+
+class Field : public Graphic {
+public:
+	Field(status*in);
+	~Field();
+
+	void draw();
+};

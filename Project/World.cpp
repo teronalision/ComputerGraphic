@@ -4,8 +4,10 @@
 
 World::World()
 {
-	objects[0].myG = new Box(&(objects[0].myS));
+	objects[0].myG = new Gundam(&(objects[0].myS));
 	objects[0].myP = new Physic(&(objects[0].myS));
+	objects[1].myG = new Field(&(objects[0].myS));
+	objects[1].myP = new Physic(&(objects[1].myS));
 }
 
 
@@ -15,15 +17,7 @@ World::~World()
 
 void World::worlddraw() {
 	
-	gluLookAt(objects[0].myS.x, objects[0].myS.y + 100, objects[0].myS.z + 500, objects[0].myS.x, 0, objects[0].myS.z, 0, 1, 0);
-	glRotated(objects[0].myS.degree, 0, 1, 0);
-
-	glPushMatrix();
-		glColor3f(0.5, 0.5, 0.0);
-		glScaled(1.0, 0.001, 1.0);
-		glTranslated(500.0, 0.0, -500.0);
-		glutSolidCube(1000.0);
-	glPopMatrix();
+	gluLookAt(500*cos((objects[0].myS.degree + 90.0)*R), objects[0].myS.y + 100, 500*sin((objects[0].myS.degree + 90.0)*R), 0, 0, 0, 0, 1, 0);
 
 
 	/*glBegin(GL_QUADS);

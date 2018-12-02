@@ -31,7 +31,7 @@ void MouseMove(int x, int y) {
 
 	if(oldx >x)
 		taget->myS.degree -= 1;
-	else
+	else if (oldx < x)
 		taget->myS.degree += 1;
 	oldx = x;
 	oldy = y;
