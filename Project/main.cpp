@@ -34,7 +34,7 @@ GLvoid Reshape(int w, int h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(60.0, WIN_W/(float)WIN_H, 1.0, 10000.0);
+	gluPerspective(60.0, WIN_W/(float)WIN_H, 1.0, 3000.0);
 	glTranslated(0.0, 0.0, 0.0);
 	
 
@@ -56,7 +56,7 @@ void main(int argc, char *argv[]) {
 	glutCreateWindow("Window");
 
 
-	ctrinit(world.objects[0]);
+	ctrinit(world.objects);
 	glutDisplayFunc(DrawScene);
 	glutReshapeFunc(Reshape);
 	glutKeyboardFunc(Keybord);

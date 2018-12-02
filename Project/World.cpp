@@ -49,3 +49,25 @@ void World::worldupdate() {
 			objects[i]->myP->PhyUpdate();
 	}
 }
+
+void World::addOBJ(name o,int x, int z,double d) {
+	for (int i = 1; i < OBJMAX; i++) {
+		if (objects[i] == NULL) {
+			switch (o)
+			{
+			case gundam:
+				objects[i] = new G(x,z);
+				break;
+			case zaku:
+				objects[i] = new Zaku(x, z);
+				break;
+			case bullet:
+				objects[i] = new Bullet(x, z,d);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+}

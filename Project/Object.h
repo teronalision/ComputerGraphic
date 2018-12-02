@@ -3,6 +3,11 @@
 #include "Physic.h"
 #include "Define.h"
 
+enum name
+{
+	gundam,zaku,bullet
+};
+
 
 class Object {
 public:
