@@ -12,5 +12,5 @@
 /*.db
 /Debug
 /Project/Debug
-/Project/*.vcxproj
+/Projcet/*.vcxproj
 /Project/*.vcxproj.filters
