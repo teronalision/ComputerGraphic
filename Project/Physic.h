@@ -12,7 +12,7 @@ public:
 	double jump_count;
 	Physic(status* in);
 	~Physic();
-	void PhyUpdate();
+	virtual void PhyUpdate();
 };
 
 class Gundamp :public Physic {
@@ -25,4 +25,5 @@ public:
 class Bullp:public Physic {
 public:
 	Bullp(status* in);
+	void PhyUpdate();
 };

@@ -22,6 +22,6 @@ Bullet::Bullet(int x, int z,double d) {
 	myS.set_position(x, 0, z);
 	myS.degree = d;
 	myS.set_size(50, 50, 50);
-	myG = new Gundam(&myS);
+	myG = new Box(&myS);
 	myP = new Bullp(&myS);
 }

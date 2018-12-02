@@ -57,3 +57,10 @@ Bullp::Bullp(status* in):Physic(in) {
 	vz = -1;
 	speed = 10;
 }
+
+void Bullp::PhyUpdate() {
+	status& s = *st;
+
+	s.x -= vz*speed*sin(s.degree*R);
+	s.z += vz*speed*cos(s.degree*R);
+}
