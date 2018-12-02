@@ -22,10 +22,10 @@ public:
 
 };
 
-class Gundam : public Graphic {
+class Temp_Robot : public Graphic {
 public:
-	Gundam(status*in);
-	~Gundam();
+	Temp_Robot(status*in);
+	~Temp_Robot();
 
 	void draw();
 };

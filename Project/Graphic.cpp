@@ -23,9 +23,9 @@ void Box::draw() {
 }
 
 
-Gundam::Gundam(status* in) : Graphic(in) {}
-Gundam::~Gundam() {}
-void Gundam::draw() {
+Temp_Robot::Temp_Robot(status* in) : Graphic(in) {}
+Temp_Robot::~Temp_Robot() {}
+void Temp_Robot::draw() {
 	glPushMatrix(); {
 		glTranslated(0, 50.0, 0);
 		glRotated(-st->degree, 0, 1, 0);
