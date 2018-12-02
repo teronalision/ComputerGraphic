@@ -18,6 +18,9 @@ void World::worlddraw() {
 	
 	gluLookAt(300*cos((objects[0]->myS.degree + 90.0)*R), 150, 300*sin((objects[0]->myS.degree + 90.0)*R), 0, 0, 0, 0, 1, 0);
 
+	objects[0]->myG->draw();
+	glTranslated(-objects[0]->myS.x, -objects[0]->myS.y, -objects[0]->myS.z);
+
 
 	glBegin(GL_QUADS);
 	glColor3f(0.5,0.5,0);
@@ -34,7 +37,7 @@ void World::worlddraw() {
 	glEnd();
 
 
-	for (int i = 0; i < OBJMAX; i++) {
+	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] != NULL)
 			objects[i]->myG->draw();
 	}
