@@ -5,7 +5,7 @@
 Physic::Physic(status* in)
 {
 	st = in;
-	speed = 2;
+	speed = 5;
 }
 Physic::~Physic()
 {
@@ -13,6 +13,13 @@ Physic::~Physic()
 
 void Physic::PhyUpdate(){
 	status& s = *st;
+	static int real_y = s.y;
+	if (jump_count > 0.5)
+		s.y = real_y + (1 - jump_count)*100;
+	else
+		s.y = real_y + jump_count*100;
+	if (jump_count > 0)
+		jump_count-= 0.05;
 
 	s.x -= vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);

@@ -20,6 +20,9 @@ void Keybord(unsigned char key, int x, int y) {
 	case 'd':
 		taget->myP->vx = 1;
 		break;
+	case ' ':
+		taget->myP->jump_count = 1;
+		break;
 	default:
 		break;
 	}
