@@ -21,3 +21,8 @@ class Zaku :public Object {
 public:
 	Zaku(int x, int z);
 };
+
+class Bullet :public Object {
+public:
+	Bullet(int x, int z, double d);
+};
