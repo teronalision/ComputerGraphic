@@ -11,3 +11,13 @@ public:
 	Physic* myP;
 	Object();
 };
+
+class G :public Object {
+public:
+	G(int x, int y);
+};
+
+class Zaku :public Object {
+public:
+	Zaku(int x, int y);
+};
