@@ -56,7 +56,7 @@ void main(int argc, char *argv[]) {
 	glutCreateWindow("Window");
 
 
-	ctrinit(&(world.objects[0]));
+	ctrinit(world.objects[0]);
 	glutDisplayFunc(DrawScene);
 	glutReshapeFunc(Reshape);
 	glutKeyboardFunc(Keybord);

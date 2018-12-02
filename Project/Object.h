@@ -14,10 +14,10 @@ public:
 
 class G :public Object {
 public:
-	G(int x, int y);
+	G(int x, int z);
 };
 
 class Zaku :public Object {
 public:
-	Zaku(int x, int y);
+	Zaku(int x, int z);
 };
