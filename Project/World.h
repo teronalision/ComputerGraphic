@@ -1,24 +1,19 @@
 #pragma once
-#include "Graphic.h"
-#include "Physic.h"
-#include "Define.h"
+#include "Object.h"
+
+#define OBJMAX 100
 
 
-class Object {
-public:
-	status myS;
-	Graphic* myG;
-	Physic* myP;
-	Object();
-};
 
 class World
 {
 public:
-	int feild[100][100];
-	Object* objects[100];
+	int field[101][101];
+	Object* objects[OBJMAX];
 
 	World();
 	~World();
 	void worlddraw();
+	void worldupdate();
+	void addOBJ(name o,int x, int z, double d = 0);
 };

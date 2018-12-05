@@ -12,3 +12,8 @@
 /*.db
 /Debug
 /Project/Debug
+/Project/*.vcxproj
+/Project/*.vcxproj.filters
+/x64
+/*.sln
+/Project/x64

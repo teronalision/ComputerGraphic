@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{1DA2F69A-0CD1-4D55-8FFD-77E1B291419A}</ProjectGuid>
+    <ProjectGuid>{B657D50A-961E-47D5-8C6C-705B773BEA1A}</ProjectGuid>
     <RootNamespace>Project</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -112,15 +112,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Controler.cpp" />
-    <ClCompile Include="Define.h" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Physic.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controler.h" />
+    <ClInclude Include="Define.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Physic.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
