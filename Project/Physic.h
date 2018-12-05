@@ -1,7 +1,7 @@
 #include "Define.h"
 #pragma once
 
-#define brake 0.05
+#define brake 0.1
 
 class Physic
 {

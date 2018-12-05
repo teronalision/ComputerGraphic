@@ -18,8 +18,8 @@ Zaku::Zaku(int x, int z) {
 	myP = new Physic(&myS);
 }
 
-Bullet::Bullet(int x, int z,double d) {
-	myS.set_position(x, 0, z);
+Bullet::Bullet(int x,int y, int z,double d) {
+	myS.set_position(x, y, z);
 	myS.degree = d;
 	myS.set_size(50, 50, 50);
 	myG = new Box(&myS);

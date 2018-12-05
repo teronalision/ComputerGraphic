@@ -83,7 +83,7 @@ void World::addOBJ(name o,int x, int z,double d) {
 				objects[i] = new Zaku(x, z);
 				break;
 			case bullet:
-				objects[i] = new Bullet(x, z,d);
+				objects[i] = new Bullet(x,0, z,d);
 				break;
 			default:
 				break;

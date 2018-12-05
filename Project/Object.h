@@ -29,5 +29,5 @@ public:
 
 class Bullet :public Object {
 public:
-	Bullet(int x, int z, double d);
+	Bullet(int x,int y, int z, double d);
 };

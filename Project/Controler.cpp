@@ -4,36 +4,56 @@
 void ctrinit(Object** t) {
 	taget = t;
 }
-void Keybord(unsigned char key, int x, int y) {
+void KeyboardDown(unsigned char key, int x, int y) {
+	Physic& hero = *(taget[0]->myP);
 
 	switch (key)
 	{
 	case 'w':
-		taget[0]->myP->vz = -1;
+		hero.vz = -1;
 		break;
 	case 'a':
-		taget[0]->myP->vx = -1;
+		hero.vx = -1;
 		break;
 	case 's':
-		taget[0]->myP->vz = 1;
+		hero.vz = 1;
 		break;
 	case 'd':
-		taget[0]->myP->vx = 1;
+		hero.vx = 1;
 		break;
 	case ' ':
-		taget[0]->myP->jump_count = 1;
+		hero.jump_count = 1;
 		break;
 	default:
 		break;
 	}
 }
-
+void KeyboardUp(unsigned char key, int x, int y) {
+	Physic& hero = *(taget[0]->myP);
+	switch (key)
+	{
+	case 'w':
+		hero.vz = 1;
+		break;
+	case 'a':
+		hero.vx = 1;
+		break;
+	case 's':
+		hero.vz = -1;
+		break;
+	case 'd':
+		hero.vx = -1;
+		break;
+	default:
+		break;
+	}
+}
 void MouseClick(int button, int state, int x, int y) {
 	
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 		for (int i = 1; i < OBJMAX; i++) {
 			if (taget[i] == NULL) {
-					taget[i] = new Bullet(taget[0]->myS.x, taget[0]->myS.z, taget[0]->myS.degree);
+					taget[i] = new Bullet(taget[0]->myS.x, taget[0]->myS.y, taget[0]->myS.z, taget[0]->myS.degree);
 					return;
 			}
 		}
