@@ -43,6 +43,7 @@ void Gundamp::PhyUpdate(){
 	if (s.y <= 0) {
 		s.y = 0;
 		vy = 0;
+		//std::cout << "¹Ù´Ú Ãæµ¹" << std::endl;
 	}
 	else
 		vy -= gravity;

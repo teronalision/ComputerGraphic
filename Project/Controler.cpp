@@ -3,6 +3,7 @@
 
 void ctrinit(Object** t) {
 	taget = t;
+	srand(time(0));
 }
 void KeyboardDown(unsigned char key, int x, int y) {
 	Physic& hero = *(taget[0]->myP);

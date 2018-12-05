@@ -69,6 +69,11 @@ void World::worldupdate() {
 		if (objects[i] != NULL)
 			objects[i]->myP->PhyUpdate();
 	}
+
+	if (rand() % 100 == 0) {
+		addOBJ(zaku, rand()%100, 0, rand()%100, 0);
+	}
+
 }
 
 void World::addOBJ(name o,int x, int y, int z,double d) {
@@ -88,6 +93,7 @@ void World::addOBJ(name o,int x, int y, int z,double d) {
 			default:
 				break;
 			}
+			break;
 		}
 	}
 
