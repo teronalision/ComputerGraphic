@@ -32,19 +32,20 @@ Gundamp::Gundamp(status* in) :Physic(in) {
 }
 void Gundamp::PhyUpdate(){
 	status& s = *st;
-	static int real_y = s.y;
-	if (jump_count > 0.5)
-		s.y = real_y + (1 - jump_count)*100;
-	else
-		s.y = real_y + jump_count*100;
-	if (jump_count > 0)
-		jump_count-= 0.05;
+	
 
 	s.x -= vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
 	s.x += vx*speed*cos(s.degree*R);
 	s.z += vx*speed*sin(s.degree*R);
+	s.y += vy;
 
+	if (s.y <= 0) {
+		s.y = 0;
+		vy = 0;
+	}
+	else
+		vy -= gravity;
 
 	
 }

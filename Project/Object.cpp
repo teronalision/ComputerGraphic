@@ -7,6 +7,7 @@ Object::Object() {
 
 G::G(int x, int z) {
 	myS.set_position(x, 0, z);
+	myS.set_size(1, 2, 1);
 	myG = new Gundam(&myS);
 	myP = new Gundamp(&myS);
 }

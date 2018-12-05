@@ -19,6 +19,7 @@ public:
 
 class G :public Object {
 public:
+
 	G(int x, int z);
 };
 
@@ -29,5 +30,6 @@ public:
 
 class Bullet :public Object {
 public:
+	static unsigned int magarzin;
 	Bullet(int x,int y, int z, double d);
 };

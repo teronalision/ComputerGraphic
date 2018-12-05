@@ -10,9 +10,9 @@
 
 struct status
 {
-	int x, y, z;
+	double x, y, z;
 	double degree;
-	int xsize, ysize, zsize;
+	double xsize, ysize, zsize;
 
 	void set_position(int ix, int iy, int iz) {
 		x = ix;

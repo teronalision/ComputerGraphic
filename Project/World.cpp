@@ -71,7 +71,7 @@ void World::worldupdate() {
 	}
 }
 
-void World::addOBJ(name o,int x, int z,double d) {
+void World::addOBJ(name o,int x, int y, int z,double d) {
 	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] == NULL) {
 			switch (o)

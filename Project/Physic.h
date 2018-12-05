@@ -2,12 +2,13 @@
 #pragma once
 
 #define brake 0.1
+#define gravity 0.6
 
 class Physic
 {
 public:
 	status* st;
-	double vx, vz;
+	double vx, vy, vz;
 	double speed;
 	double jump_count;
 	Physic(status* in);
@@ -17,7 +18,6 @@ public:
 
 class Gundamp :public Physic {
 public:
-	double jump_count;
 	Gundamp(status* in);
 	void PhyUpdate();
 };

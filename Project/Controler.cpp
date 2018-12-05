@@ -22,7 +22,7 @@ void KeyboardDown(unsigned char key, int x, int y) {
 		hero.vx = 1;
 		break;
 	case ' ':
-		hero.jump_count = 1;
+		hero.vy = 10;
 		break;
 	default:
 		break;
@@ -33,16 +33,16 @@ void KeyboardUp(unsigned char key, int x, int y) {
 	switch (key)
 	{
 	case 'w':
-		hero.vz = 1;
+		hero.vz += 1;
 		break;
 	case 'a':
-		hero.vx = 1;
+		hero.vx += 1;
 		break;
 	case 's':
-		hero.vz = -1;
+		hero.vz -= 1;
 		break;
 	case 'd':
-		hero.vx = -1;
+		hero.vx -= 1;
 		break;
 	default:
 		break;
