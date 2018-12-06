@@ -28,9 +28,9 @@ void Physic::PhyUpdate() {
 
 }
 
-Gundamp::Gundamp(status* in) :Physic(in) {
+Unit::Unit(status* in) :Physic(in) {
 }
-void Gundamp::PhyUpdate(){
+void Unit::PhyUpdate(){
 	status& s = *st;
 	
 

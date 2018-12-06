@@ -25,7 +25,7 @@ public:
 
 class Zaku :public Object {
 public:
-	Zaku(int x, int z);
+	Zaku(int x, int y, int z, double d);
 };
 
 class Bullet :public Object {

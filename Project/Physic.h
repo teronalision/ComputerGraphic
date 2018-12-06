@@ -16,9 +16,9 @@ public:
 	virtual void PhyUpdate();
 };
 
-class Gundamp :public Physic {
+class Unit :public Physic {
 public:
-	Gundamp(status* in);
+	Unit(status* in);
 	void PhyUpdate();
 };
 
