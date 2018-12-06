@@ -1,13 +1,55 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "World.h"
 
 
+GLubyte* Loadbmp(const char* filename, BITMAPINFO** info) {
+	FILE *f;
+	GLubyte *bits;
+	int bitsize, infosize;
+	BITMAPFILEHEADER header;
 
+	if ((f = fopen(filename, "rb")) == NULL)
+		return NULL;
+	if (fread(&header, sizeof(BITMAPFILEHEADER), 1, f) < 1) {
+		fclose(f);
+		return NULL;
+	}
+	infosize = header.bfOffBits - sizeof(BITMAPFILEHEADER);
+
+	if ((*info = (BITMAPINFO*)malloc(infosize)) == NULL) {
+		fclose(f);
+		exit(0);
+		return NULL;
+	}
+	if (fread(*info, 1, infosize, f) < (unsigned int)infosize) {
+		free(*info);
+		fclose(f);
+		return NULL;
+	}
+	if ((bitsize = (*info)->bmiHeader.biSizeImage) == 0)
+		bitsize = ((*info)->bmiHeader.biWidth*(*info)->bmiHeader.biBitCount + 7) / 8.0 * abs((*info)->bmiHeader.biHeight);
+
+	if ((bits = (unsigned char*)malloc(bitsize)) == NULL) {
+		free(*info);
+		fclose(f);
+		return NULL;
+	}
+	fread(bits, 1, bitsize, f);
+	fclose(f);
+	return bits;
+}
 World::World()
 {
 	srand(time(NULL));
+
+	GLubyte *map;
+	BITMAPINFO *info;
+	map = Loadbmp("map.bmp", &info);
+	
+
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			field[i][j] = rand() % 200 -100;
+			field[i][j] = map[i*100+j];
 		}
 	}
 	objects[0] = new G(0,500,500);
