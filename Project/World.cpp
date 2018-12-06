@@ -10,7 +10,7 @@ World::World()
 			field[i][j] = rand() % 200 -100;
 		}
 	}
-	objects[0] = new G(500,500);
+	objects[0] = new G(0,500,500);
 
 }
 
@@ -67,48 +67,66 @@ void World::worlddraw() {
 void World::worldupdate() {
 	
 	for (int i = 0; i < OBJMAX; i++) {
-		if (objects[i] != NULL) {
-			objects[i]->myP->PhyUpdate();//객체 업데이트
+		if (objects[i] == NULL)
+			continue;
 
-			if (objects[i]->myS.live == false) {//죽이기
-				objects[i]->Kill();
-				delete objects[i];
-				objects[i] = NULL;
+		for (int j = 1; j < OBJMAX; j++) {//충돌처리
+			if (objects[j] == NULL)
+				continue;
+
+			if (objects[i]->checkName(bullet) && objects[j]->checkName(zaku)
+				&& is_crash(objects[i]->myS, objects[j]->myS)) {
+				objects[i]->myS.live = false;
+				objects[j]->myS.live = false;
+				std::cout << "충돌 : "<< j << "총알과 " << j << "자쿠" << std::endl;
 			}
 		}
+
 	}
 
-	//충돌처리
 	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] == NULL)
 			continue;
 
-		if (is_crash(objects[0]->myS, objects[i]->myS)) {
+		if (objects[i]->checkName(zaku) && is_crash(objects[0]->myS, objects[i]->myS)) {
 			objects[i]->myS.live = false;
-			std::cout << "충돌 : 건담과 "<< i <<"객체"<< std::endl;
+			std::cout << "충돌 : 건담과 " << i << "자쿠" << std::endl;
 		}
 	}
 
+
+	for (int i = 0; i < OBJMAX; i++) {
+		if (objects[i] == NULL)
+			continue;
+
+		objects[i]->myP->PhyUpdate();//객체 업데이트
+
+		if (objects[i]->myS.live == false) {//죽이기
+			objects[i]->Kill();
+			delete objects[i];
+			objects[i] = NULL;
+		}
+	}
 
 
 	//자쿠 랜덤생성 30%
 	if (rand() % 100 == 0) {
 		int r = rand() % 360;
-		addOBJ(zaku, 450*sin(r*R) +500, 100, 450*cos(r*R) +500, r+R);
+		addOBJ(zaku, 450*sin(r*R) +500, 100, 450*cos(r*R) +500, (r*R)+R);
 	}
 
 }
 
-void World::addOBJ(name o,int x, int y, int z,double d) {
+void World::addOBJ(_name o,int x, int y, int z,double d) {
 	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] == NULL) {
 			switch (o)
 			{
 			case zaku:
-				objects[i] = new Zaku(x,y, z,d);
+				objects[i] = new Zaku(i, x,y,z,d);
 				break;
 			case bullet:
-				objects[i] = new Bullet(x,0, z,d);
+				objects[i] = new Bullet(i, x,0,z,d);
 				break;
 			default:
 				break;

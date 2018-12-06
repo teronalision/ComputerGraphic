@@ -15,5 +15,5 @@ public:
 	~World();
 	void worlddraw();
 	void worldupdate();
-	void addOBJ(name o,int x, int y, int z, double d = 0);
+	void addOBJ(_name o,int x, int y, int z, double d = 0);
 };

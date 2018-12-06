@@ -54,7 +54,7 @@ void MouseClick(int button, int state, int x, int y) {
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 		for (int i = 1; i < OBJMAX; i++) {
 			if (taget[i] == NULL) {
-					taget[i] = new Bullet(taget[0]->myS.x, taget[0]->myS.y, taget[0]->myS.z, taget[0]->myS.degree);
+					taget[i] = new Bullet(i, taget[0]->myS.x, taget[0]->myS.y, taget[0]->myS.z, taget[0]->myS.degree);
 					return;
 			}
 		}
