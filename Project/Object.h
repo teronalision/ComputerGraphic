@@ -15,6 +15,7 @@ public:
 	Graphic* myG;
 	Physic* myP;
 	Object();
+	void Kill();
 };
 
 class G :public Object {

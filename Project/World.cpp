@@ -65,11 +65,33 @@ void World::worlddraw() {
 }
 
 void World::worldupdate() {
+	
 	for (int i = 0; i < OBJMAX; i++) {
-		if (objects[i] != NULL)
-			objects[i]->myP->PhyUpdate();
+		if (objects[i] != NULL) {
+			objects[i]->myP->PhyUpdate();//°´Ã¼ ¾÷µ¥ÀÌÆ®
+
+			if (objects[i]->myS.live == false) {//Á×ÀÌ±â
+				objects[i]->Kill();
+				delete objects[i];
+				objects[i] = NULL;
+			}
+		}
 	}
 
+	//Ãæµ¹Ã³¸®
+	for (int i = 1; i < OBJMAX; i++) {
+		if (objects[i] == NULL)
+			continue;
+
+		if (is_crash(objects[0]->myS, objects[i]->myS)) {
+			objects[i]->myS.live = false;
+			std::cout << "Ãæµ¹ : °Ç´ã°ú "<< i <<"°´Ã¼"<< std::endl;
+		}
+	}
+
+
+
+	//ÀÚÄí ·£´ý»ý¼º 30%
 	if (rand() % 100 == 0) {
 		int r = rand() % 360;
 		addOBJ(zaku, 450*sin(r*R) +500, 100, 450*cos(r*R) +500, r+R);

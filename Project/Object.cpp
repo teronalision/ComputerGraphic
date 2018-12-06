@@ -5,6 +5,9 @@ Object::Object() {
 	myG, myP = NULL;
 }
 
+void Object::Kill(){}
+
+
 G::G(int x, int z) {
 	myS.set_position(x, 0, z);
 	myS.set_size(1, 2, 1);
