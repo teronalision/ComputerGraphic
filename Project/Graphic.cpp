@@ -170,7 +170,7 @@ void Gundam::draw() {
 					} glPopMatrix(); // [lower right leg end]
 				} glPopMatrix(); // [lower leg end]
 			} glPopMatrix(); // [leg end]
-			glColor3f(1.0, 1.0, 0.0);// body color : white
+			glColor3f(1.0, 1.0, 1.0);// body color : white
 			glScaled(0.7,1.0,(st->zsize)/(st->ysize)*5/4); // -- rescale body
 			glutSolidCube((st->ysize)/5*2); // draw body
 		} glPopMatrix(); // [body end]
@@ -225,7 +225,7 @@ void Zaku_Graphic::draw() {
 			glTranslated(0, (st->ysize) / 10, 0); // move to the Y-axis center of body
 			glPushMatrix(); { //						#Draw legs start
 				glTranslated(0, -(st->ysize) / 10 * 3, 0); //move to the Y-axis center of upper legs
-				glColor3f(1.0, 0.0, 0.0); // upper leg color : red
+				glColor3f(0.5, 0.5, 0.0); // upper leg color : red
 				glPushMatrix(); { //					#Draw upper left leg start
 					glTranslated(0, 0, -(st->zsize) / 8); // move to the Z-axis center of upper left leg
 					glScaled((st->zsize) / (st->ysize) / 4 * 5, 1.0, (st->zsize) / (st->ysize) / 4 * 5); // -- rescale upper left leg
@@ -238,7 +238,7 @@ void Zaku_Graphic::draw() {
 				} glPopMatrix(); // [upper right leg end]
 
 				glPushMatrix(); { //					#Draw lower leg start
-					glColor3f(0.0, 1.0, 0.0); // lower leg color : green
+					glColor3f(0.0, 0.5, 0.5); // lower leg color : green
 					glTranslated(0, -(st->ysize) / 5, 0); // move to the Y-axis center of lower legs
 					glPushMatrix(); { //				#Draw lower left leg start
 						glTranslated(0, 0, -(st->zsize) / 8); // move to the Z-axis center of lower left leg
@@ -252,19 +252,19 @@ void Zaku_Graphic::draw() {
 					} glPopMatrix(); // [lower right leg end]
 				} glPopMatrix(); // [lower leg end]
 			} glPopMatrix(); // [leg end]
-			glColor3f(1.0, 1.0, 0.0);// body color : white
+			glColor3f(0.5, 0.5, 0.0);// body color : white
 			glScaled(0.7, 1.0, (st->zsize) / (st->ysize) * 5 / 4); // -- rescale body
 			glutSolidCube((st->ysize) / 5 * 2); // draw body
 		} glPopMatrix(); // [body end]
 		glPushMatrix(); { //							#Draw head start
 			glTranslated(0, (st->ysize) / 5 * 2, 0); // move to the Y-axis center of head
 			glScaled(1.0, 1.0, (st->zsize) / (st->ysize) * 5 / 3); // -- rescale head
-			glColor3f(0.0, 0.0, 1.0); // head color : blue
+			glColor3f(0.0, 0.5, 0.0); // head color : blue
 			glutSolidCube((st->ysize) / 5); // draw head
 		} glPopMatrix(); //[head end]
 		glPushMatrix(); { //							#Draw arms start
 			glTranslated(0, (st->ysize) / 20 * 3, 0); // move to the Y-axis center of upper arm
-			glColor3f(1.0, 0.0, 0.0); // upper arms color : red
+			glColor3f(0.5, 0.5, 0.0); // upper arms color : red
 			glPushMatrix(); { //						#Draw upper left arm start
 				glTranslated(0, 0, -(st->zsize) / 8 * 3); // move to the Z-axis center of left upper arm
 				glScaled((st->zsize) / (st->ysize) / 6 * 5, 1.0, (st->zsize) / (st->ysize) / 6 * 5); // -- rescale left upper arm
@@ -277,7 +277,7 @@ void Zaku_Graphic::draw() {
 			} glPopMatrix(); // [upper right arm end]
 
 			glPushMatrix(); { //						#Draw lower arm start
-				glColor3f(0.0, 1.0, 0.0); // lower arms color : green
+				glColor3f(0.0, 0.5, 0.5); // lower arms color : green
 				glTranslated(0, -(st->ysize) / 10 * 3, 0);
 				glPushMatrix(); { //					#Draw left lower arm start
 					glTranslated(0, 0, -(st->zsize) / 8 * 3); // move to the Z-axis center of left lower arm
