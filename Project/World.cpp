@@ -22,7 +22,7 @@ World::~World()
 
 void World::worlddraw() {
 	
-	gluLookAt(300*cos((objects[0]->myS.degree + 90.0)*R), 150, 300*sin((objects[0]->myS.degree + 90.0)*R), 0, 100, 0, 0, 1, 0);
+	gluLookAt(3*cos((objects[0]->myS.degree + 90.0)*R), 1.5, 3*sin((objects[0]->myS.degree + 90.0)*R), 0, 1, 0, 0, 1, 0);
 
 	objects[0]->myG->draw();
 	glTranslated(-objects[0]->myS.x, -objects[0]->myS.y, -objects[0]->myS.z);
@@ -42,6 +42,8 @@ void World::worlddraw() {
 	}
 	glEnd();
 	glPopMatrix();
+	
+	
 	/*glPushMatrix();
 	glBegin(GL_LINES);
 	glColor3f(1.0, 1.0, 1.0);
