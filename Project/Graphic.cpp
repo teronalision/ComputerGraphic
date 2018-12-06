@@ -138,7 +138,7 @@ Zaku_Graphic::Zaku_Graphic(status* in) : Graphic(in) {}
 Zaku_Graphic::~Zaku_Graphic() {}
 void Zaku_Graphic::draw() {
 	glPushMatrix(); {
-		glTranslated(rand()%1000, 0, rand()%1000);
+		glTranslated(st->x, 0,st->z );
 		glTranslated(0, 50.0, 0);
 		glRotated(-st->degree, 0, 1, 0);
 		glColor3f(1.0, 1.0, 1.0);
