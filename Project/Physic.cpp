@@ -62,3 +62,26 @@ void Bullp::PhyUpdate() {
 	s.x -= vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
 }
+
+bool is_crash(status a, status b) {
+
+	//xรเ
+	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize < b.x + b.xsize)
+		return false;
+	//yรเ
+	if (a.y + a.ysize < b.y - b.ysize || a.y - a.ysize < b.y + b.ysize)
+		return false;
+	//zรเ
+	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize < b.z + b.zsize)
+		return false;
+
+	return true;
+}
+
+void knockback(Physic taget, Physic s) {
+	double power = 0.3;
+
+	taget.vx += s.vx*power;
+	taget.vy += s.vy*power;
+	taget.vz += s.vz*power;
+}
