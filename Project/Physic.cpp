@@ -28,29 +28,27 @@ void Physic::PhyUpdate() {
 
 }
 
-Gundamp::Gundamp(status* in) :Physic(in) {
+Unit::Unit(status* in) :Physic(in) {
 }
-void Gundamp::PhyUpdate(){
+void Unit::PhyUpdate(){
 	status& s = *st;
-	static int real_y = s.y;
-	if (jump_count > 0.5)
-		s.y = real_y + (1 - jump_count)*100;
-	else
-		s.y = real_y + jump_count*100;
-	if (jump_count > 0)
-		jump_count-= 0.05;
+	
 
 	s.x -= vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
 	s.x += vx*speed*cos(s.degree*R);
 	s.z += vx*speed*sin(s.degree*R);
+	s.y += vy;
 
+	if (s.y <= 0) {
+		s.y = 0;
+		vy = 0;
+		//std::cout << "바닥 충돌" << std::endl;
+	}
+	else
+		vy -= gravity;
 
-	if (vx > 0) vx = fmax(vx - brake, 0);
-	else		vx = fmin(vx + brake, 0);
-	if (vz > 0) vz = fmax(vz - brake, 0);
-	else		vz = fmin(vz + brake, 0);
-
+	
 }
 
 Bullp::Bullp(status* in):Physic(in) {
@@ -63,4 +61,27 @@ void Bullp::PhyUpdate() {
 
 	s.x -= vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
+}
+
+bool is_crash(status a, status b) {
+
+	//x축
+	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize < b.x + b.xsize)
+		return false;
+	//y축
+	if (a.y + a.ysize < b.y - b.ysize || a.y - a.ysize < b.y + b.ysize)
+		return false;
+	//z축
+	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize < b.z + b.zsize)
+		return false;
+
+	return true;
+}
+
+void knockback(Physic taget, Physic s) {
+	double power = 0.3;
+
+	taget.vx += s.vx*power;
+	taget.vy += s.vy*power;
+	taget.vz += s.vz*power;
 }

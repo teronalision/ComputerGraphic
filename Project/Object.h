@@ -19,15 +19,17 @@ public:
 
 class G :public Object {
 public:
+
 	G(int x, int z);
 };
 
 class Zaku :public Object {
 public:
-	Zaku(int x, int z);
+	Zaku(int x, int y, int z, double d);
 };
 
 class Bullet :public Object {
 public:
-	Bullet(int x, int z, double d);
+	static unsigned int magarzin;
+	Bullet(int x,int y, int z, double d);
 };

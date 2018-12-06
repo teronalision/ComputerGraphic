@@ -7,10 +7,10 @@ World::World()
 	srand(time(NULL));
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			field[i][j] = rand() % 200;
+			field[i][j] = rand() % 200 -100;
 		}
 	}
-	objects[0] = new G(0,0);
+	objects[0] = new G(500,500);
 
 }
 
@@ -69,25 +69,29 @@ void World::worldupdate() {
 		if (objects[i] != NULL)
 			objects[i]->myP->PhyUpdate();
 	}
+
+	if (rand() % 100 == 0) {
+		int r = rand() % 360;
+		addOBJ(zaku, 450*sin(r*R) +500, 100, 450*cos(r*R) +500, r+R);
+	}
+
 }
 
-void World::addOBJ(name o,int x, int z,double d) {
+void World::addOBJ(name o,int x, int y, int z,double d) {
 	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] == NULL) {
 			switch (o)
 			{
-			case gundam:
-				objects[i] = new G(x,z);
-				break;
 			case zaku:
-				objects[i] = new Zaku(x, z);
+				objects[i] = new Zaku(x,y, z,d);
 				break;
 			case bullet:
-				objects[i] = new Bullet(x, z,d);
+				objects[i] = new Bullet(x,0, z,d);
 				break;
 			default:
 				break;
 			}
+			break;
 		}
 	}
 

@@ -59,9 +59,10 @@ void main(int argc, char *argv[]) {
 	ctrinit(world.objects);
 	glutDisplayFunc(DrawScene);
 	glutReshapeFunc(Reshape);
-	glutKeyboardFunc(Keybord);
+	glutKeyboardFunc(KeyboardDown);
+	glutKeyboardUpFunc(KeyboardUp);
 	glutMouseFunc(MouseClick);
-	glutMotionFunc(MouseMove);
+	glutPassiveMotionFunc(MouseMove);
 	glutTimerFunc(1000 / FPS, Timerf, 1);
 	glutMainLoop();
 }

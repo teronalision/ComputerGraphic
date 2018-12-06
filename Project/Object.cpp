@@ -7,21 +7,26 @@ Object::Object() {
 
 G::G(int x, int z) {
 	myS.set_position(x, 0, z);
+	myS.set_size(1, 2, 1);
 	myG = new Gundam(&myS);
-	myP = new Gundamp(&myS);
+	myP = new Unit(&myS);
 }
 
-Zaku::Zaku(int x, int z) {
+Zaku::Zaku(int x, int y, int z, double d) {
 	myS.set_position(x, 0, z);
-	myS.set_size(300, 300, 300);
-	myG = new Gundam(&myS);
+	myS.set_size(1, 2, 1);
+	myG = new Zaku_Graphic(&myS);
 	myP = new Physic(&myS);
+
+	std::cout << "磊捻 积己 (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
 
-Bullet::Bullet(int x, int z,double d) {
-	myS.set_position(x, 0, z);
+Bullet::Bullet(int x,int y, int z,double d) {
+	myS.set_position(x, y, z);
 	myS.degree = d;
-	myS.set_size(50, 50, 50);
+	myS.set_size(0.5, 0.5, 0.5);
 	myG = new Box(&myS);
 	myP = new Bullp(&myS);
+
+	std::cout << "醚舅 积己" << std::endl;
 }

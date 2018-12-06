@@ -30,6 +30,13 @@ public:
 	void draw();
 };
 
+class Zaku_Graphic : public Graphic {
+public:
+	Zaku_Graphic(status*in);
+	~Zaku_Graphic();
+	void draw();
+};
+
 class Field : public Graphic {
 public:
 	Field(status*in);

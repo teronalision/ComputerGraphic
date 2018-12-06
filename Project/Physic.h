@@ -1,13 +1,14 @@
 #include "Define.h"
 #pragma once
 
-#define brake 0.05
+#define brake 0.1
+#define gravity 0.6
 
 class Physic
 {
 public:
 	status* st;
-	double vx, vz;
+	double vx, vy, vz;
 	double speed;
 	double jump_count;
 	Physic(status* in);
@@ -15,10 +16,9 @@ public:
 	virtual void PhyUpdate();
 };
 
-class Gundamp :public Physic {
+class Unit :public Physic {
 public:
-	double jump_count;
-	Gundamp(status* in);
+	Unit(status* in);
 	void PhyUpdate();
 };
 
@@ -27,3 +27,6 @@ public:
 	Bullp(status* in);
 	void PhyUpdate();
 };
+
+bool is_crash(status a, status b);//AABB 충돌체크
+void knockback(Physic taget, Physic s);//넉백
