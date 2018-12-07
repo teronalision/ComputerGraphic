@@ -1,5 +1,5 @@
 #include "World.h"
-#define GUNDAM_HEIGHT 2.0
+
 
 
 World::World()
@@ -7,7 +7,7 @@ World::World()
 	srand(time(NULL));
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			field[i][j] = rand() % 10;
+			field[i][j] = rand() % 200 -100;
 		}
 	}
 	objects[0] = new G(500,500);
@@ -22,7 +22,7 @@ World::~World()
 
 void World::worlddraw() {
 	
-	gluLookAt(2*GUNDAM_HEIGHT*cos((objects[0]->myS.degree + 90.0)*R), GUNDAM_HEIGHT, 2* GUNDAM_HEIGHT*sin((objects[0]->myS.degree + 90.0)*R), 0, 1, 0, 0, 1, 0);
+	gluLookAt(3*cos((objects[0]->myS.degree + 90.0)*R), 1.5, 3*sin((objects[0]->myS.degree + 90.0)*R), 0, 1, 0, 0, 1, 0);
 
 	objects[0]->myG->draw();
 	glTranslated(-objects[0]->myS.x, -objects[0]->myS.y, -objects[0]->myS.z);
@@ -32,12 +32,12 @@ void World::worlddraw() {
 	glColor3f(0.5,0.5,0);
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			int x = i * 10, z = -j * 10;
+			int x = i * 100, z = -j * 100;
 			glColor3f(0.5,0.5,i/100.0);
-			glVertex3i(x, field[j+1][i], -z);
-			glVertex3i(x, field[j][i], -z - 10);
-			glVertex3i(x+10, field[j][i+1], -z-10);
-			glVertex3i(x + 10, field[j+1][i+1], -z);
+			glVertex3i(x, field[j+1][i], z);
+			glVertex3i(x, field[j][i], z + 100);
+			glVertex3i(x+100, field[j][i+1], z+100);
+			glVertex3i(x + 100, field[j+1][i+1], z);
 		}
 	}
 	glEnd();
