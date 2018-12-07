@@ -1,18 +1,30 @@
 #include "Object.h"
 
 
-Object::Object() {
+Object::Object(int id, _name name) {
+	ID = id;
+	NAME = name;
+
 	myG, myP = NULL;
 }
+bool Object::checkName(_name n) {
+	if (NAME == n)
+		return true;
+	else
+		return false;
+}
 
-G::G(int x, int z) {
+void Object::Kill(){}
+
+
+G::G(int id, int x, int z):Object(id, gundam) {
 	myS.set_position(x, 0, z);
 	myS.set_size(1, 2, 1);
 	myG = new Gundam(&myS);
 	myP = new Unit(&myS);
 }
 
-Zaku::Zaku(int x, int y, int z, double d) {
+Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myS.set_position(x, 0, z);
 	myS.set_size(1, 2, 1);
 	myG = new Zaku_Graphic(&myS);
@@ -21,7 +33,7 @@ Zaku::Zaku(int x, int y, int z, double d) {
 	std::cout << "ÀÚÄí »ý¼º (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
 
-Bullet::Bullet(int x,int y, int z,double d) {
+Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
 	myS.set_position(x, y, z);
 	myS.degree = d;
 	myS.set_size(0.5, 0.5, 0.5);

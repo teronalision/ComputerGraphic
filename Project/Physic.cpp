@@ -66,13 +66,13 @@ void Bullp::PhyUpdate() {
 bool is_crash(status a, status b) {
 
 	//xรเ
-	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize < b.x + b.xsize)
+	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize > b.x + b.xsize)
 		return false;
 	//yรเ
-	if (a.y + a.ysize < b.y - b.ysize || a.y - a.ysize < b.y + b.ysize)
+	if (a.y + a.ysize < b.y - b.ysize || a.y - a.ysize > b.y + b.ysize)
 		return false;
 	//zรเ
-	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize < b.z + b.zsize)
+	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize > b.z + b.zsize)
 		return false;
 
 	return true;
