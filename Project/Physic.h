@@ -11,9 +11,12 @@ public:
 	double vx, vy, vz;
 	double speed;
 	double jump_count;
+	int magazin;
+	int timer;
 	Physic(status* in);
 	~Physic();
 	virtual void PhyUpdate();
+	bool is_fire();	//ÃÑ ½ò¼öÀÖ´ÂÁö
 };
 
 class Unit :public Physic {

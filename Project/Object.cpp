@@ -22,6 +22,7 @@ G::G():Object(0, gundam) {
 	myS.set_size(1, 2, 1);
 	myG = new Gundam(&myS);
 	myP = new Unit(&myS);
+	myP->magazin = 10;
 }
 Zaku::Zaku(int id) :Object(id, zaku) {
 	int r = rand() % 360;

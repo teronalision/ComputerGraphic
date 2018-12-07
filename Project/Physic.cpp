@@ -6,6 +6,8 @@ Physic::Physic(status* in)
 {
 	st = in;
 	speed = 5;
+	magazin = 0;
+	timer = -1;
 }
 Physic::~Physic()
 {
@@ -27,6 +29,20 @@ void Physic::PhyUpdate() {
 	else		vz = fmin(vz + brake, 0);
 
 }
+bool Physic::is_fire() {
+	if (magazin > 0) {
+		magazin -= 1;
+		return true;
+	}
+	else {
+		if (timer == -1) {
+			timer = 0;
+			std::cout << "재장전 시작" << std::endl;
+		}
+		return false;
+	}
+}
+
 
 Unit::Unit(status* in) :Physic(in) {
 }
@@ -48,7 +64,16 @@ void Unit::PhyUpdate(){
 	else
 		vy -= gravity;
 
-	
+
+	//장전
+	if (timer > 3*30) {
+		timer = -1;
+		magazin = 10;
+		std::cout << "재장전 완료" << std::endl;
+	}
+	else if (timer > -1) {
+		timer++;
+	}
 }
 
 Bullp::Bullp(status* in):Physic(in) {

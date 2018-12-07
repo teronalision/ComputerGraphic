@@ -29,7 +29,6 @@ public:
 
 class G :public Object {
 public:
-
 	G();
 };
 
