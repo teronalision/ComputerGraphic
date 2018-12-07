@@ -30,11 +30,12 @@ public:
 class G :public Object {
 public:
 
-	G(int id, int x, int z);
+	G();
 };
 
 class Zaku :public Object {
 public:
+	Zaku(int id);
 	Zaku(int id, int x, int y, int z, double d);
 };
 

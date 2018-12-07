@@ -52,7 +52,7 @@ World::World()
 			field[i][j] = map[i*100+j];
 		}
 	}
-	objects[0] = new G(0,500,500);
+	objects[0] = new G();
 
 }
 
@@ -111,11 +111,8 @@ void World::worlddraw() {
 void World::worldupdate() {
 	
 	for (int i = 0; i < OBJMAX; i++) {
-		if (objects[i] == NULL)
-			continue;
-
 		for (int j = 1; j < OBJMAX; j++) {//面倒贸府
-			if (objects[j] == NULL)
+			if (objects[i] == NULL || objects[j] == NULL)
 				continue;
 
 			if (objects[i]->checkName(bullet) && objects[j]->checkName(zaku)
@@ -155,8 +152,7 @@ void World::worldupdate() {
 
 	//磊捻 罚待积己 30%
 	if (rand() % 100 == 0) {
-		int r = rand() % 360;
-		addOBJ(zaku, 450*sin(r*R) +500, 100, 450*cos(r*R) +500, (r*R)+R);
+		addOBJ(zaku);
 	}
 
 }
@@ -167,7 +163,7 @@ void World::addOBJ(_name o,int x, int y, int z,double d) {
 			switch (o)
 			{
 			case zaku:
-				objects[i] = new Zaku(i, x,y,z,d);
+				objects[i] = new Zaku(i, 0, 10, 0, 0);
 				break;
 			case bullet:
 				objects[i] = new Bullet(i, x,0,z,d);
