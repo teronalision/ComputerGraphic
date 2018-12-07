@@ -1,12 +1,9 @@
 #pragma once
 #include "Graphic.h"
 #include "Physic.h"
+#include "Define.h"
 
-#define _GUNDAM 100
-#define _ZAKU	101
-#define _BULLET 102
-
-enum _name
+enum name
 {
 	gundam,zaku,bullet
 };
@@ -14,31 +11,25 @@ enum _name
 
 class Object {
 public:
-	int ID;
-	_name NAME;
-
 	status myS;
 	Graphic* myG;
 	Physic* myP;
-
-	Object(int id, _name name);
-	bool checkName(_name name);
-	void Kill();
+	Object();
 };
 
 class G :public Object {
 public:
-	G();
+
+	G(int x, int z);
 };
 
 class Zaku :public Object {
 public:
-	Zaku(int id);
-	Zaku(int id, int x, int y, int z, double d);
+	Zaku(int x, int y, int z, double d);
 };
 
 class Bullet :public Object {
 public:
 	static unsigned int magarzin;
-	Bullet(int id, int x,int y, int z, double d);
+	Bullet(int x,int y, int z, double d);
 };

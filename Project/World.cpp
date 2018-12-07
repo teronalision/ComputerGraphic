@@ -1,58 +1,16 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include "World.h"
 
 
-GLubyte* Loadbmp(const char* filename, BITMAPINFO** info) {
-	FILE *f;
-	GLubyte *bits;
-	int bitsize, infosize;
-	BITMAPFILEHEADER header;
 
-	if ((f = fopen(filename, "rb")) == NULL)
-		return NULL;
-	if (fread(&header, sizeof(BITMAPFILEHEADER), 1, f) < 1) {
-		fclose(f);
-		return NULL;
-	}
-	infosize = header.bfOffBits - sizeof(BITMAPFILEHEADER);
-
-	if ((*info = (BITMAPINFO*)malloc(infosize)) == NULL) {
-		fclose(f);
-		exit(0);
-		return NULL;
-	}
-	if (fread(*info, 1, infosize, f) < (unsigned int)infosize) {
-		free(*info);
-		fclose(f);
-		return NULL;
-	}
-	if ((bitsize = (*info)->bmiHeader.biSizeImage) == 0)
-		bitsize = ((*info)->bmiHeader.biWidth*(*info)->bmiHeader.biBitCount + 7) / 8.0 * abs((*info)->bmiHeader.biHeight);
-
-	if ((bits = (unsigned char*)malloc(bitsize)) == NULL) {
-		free(*info);
-		fclose(f);
-		return NULL;
-	}
-	fread(bits, 1, bitsize, f);
-	fclose(f);
-	return bits;
-}
 World::World()
 {
 	srand(time(NULL));
-
-	GLubyte *map;
-	BITMAPINFO *info;
-	map = Loadbmp("map.bmp", &info);
-	
-
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			field[i][j] = map[i*100+j];
+			field[i][j] = rand() % 200 -100;
 		}
 	}
-	objects[0] = new G();
+	objects[0] = new G(500,500);
 
 }
 
@@ -109,64 +67,28 @@ void World::worlddraw() {
 }
 
 void World::worldupdate() {
-	
 	for (int i = 0; i < OBJMAX; i++) {
-		for (int j = 1; j < OBJMAX; j++) {//Ãæµ¹Ã³¸®
-			if (objects[i] == NULL || objects[j] == NULL)
-				continue;
-
-			if (objects[i]->checkName(bullet) && objects[j]->checkName(zaku)
-				&& is_crash(objects[i]->myS, objects[j]->myS)) {
-				objects[i]->myS.live = false;
-				objects[j]->myS.live = false;
-				std::cout << "Ãæµ¹ : "<< j << "ÃÑ¾Ë°ú " << j << "ÀÚÄí" << std::endl;
-			}
-		}
-
+		if (objects[i] != NULL)
+			objects[i]->myP->PhyUpdate();
 	}
 
-	for (int i = 1; i < OBJMAX; i++) {
-		if (objects[i] == NULL)
-			continue;
-
-		if (objects[i]->checkName(zaku) && is_crash(objects[0]->myS, objects[i]->myS)) {
-			objects[i]->myS.live = false;
-			std::cout << "Ãæµ¹ : °Ç´ã°ú " << i << "ÀÚÄí" << std::endl;
-		}
-	}
-
-
-	for (int i = 0; i < OBJMAX; i++) {
-		if (objects[i] == NULL)
-			continue;
-
-		objects[i]->myP->PhyUpdate();//°´Ã¼ ¾÷µ¥ÀÌÆ®
-
-		if (objects[i]->myS.live == false) {//Á×ÀÌ±â
-			objects[i]->Kill();
-			delete objects[i];
-			objects[i] = NULL;
-		}
-	}
-
-
-	//ÀÚÄí ·£´ý»ý¼º 30%
 	if (rand() % 100 == 0) {
-		addOBJ(zaku);
+		int r = rand() % 360;
+		addOBJ(zaku, 450*sin(r*R) +500, 100, 450*cos(r*R) +500, r+R);
 	}
 
 }
 
-void World::addOBJ(_name o,int x, int y, int z,double d) {
+void World::addOBJ(name o,int x, int y, int z,double d) {
 	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] == NULL) {
 			switch (o)
 			{
 			case zaku:
-				objects[i] = new Zaku(i, 0, 10, 0, 0);
+				objects[i] = new Zaku(x,y, z,d);
 				break;
 			case bullet:
-				objects[i] = new Bullet(i, x,0,z,d);
+				objects[i] = new Bullet(x,0, z,d);
 				break;
 			default:
 				break;
