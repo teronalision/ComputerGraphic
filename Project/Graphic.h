@@ -37,6 +37,13 @@ public:
 	void draw();
 };
 
+class GUI {
+public:
+	GUI();
+	~GUI();
+	void draw();
+};
+
 class Field : public Graphic {
 public:
 	Field(status*in);
