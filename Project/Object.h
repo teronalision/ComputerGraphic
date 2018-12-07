@@ -1,7 +1,6 @@
 #pragma once
 #include "Graphic.h"
 #include "Physic.h"
-#include "Define.h"
 
 #define _GUNDAM 100
 #define _ZAKU	101

@@ -1,8 +1,10 @@
-#include "Define.h"
 #pragma once
+#include "Define.h"
 
 #define brake 0.1
 #define gravity 0.6
+
+static int field[101][101];
 
 class Physic
 {

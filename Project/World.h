@@ -8,7 +8,6 @@
 class World
 {
 public:
-	int field[101][101];
 	Object* objects[OBJMAX];
 
 	World();

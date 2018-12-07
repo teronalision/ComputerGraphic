@@ -56,8 +56,14 @@ void Unit::PhyUpdate(){
 	s.z += vx*speed*sin(s.degree*R);
 	s.y += vy;
 
-	if (s.y <= 0) {
-		s.y = 0;
+
+	double tx = double(int(s.x)%10)/10.0;
+	double tz = double(int(s.z)%10)/10.0;
+
+	int floor = (1-tx)*(1-tz)*field[int(s.z)/10][int(s.x)/10] + (1 - tx)*tz*field[int(s.z) / 10 +1][int(s.x) / 10]
+				+ tx*(1 - tz)*field[int(s.z) / 10][int(s.x) / 10 +1] + tx*tz*field[int(s.z) / 10 + 1][int(s.x) / 10 +1];
+	if (s.y <= floor) {
+		s.y = floor;
 		vy = 0;
 		//std::cout << "¹Ù´Ú Ãæµ¹" << std::endl;
 	}
