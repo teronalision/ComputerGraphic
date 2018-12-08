@@ -1,6 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "World.h"
-#include "Graphic.h"
 
 GLubyte* Loadbmp(const char* filename, BITMAPINFO** info) {
 	FILE *f;
@@ -108,8 +107,6 @@ void World::worlddraw() {
 		if (objects[i] != NULL)
 			objects[i]->myG->draw();
 	}
-	GUIdraw();
-	SunLight(objects[0]->myS.x, objects[0]->myS.y, objects[0]->myS.z);
 }
 
 void World::worldupdate() {
@@ -175,57 +172,4 @@ void World::addOBJ(_name o,int x, int y, int z,double d) {
 		}
 	}
 
-}
-
-void GUIdraw() {
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix(); {
-		glLoadIdentity();
-		gluOrtho2D(-WIN_W / 2, WIN_W / 2, -WIN_H / 2, WIN_H / 2);
-
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix(); {
-			glLoadIdentity();
-			glColor3f(1.0, 1.0, 1.0);
-			glBegin(GL_QUADS); {
-				glVertex2d(-100, 100);
-				glVertex2d(100, 100);
-				glVertex2d(100, -100);
-				glVertex2d(-100, -100);
-			} glEnd();
-
-			glMatrixMode(GL_PROJECTION);
-		}glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
-	}glPopMatrix();
-}
-
-void ModelInit() {
-
-}
-
-void SunLight(double x, double y, double z) {
-	glNormal3f(0.0, 0.0, 1.0);
-	GLfloat qaBlack[] = { 0.0,0.0,0.0,1.0 };
-	GLfloat qaGreen[] = { 1.0,1.0,1.0,1.0 };
-	GLfloat qaWhite[] = { 0.5,0.5,0.5,0.5 };
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, qaGreen);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, qaGreen);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, qaWhite);
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 60.0);
-
-	GLfloat qaAmbientLight[] = { 0.2,0.2,0.2,1.0 };
-	GLfloat qaDiffuseLight[] = { 0.8,0.8,0.8,1.0 };
-	GLfloat qaSpecularLight[] = { 1.0,1.0,1.0,1.0 };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, qaAmbientLight);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, qaDiffuseLight);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, qaSpecularLight);
-
-	GLfloat qaLightPosition[] = { x ,y + 10000, z, 1.0 };
-	glLightfv(GL_LIGHT0, GL_POSITION, qaLightPosition);
-
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, qaAmbientLight);
-	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 0.0);
-	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, 0.0);
-	glEnable(GL_LIGHT0);
 }
