@@ -25,6 +25,7 @@ G::G() :Object(0, gundam) {
 	myG = new Gundam(&myS);
 	myP = new Unit(&myS);
 	myP->magazin = 10;
+	myP->speed = 30;
 
 	hero = this;
 }
@@ -41,6 +42,7 @@ Zaku::Zaku(int id) :Object(id, zaku) {
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 	myA = new zakubrain(myP);
+	myP->speed = 10;
 
 	std::cout << "new zaku random (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
@@ -51,6 +53,7 @@ Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 	myA = new zakubrain(myP);
+	myP->speed = 10;
 
 	std::cout << "new zaku select (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }

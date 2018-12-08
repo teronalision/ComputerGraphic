@@ -117,6 +117,7 @@ void World::worldupdate() {
 			continue;
 
 		if (objects[i]->checkName(zaku) && is_crash(objects[0]->myS, objects[i]->myS)) {
+			objects[0]->myS.hp -= 1;
 			objects[i]->myS.live = false;
 			std::cout << "충돌 : 건담과 " << i << "자쿠" << std::endl;
 		}

@@ -11,7 +11,7 @@ void loadmap(unsigned char* data) {
 Physic::Physic(status* in)
 {
 	st = in;
-	speed = 1;
+	speed = 5;
 	magazin = 0;
 	timer = -1;
 }
@@ -42,10 +42,10 @@ void Unit::PhyUpdate(){
 	status& s = *st;
 	
 
-	s.x += vz*speed*sin(s.degree*R);
-	s.z += vz*speed*cos(s.degree*R);
-	s.x += vx*speed*cos(s.degree*R);
-	s.z -= vx*speed*sin(s.degree*R);
+	s.x += vz*speed/FPS*sin(s.degree*R);
+	s.z += vz*speed/FPS*cos(s.degree*R);
+	s.x += vx*speed/FPS*cos(s.degree*R);
+	s.z -= vx*speed/FPS*sin(s.degree*R);
 	s.y += vy;
 	
 	s.x = clamp(s.x);
