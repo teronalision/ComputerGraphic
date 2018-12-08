@@ -1,8 +1,8 @@
 #pragma once
 #include "Physic.h"
 
-#define SERCH_LEN 200
-#define FIRE_LEN 50
+#define SERCH_LEN 150
+#define FIRE_LEN 30
 
 
 class AI
