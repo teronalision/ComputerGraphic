@@ -8,12 +8,11 @@
 class World
 {
 public:
-	int field[101][101];
 	Object* objects[OBJMAX];
 
 	World();
 	~World();
 	void worlddraw();
 	void worldupdate();
-	void addOBJ(name o,int x, int y, int z, double d = 0);
+	void addOBJ(_name o,int x=0, int y=0, int z=0, double d = 0);
 };

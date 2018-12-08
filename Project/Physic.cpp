@@ -6,9 +6,25 @@ Physic::Physic(status* in)
 {
 	st = in;
 	speed = 5;
+	magazin = 0;
+	timer = -1;
 }
 Physic::~Physic()
 {
+}
+
+bool Physic::is_fire() {
+	if (magazin > 0) {
+		magazin -= 1;
+		return true;
+	}
+	else {
+		if (timer == -1) {
+			timer = 0;
+			std::cout<<"장전시작"<<std::endl;
+		}
+		return false;
+	}
 }
 
 void Physic::PhyUpdate() {
@@ -40,15 +56,30 @@ void Unit::PhyUpdate(){
 	s.z += vx*speed*sin(s.degree*R);
 	s.y += vy;
 
-	if (s.y <= 0) {
-		s.y = 0;
+
+	double tx = double(int(s.x) % 10) / 10.0;
+	double tz = double(int(s.z) % 10) / 10.0;
+
+	int floor = (1 - tx)*(1 - tz)*field[int(s.z) / 10][int(s.x) / 10] + (1 - tx)*tz*field[int(s.z) / 10 + 1][int(s.x) / 10]
+		+ tx*(1 - tz)*field[int(s.z) / 10][int(s.x) / 10 + 1] + tx*tz*field[int(s.z) / 10 + 1][int(s.x) / 10 + 1];
+	if (s.y <= floor) {
+		s.y = floor;
 		vy = 0;
 		//std::cout << "바닥 충돌" << std::endl;
 	}
 	else
 		vy -= gravity;
 
-	
+
+	//장전
+	if (timer > 3 * 30) {
+		timer = -1;
+		magazin = 10;
+		std::cout << "재장전 완료" << std::endl;
+	}
+	else if (timer > -1) {
+		timer++;
+	}
 }
 
 Bullp::Bullp(status* in):Physic(in) {
@@ -66,13 +97,13 @@ void Bullp::PhyUpdate() {
 bool is_crash(status a, status b) {
 
 	//x축
-	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize < b.x + b.xsize)
+	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize > b.x + b.xsize)
 		return false;
 	//y축
-	if (a.y + a.ysize < b.y - b.ysize || a.y - a.ysize < b.y + b.ysize)
+	if (a.y + a.ysize < b.y - b.ysize || a.y - a.ysize > b.y + b.ysize)
 		return false;
 	//z축
-	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize < b.z + b.zsize)
+	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize > b.z + b.zsize)
 		return false;
 
 	return true;
