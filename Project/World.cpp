@@ -255,8 +255,8 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 
 	glColor3f(1.0, 1.0, 0.0);
 	char string3[13];
-	sprintf(string3, "%2d : %2d : %2d", hour, minute, second);
-	glRasterPos2d(200, 180);
+	sprintf(string3, "%02d : %02d : %02d", hour, minute, second);
+	glRasterPos2d(190, 180);
 	len = (int)strlen(string3);
 	for (int i = 0; i < len; i++)
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string3[i]);
