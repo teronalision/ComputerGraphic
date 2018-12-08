@@ -1,6 +1,6 @@
 #include <gl/freeglut.h>
 #include "Controler.h"
-
+#include "World.h"
 
 World world;
 
@@ -25,6 +25,7 @@ GLvoid DrawScene(GLvoid) {
 
 
 	glPopMatrix();
+	//GUIdraw(); // temporary function
 	glutSwapBuffers();
 }
 GLvoid Reshape(int w, int h) {
