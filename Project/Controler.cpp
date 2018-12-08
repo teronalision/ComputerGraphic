@@ -1,8 +1,9 @@
 #include "Controler.h"
 
 
-void ctrinit(Object** t) {
-	taget = t;
+void ctrinit(World* t) {
+	ww = t;
+	taget = t->objects;
 }
 void KeyboardDown(unsigned char key, int x, int y) {
 	Physic& hero = *(taget[0]->myP);
@@ -70,6 +71,11 @@ void MouseMove(int x, int y) {
 		taget[0]->myS.degree -= 1;
 	else if (oldx < x)
 		taget[0]->myS.degree += 1;
+
+	if (oldy >y)
+		ww->Yaim -= 0.1;
+	else if (oldy < y)
+		ww->Yaim += 0.1;
 	oldx = x;
 	oldy = y;
 }

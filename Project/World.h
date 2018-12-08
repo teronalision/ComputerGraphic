@@ -4,11 +4,11 @@
 #define OBJMAX 100
 
 
-
 class World
 {
 public:
 	Object* objects[OBJMAX];
+	double Yaim;
 
 	World();
 	~World();
