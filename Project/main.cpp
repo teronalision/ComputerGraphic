@@ -25,7 +25,7 @@ GLvoid DrawScene(GLvoid) {
 
 
 	glPopMatrix();
-	//GUIdraw(); // temporary function
+	GUIdraw(); // temporary function
 	glutSwapBuffers();
 }
 GLvoid Reshape(int w, int h) {
@@ -44,7 +44,7 @@ GLvoid Reshape(int w, int h) {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glShadeModel(GL_SMOOTH);
-	//glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHTING);
 }
 
 

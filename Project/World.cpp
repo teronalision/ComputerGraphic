@@ -172,12 +172,47 @@ void GUIdraw() {
 
 	glClear(GL_DEPTH_BUFFER_BIT);
 
+	//HP
+
+	glColor3f(1.0, 0.0, 0.0);
+	glBegin(GL_QUADS);
+	glVertex2d(-230, 180);
+	glVertex2d(-230, 160);
+	glVertex2d(-100, 160);
+	glVertex2d(-100, 170);
+	glEnd();
+
+	glColor3f(0.0, 1.0,0.0);
+	glBegin(GL_QUADS);
+	glVertex2d(-230, 180);
+	glVertex2d(-230, 160);
+	glVertex2d(-100, 160);
+	glVertex2d(-100, 170);
+	glEnd();
+
+	glColor3f(1.0, 1.0, 0.0);
+	char *string = "HP";
+	glRasterPos2d(-230, 180);
+	int len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+
+	//Bullets
 	glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_QUADS);
-	glVertex2d(-100, 100);
-	glVertex2d(100, 100);
-	glVertex2d(100, -100);
-	glVertex2d(-100, -100);
+	glVertex2d(-230, -100);
+	glVertex2d(-230, -180);
+	glVertex2d(-190, -180);
+	glVertex2d(-190, -100);
+	glEnd();
+
+	//Maps
+	glColor3f(1.0, 1.0, 1.0);
+	glBegin(GL_QUADS);
+	glVertex2d(230, -100);
+	glVertex2d(230, -180);
+	glVertex2d(150, -180);
+	glVertex2d(150, -100);
 	glEnd();
 
 	glMatrixMode(GL_PROJECTION);
