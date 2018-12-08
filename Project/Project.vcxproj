@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Controler.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="main.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="Controler.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Graphic.h" />

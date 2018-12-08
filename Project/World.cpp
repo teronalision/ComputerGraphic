@@ -127,7 +127,7 @@ void World::worldupdate() {
 		if (objects[i] == NULL)
 			continue;
 
-		objects[i]->myP->PhyUpdate();
+		objects[i]->update();
 
 		if (objects[i]->myS.live == false) {//°´Ã¼ »èÁ¦
 			objects[i]->Kill();

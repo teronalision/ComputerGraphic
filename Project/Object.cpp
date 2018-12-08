@@ -5,7 +5,7 @@ Object::Object(int id, _name name) {
 	ID = id;
 	NAME = name;
 
-	myG, myP = NULL;
+	myG, myP, myA = NULL;
 }
 bool Object::checkName(_name n) {
 	if (NAME == n)
@@ -25,6 +25,11 @@ G::G() :Object(0, gundam) {
 	myG = new Gundam(&myS);
 	myP = new Unit(&myS);
 	myP->magazin = 10;
+
+	hero = this;
+}
+void G::update() {
+	myP->PhyUpdate();
 }
 
 Zaku::Zaku(int id) :Object(id, zaku) {
@@ -35,6 +40,7 @@ Zaku::Zaku(int id) :Object(id, zaku) {
 	myS.set_size(1, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
+	myA = new zakubrain(*myP);
 
 	std::cout << "new zaku random (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
@@ -46,6 +52,10 @@ Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myP = new Unit(&myS);
 
 	std::cout << "new zaku select (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
+}
+void Zaku::update() {
+	myP->PhyUpdate();
+	myA->AIupdate(*hero->myP);
 }
 bool Zaku::Kill() {
 	myS.live = true;
@@ -67,6 +77,9 @@ Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
 	myP = new Bullp(&myS);
 
 	std::cout << "new bullet"<< std::endl;
+}
+void Bullet::update() {
+	myP->PhyUpdate();
 }
 
 Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {
