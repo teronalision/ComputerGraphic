@@ -6,6 +6,10 @@ enum _name
 {
 	gundam,zaku,bullet,paticle
 };
+enum _hp
+{
+	hp_g = 20, hp_z = 2
+};
 
 
 class Object {

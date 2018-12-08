@@ -26,9 +26,9 @@ Bullet_Graphic::Bullet_Graphic(status*in) : Graphic(in) {}
 Bullet_Graphic::~Bullet_Graphic() {}
 void Bullet_Graphic::draw() {
 	glPushMatrix();
-	glTranslated(st->x, st->y, st->z);
+	glTranslated(st->x, st->y, -st->z);
 	glColor3f(1.0, 1.0, 0.0);
-	glRotated(90 - st->degree, 0, 1, 0);
+	glRotated(90 -st->degree, 0, 1, 0);
 	glScaled(1.0, 0.1, 0.1);
 	glutSolidSphere(5, 5, 5);
 

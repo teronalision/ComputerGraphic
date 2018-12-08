@@ -20,6 +20,7 @@ bool Object::Kill() { return true; }
 G::G() :Object(0, gundam) {
 	myS.set_position(500, 20, 500);
 	myS.degree = 0;
+	myS.hp = hp_g;
 	myS.set_size(1, 2, 1);
 	myG = new Gundam(&myS);
 	myP = new Unit(&myS);
@@ -30,19 +31,21 @@ Zaku::Zaku(int id) :Object(id, zaku) {
 	int r = rand() % 360;
 	myS.set_position(450 * sin(r*R) + 500, 100, 450 * cos(r*R) + 500);
 	myS.degree = r + 180;
+	myS.hp = hp_z;
 	myS.set_size(1, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 
-	std::cout << "ÀÚÄí ·£´ý»ý¼º (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
+	std::cout << "new zaku random (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
 Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myS.set_position(x, 0, z);
+	myS.hp = hp_z;
 	myS.set_size(1, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 
-	std::cout << "ÀÚÄí ÁöÁ¤»ý¼º (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
+	std::cout << "new zaku select (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
 bool Zaku::Kill() {
 	myS.live = true;
@@ -58,11 +61,12 @@ bool Zaku::Kill() {
 Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
 	myS.set_position(x, y, z);
 	myS.degree = d;
+	myS.hp = 1;
 	myS.set_size(0.5, 0.5, 0.5);
 	myG = new Bullet_Graphic(&myS);
 	myP = new Bullp(&myS);
 
-	std::cout << "ÃÑ¾Ë »ý¼º" << std::endl;
+	std::cout << "new bullet"<< std::endl;
 }
 
 Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {

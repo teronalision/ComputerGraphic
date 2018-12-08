@@ -65,6 +65,7 @@ void World::worlddraw() {
 	
 	//gluLookAt(-sin((objects[0]->myS.degree)*R)*5,2,cos((objects[0]->myS.degree)*R)*5, 0, 0, 0, 0, 1, 0);
 	glTranslated(0,-2,-4);
+	glRotated(15,1,0,0);
 	objects[0]->myG->draw();
 
 	glRotated(objects[0]->myS.degree,0,1,0);
@@ -102,8 +103,10 @@ void World::worldupdate() {
 
 			if (objects[i]->checkName(bullet) && objects[j]->checkName(zaku)
 				&& is_crash(objects[i]->myS, objects[j]->myS)) {
+				objects[j]->myS.hp -= objects[i]->myS.hp;
 				objects[i]->myS.live = false;
-				objects[j]->myS.live = false;
+				if (objects[j]->myS.hp < 0)
+					objects[j]->myS.live = false;
 				std::cout << "Ãæµ¹ : " << j << "ÀÚÄí¿Í " << i << "ÃÑ¾Ë" << std::endl;
 			}
 		}
@@ -154,6 +157,7 @@ void World::addOBJ(_name o, int x, int y, int z, double d) {
 			default:
 				break;
 			}
+			break;
 		}
 	}
 }
