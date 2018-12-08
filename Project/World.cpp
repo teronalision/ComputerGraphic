@@ -75,10 +75,10 @@ void World::worlddraw() {
 		for (int j = 0; j < 100; j++) {
 			int x = i * 10, z = j * 10;
 			glColor3f(0.5,0.5,i/100.0);
-			glVertex3i(x, field[j+1][i], z);
-			glVertex3i(x, field[j][i], z + 10);
-			glVertex3i(x+10, field[j][i+1], z+10);
-			glVertex3i(x + 10, field[j+1][i+1],z);
+			glVertex3i(x, field[j][i], z);
+			glVertex3i(x, field[j+1][i], z + 10);
+			glVertex3i(x+10, field[j+1][i+1], z+10);
+			glVertex3i(x + 10, field[j][i+1],z);
 		}
 	}
 	glEnd();
