@@ -225,13 +225,25 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string2[i]);
 	}
 
-	//Maps
-	glColor3f(1.0, 1.0, 1.0);
+	//Maps - Mapsize = 90x90 / Worldsize = 1,000
+	glColor4f(0.5, 0.5, 0.5, 0.0);
 	glBegin(GL_QUADS);
 	glVertex2d(240, -100);
 	glVertex2d(240, -190);
 	glVertex2d(150, -190);
 	glVertex2d(150, -100);
+	glEnd();
+	//Gundam Location
+	glColor3f(0.0, 0.0, 1.0);
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
+	glVertex3d(150+(worldinfo.objects[0]->myS.x)/1000*90, -190+(worldinfo.objects[0]->myS.z)/1000*90, 1.0);
+	glEnd();
+
+	//Zaku Location
+	glColor3f(1.0, 0.0, 0.0);
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
 	glEnd();
 
 	glMatrixMode(GL_PROJECTION);

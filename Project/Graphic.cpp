@@ -123,7 +123,7 @@ void Zaku_Graphic::draw() {
 					  //master location status
 		glTranslated(st->x, 0, -st->z);
 		glTranslated(0, (st->ysize)/2, 0);
-		glRotated(-st->degree, 0, 1, 0);
+		glRotated(st->degree + 90, 0, 1, 0);
 		glPushMatrix(); { //							#Draw body start
 			glTranslated(0, (st->ysize) / 10, 0); // move to the Y-axis center of body
 			glPushMatrix(); { //						#Draw legs start
