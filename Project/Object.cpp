@@ -63,7 +63,7 @@ Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
 	myS.degree = d;
 	myS.hp = 1;
 	myS.set_size(0.5, 0.5, 0.5);
-	myG = new Box(&myS);
+	myG = new Bullet_Graphic(&myS);
 	myP = new Bullp(&myS);
 
 	std::cout << "ÃÑ¾Ë »ý¼º" << std::endl;

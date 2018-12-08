@@ -23,6 +23,14 @@ public:
 
 };
 
+class Bullet_Graphic : public Graphic {
+public:
+	Bullet_Graphic(status*in);
+	~Bullet_Graphic();
+
+	void draw();
+};
+
 class Gundam : public Graphic {
 public:
 	Gundam(status*in);
