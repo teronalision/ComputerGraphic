@@ -19,4 +19,5 @@ public:
 
 void GUIdraw(int hp, int bullet, World worldinfo);
 void ModelInit();
+void DrawSun(double x, double y, double z);
 void SunLight(double x, double y, double z);
