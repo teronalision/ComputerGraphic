@@ -101,8 +101,10 @@ void World::worldupdate() {
 
 			if (objects[i]->checkName(bullet) && objects[j]->checkName(zaku)
 				&& is_crash(objects[i]->myS, objects[j]->myS)) {
+				objects[j]->myS.hp -= objects[i]->myS.hp;
 				objects[i]->myS.live = false;
-				objects[j]->myS.live = false;
+				if (objects[j]->myS.hp < 0)
+					objects[j]->myS.live = false;
 				std::cout << "Ãæµ¹ : " << j << "ÀÚÄí¿Í " << i << "ÃÑ¾Ë" << std::endl;
 			}
 		}
@@ -153,6 +155,7 @@ void World::addOBJ(_name o, int x, int y, int z, double d) {
 			default:
 				break;
 			}
+			break;
 		}
 	}
 }

@@ -14,6 +14,8 @@ struct status
 	double x, y, z;
 	double degree;
 	double xsize, ysize, zsize;
+
+	int hp;
 	bool live = true;
 
 	void set_position(int ix, int iy, int iz) {
