@@ -1,7 +1,5 @@
 #include "World.h"
 
-#define GUNDAM_HEIGHT 2
-
 World::World()
 {
 	srand(time(NULL));

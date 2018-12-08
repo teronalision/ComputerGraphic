@@ -2,6 +2,7 @@
 #include <gl\freeglut.h>
 #include "Define.h"
 
+#define GUNDAM_HEIGHT 2
 
 class Graphic
 {
