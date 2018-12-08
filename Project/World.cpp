@@ -297,6 +297,7 @@ void ModelInit() {
 void DrawSun(double x, double y, double z) {
 	glPushMatrix(); {
 		glTranslated(x, y, z);
+		glColor3f(1.0, 1.0, 0.0);
 		glutSolidSphere(20, 10, 10);
 	}glPopMatrix();
 }
