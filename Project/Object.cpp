@@ -38,7 +38,7 @@ Zaku::Zaku(int id) :Object(id, zaku) {
 	myS.set_position(450 * sin(r*R) + 500, 100, 450 * cos(r*R) + 500);
 	myS.degree = r + 180;
 	myS.hp = hp_z;
-	myS.set_size(1, 2, 1);
+	myS.set_size(2, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 	myA = new zakubrain(myP);
@@ -49,7 +49,7 @@ Zaku::Zaku(int id) :Object(id, zaku) {
 Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myS.set_position(x, 0, z);
 	myS.hp = hp_z;
-	myS.set_size(1, 2, 1);
+	myS.set_size(2, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 	myA = new zakubrain(myP);
