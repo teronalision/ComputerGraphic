@@ -11,7 +11,7 @@ void loadmap(unsigned char* data) {
 Physic::Physic(status* in)
 {
 	st = in;
-	speed = 5;
+	speed = 1;
 	magazin = 0;
 	timer = -1;
 }

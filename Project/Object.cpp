@@ -40,7 +40,7 @@ Zaku::Zaku(int id) :Object(id, zaku) {
 	myS.set_size(1, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
-	myA = new zakubrain(*myP);
+	myA = new zakubrain(myP);
 
 	std::cout << "new zaku random (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
@@ -50,6 +50,7 @@ Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myS.set_size(1, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
+	myA = new zakubrain(myP);
 
 	std::cout << "new zaku select (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }

@@ -14,7 +14,7 @@ public:
 
 class zakubrain :public AI {
 public:
-	Physic& st;
-	zakubrain(Physic& in);
+	Physic* st;
+	zakubrain(Physic* in);
 	void AIupdate(Physic taget);
 };
