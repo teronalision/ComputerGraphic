@@ -149,7 +149,7 @@ void World::worldupdate() {
 	}
 
 	if (rand() % 100 == 0) {
-		//addOBJ(zaku);
+		addOBJ(zaku);
 	}
 
 }

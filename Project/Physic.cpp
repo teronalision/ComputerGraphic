@@ -66,7 +66,7 @@ void Unit::PhyUpdate(){
 	if (s.y <= floor) {
 		s.y = floor;
 		vy = 0;
-		std::cout << "¹Ù´Ú Ãæµ¹ :"<<s.degree<<"/" <<s.x<<"," << s.y << "," << s.z<<std::endl;
+		//std::cout << "¹Ù´Ú Ãæµ¹ :"<<s.degree<<"/" <<s.x<<"," << s.y << "," << s.z<<std::endl;
 	}
 	else
 		vy -= gravity;
