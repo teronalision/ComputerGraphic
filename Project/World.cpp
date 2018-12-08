@@ -248,7 +248,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	for (int i = 1; i < 100; i++)
 	{
 		if (worldinfo.objects[i] == NULL)
-			break;
+			continue;
 		if (worldinfo.objects[i]->checkName(zaku)) {
 			glVertex3d(150 + (worldinfo.objects[i]->myS.x) / 1000 * 90, -190 + (worldinfo.objects[i]->myS.z) / 1000 * 90, 1.0);
 		}
