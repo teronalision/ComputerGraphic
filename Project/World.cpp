@@ -162,12 +162,12 @@ void World::addOBJ(_name o, int x, int y, int z, double d) {
 	}
 }
 
-void GUIdraw() {
+void GUIdraw(int hp, int bullet) {
 
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-	gluOrtho2D(-WIN_W / 2, WIN_W / 2, -WIN_H / 2, WIN_H / 2);
+	glOrtho(-WIN_W / 2, WIN_W / 2, -WIN_H / 2, WIN_H / 2,-1,1);
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
@@ -177,21 +177,12 @@ void GUIdraw() {
 	glClear(GL_DEPTH_BUFFER_BIT);
 
 	//HP
-
-	glColor3f(1.0, 0.0, 0.0);
+	glColor3f(0.0, 1.0, 0.0);
 	glBegin(GL_QUADS);
-	glVertex2d(-230, 180);
-	glVertex2d(-230, 160);
-	glVertex2d(-100, 160);
-	glVertex2d(-100, 170);
-	glEnd();
-
-	glColor3f(0.0, 1.0,0.0);
-	glBegin(GL_QUADS);
-	glVertex2d(-230, 180);
-	glVertex2d(-230, 160);
-	glVertex2d(-100, 160);
-	glVertex2d(-100, 170);
+	glVertex3d(-230, 180, 1);
+	glVertex3d(-230, 160, 1);
+	glVertex3d(-230 + hp*6, 160, 1);
+	glVertex3d(-230 + hp*6, 170, 1);
 	glEnd();
 
 	glColor3f(1.0, 1.0, 0.0);
@@ -201,14 +192,30 @@ void GUIdraw() {
 	for (int i = 0; i < len; i++)
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
 
+
+	string = "BULLET";
+	glRasterPos2d(-230, -160);
+	len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+
+	if (bullet == 0) {
+		string = "RELOADING...";
+		glRasterPos2d(-230, -180);
+		len = (int)strlen(string);
+		for (int i = 0; i < len; i++)
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+	}
+	else {
+		char string2[6];
+		sprintf(string2, "%2d/10", bullet);
+		glRasterPos2d(-230, -180);
+		len = (int)strlen(string2);
+		for (int i = 0; i < len; i++)
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string2[i]);
+	}
+
 	//Bullets
-	glColor3f(1.0, 1.0, 1.0);
-	glBegin(GL_QUADS);
-	glVertex2d(-230, -100);
-	glVertex2d(-230, -180);
-	glVertex2d(-190, -180);
-	glVertex2d(-190, -100);
-	glEnd();
 
 	//Maps
 	glColor3f(1.0, 1.0, 1.0);
