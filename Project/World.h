@@ -17,6 +17,6 @@ public:
 	void addOBJ(_name o,int x=0, int y=0, int z=0, double d = 0);
 };
 
-void GUIdraw(int hp, int bullet);
+void GUIdraw(int hp, int bullet, World worldinfo);
 void ModelInit();
 void SunLight(double x, double y, double z);

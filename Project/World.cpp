@@ -162,7 +162,7 @@ void World::addOBJ(_name o, int x, int y, int z, double d) {
 	}
 }
 
-void GUIdraw(int hp, int bullet) {
+void GUIdraw(int hp, int bullet, World worldinfo) {
 
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
@@ -176,13 +176,22 @@ void GUIdraw(int hp, int bullet) {
 
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	//HP
+	//HP_GREEN
 	glColor3f(0.0, 1.0, 0.0);
 	glBegin(GL_QUADS);
 	glVertex3d(-230, 180, 1);
 	glVertex3d(-230, 160, 1);
 	glVertex3d(-230 + hp*6, 160, 1);
-	glVertex3d(-230 + hp*6, 170, 1);
+	glVertex3d(-230 + hp*6, 180, 1);
+	glEnd();
+
+	//HP_RED
+	glColor3f(1.0,0.0, 0.0);
+	glBegin(GL_QUADS);
+	glVertex3d(-230, 180, 1);
+	glVertex3d(-230, 170, 1);
+	glVertex3d(-230 + 120, 170, 1);
+	glVertex3d(-230 + 120, 180, 1);
 	glEnd();
 
 	glColor3f(1.0, 1.0, 0.0);
@@ -193,6 +202,7 @@ void GUIdraw(int hp, int bullet) {
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
 
 
+	//Bullets
 	string = "BULLET";
 	glRasterPos2d(-230, -160);
 	len = (int)strlen(string);
@@ -215,14 +225,12 @@ void GUIdraw(int hp, int bullet) {
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string2[i]);
 	}
 
-	//Bullets
-
 	//Maps
 	glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_QUADS);
-	glVertex2d(230, -100);
-	glVertex2d(230, -180);
-	glVertex2d(150, -180);
+	glVertex2d(240, -100);
+	glVertex2d(240, -190);
+	glVertex2d(150, -190);
 	glVertex2d(150, -100);
 	glEnd();
 
