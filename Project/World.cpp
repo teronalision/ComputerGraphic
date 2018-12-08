@@ -1,5 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "World.h"
-#define _CRT_SECURE_NO_WARINGS
 
 GLubyte* Loadbmp(const char* filename, BITMAPINFO** info) {
 	FILE *f;

@@ -36,7 +36,6 @@ void Physic::PhyUpdate() {
 	s.z += vx*speed*sin(s.degree*R);
 
 
-
 	if (vx > 0) vx = fmax(vx - brake, 0);
 	else		vx = fmin(vx + brake, 0);
 	if (vz > 0) vz = fmax(vz - brake, 0);
@@ -55,7 +54,9 @@ void Unit::PhyUpdate(){
 	s.x += vx*speed*cos(s.degree*R);
 	s.z += vx*speed*sin(s.degree*R);
 	s.y += vy;
-
+	
+	s.x = clamp(s.x);
+	s.z = clamp(s.z);
 
 	double tx = double(int(s.x) % 10) / 10.0;
 	double tz = double(int(s.z) % 10) / 10.0;
@@ -94,6 +95,13 @@ void Bullp::PhyUpdate() {
 	s.z += vz*speed*cos(s.degree*R);
 }
 
+double clamp(double n) {
+	if (n < 1)
+		return 1;
+	if (n > 1000 -1)
+		return 1000 -1;
+	return n;
+}
 bool is_crash(status a, status b) {
 
 	//xรเ
