@@ -19,6 +19,7 @@ void Object::Kill() {}
 
 G::G() :Object(0, gundam) {
 	myS.set_position(500, 10, 500);
+	myS.degree = 0;
 	myS.set_size(1, 2, 1);
 	myG = new Gundam(&myS);
 	myP = new Unit(&myS);

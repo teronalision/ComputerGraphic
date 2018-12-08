@@ -63,7 +63,8 @@ World::~World()
 
 void World::worlddraw() {
 	
-	gluLookAt(2*GUNDAM_HEIGHT*cos((objects[0]->myS.degree + 90.0)*R), GUNDAM_HEIGHT, 2*GUNDAM_HEIGHT*sin((objects[0]->myS.degree + 90.0)*R), 0, 1, 0, 0, 1, 0);
+	gluLookAt(-sin((objects[0]->myS.degree)*R)*5,2,cos((objects[0]->myS.degree)*R)*5, 0, 0, 0, 0, 1, 0);
+	glTranslated(0,-1,0);
 
 	objects[0]->myG->draw();
 	glTranslated(-objects[0]->myS.x, -objects[0]->myS.y, -objects[0]->myS.z);
@@ -73,12 +74,12 @@ void World::worlddraw() {
 	glColor3f(0.5,0.5,0);
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			int x = i * 10, z = j * 10;
-			glColor3f(0.5,0.5,i/100.0);
-			glVertex3i(x, field[j][i], z);
-			glVertex3i(x, field[j+1][i], z + 10);
-			glVertex3i(x+10, field[j+1][i+1], z+10);
-			glVertex3i(x + 10, field[j][i+1],z);
+			int x = j * 10, z = i * 10;
+			glColor3f(j/100.0,0,i/100.0);
+			glVertex3i(x, field[i][j], z);
+			glVertex3i(x, field[i+1][j], z + 10);
+			glVertex3i(x+10, field[i+1][j+1], z+10);
+			glVertex3i(x + 10, field[i][j+1],z);
 		}
 	}
 	glEnd();
@@ -147,7 +148,7 @@ void World::worldupdate() {
 	}
 
 	if (rand() % 100 == 0) {
-		addOBJ(zaku);
+		//addOBJ(zaku);
 	}
 
 }
