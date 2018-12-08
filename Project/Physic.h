@@ -36,3 +36,4 @@ public:
 double clamp(double n);
 bool is_crash(status a, status b);//AABB 충돌체크
 void knockback(Physic taget, Physic s);//넉백
+void loadmap(unsigned char* data);

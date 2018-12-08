@@ -44,7 +44,7 @@ World::World()
 	GLubyte *map;
 	BITMAPINFO *info;
 	map = Loadbmp("map.bmp", &info);
-	
+	loadmap(map);
 	
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {

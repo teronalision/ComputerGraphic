@@ -1,6 +1,12 @@
 #include "Physic.h"
-#include "Define.h"
 
+void loadmap(unsigned char* data) {
+	for (int i = 0; i < 100; i++) {
+		for (int j = 0; j < 100; j++) {
+			field[i][j] = data[i * 100 + j];
+		}
+	}
+}
 
 Physic::Physic(status* in)
 {
@@ -61,8 +67,10 @@ void Unit::PhyUpdate(){
 	double tx = double(int(s.x) % 10) / 10.0;
 	double tz = double(int(s.z) % 10) / 10.0;
 
-	int floor = (1 - tx)*(1 - tz)*field[int(s.z) / 10][int(s.x) / 10] + (1 - tx)*tz*field[int(s.z) / 10 + 1][int(s.x) / 10]
-		+ tx*(1 - tz)*field[int(s.z) / 10][int(s.x) / 10 + 1] + tx*tz*field[int(s.z) / 10 + 1][int(s.x) / 10 + 1];
+	int p[4] = { field[int(s.z/10)][int(s.x/10)],field[int(s.z/10)][int(s.x/10)+1]
+				,field[int(s.z/10)+1][int(s.x/10)],field[int(s.z/10)+1][int(s.x/10)+1] };
+
+	int floor = (1 - tx)*(1 - tz)*p[0] + (1 - tx)*tz*p[2] + tx*(1 - tz)*p[1] + tx*tz*p[3];
 	if (s.y <= floor) {
 		s.y = floor;
 		vy = 0;
