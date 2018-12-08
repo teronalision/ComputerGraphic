@@ -244,6 +244,10 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	glColor3f(1.0, 0.0, 0.0);
 	glPointSize(5.0);
 	glBegin(GL_POINTS);
+	for(int i=0;i<100;i++)
+	{
+		//glVertex3d((150 + worldinfo.objects[i]->myS.x)/1000*90,-190 + (worldinfo.objects[i]->myS.z)/1000*90,1.0);
+	}
 	glEnd();
 
 	glMatrixMode(GL_PROJECTION);
