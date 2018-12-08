@@ -44,8 +44,8 @@ void Unit::PhyUpdate(){
 
 	s.x += vz*speed/FPS*sin(s.degree*R);
 	s.z += vz*speed/FPS*cos(s.degree*R);
-	s.x += vx*speed/FPS*cos(s.degree*R);
-	s.z -= vx*speed/FPS*sin(s.degree*R);
+	s.x += vx*speed/FPS*cos(s.degree*R)/2;
+	s.z -= vx*speed/FPS*sin(s.degree*R)/2;
 	s.y += vy;
 	
 	s.x = clamp(s.x);
