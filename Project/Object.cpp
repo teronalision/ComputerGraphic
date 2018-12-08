@@ -46,6 +46,7 @@ Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 }
 bool Zaku::Kill() {
 	myS.live = true;
+	NAME = paticle;
 	delete myP;
 	myP = new Paticlep(&myS);
 	delete myG;
