@@ -27,7 +27,7 @@ bool Physic::is_fire() {
 	else {
 		if (timer == -1) {
 			timer = 0;
-			std::cout<<"장전시작"<<std::endl;
+			std::cout<<"start reload"<<std::endl;
 		}
 		return false;
 	}
@@ -71,7 +71,7 @@ void Unit::PhyUpdate(){
 	if (timer > 3 *FPS) {
 		timer = -1;
 		magazin = 10;
-		std::cout << "재장전 완료" << std::endl;
+		std::cout << "reloading over" << std::endl;
 	}
 	else if (timer > -1) {
 		timer++;
@@ -79,14 +79,14 @@ void Unit::PhyUpdate(){
 }
 
 Bullp::Bullp(status* in):Physic(in) {
-	vz = -1;
-	speed = 10;
+	vz = 1;
+	speed = 4;
 }
 
 void Bullp::PhyUpdate() {
 	status& s = *st;
 
-	s.x -= vz*speed*sin(s.degree*R);
+	s.x += vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
 }
 

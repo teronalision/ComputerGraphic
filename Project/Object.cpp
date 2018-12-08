@@ -36,7 +36,7 @@ Zaku::Zaku(int id) :Object(id, zaku) {
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 
-	std::cout << "ÀÚÄí ·£´ý»ý¼º (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
+	std::cout << "new zaku random (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
 Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myS.set_position(x, 0, z);
@@ -45,7 +45,7 @@ Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
 
-	std::cout << "ÀÚÄí ÁöÁ¤»ý¼º (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
+	std::cout << "new zaku select (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
 bool Zaku::Kill() {
 	myS.live = true;
@@ -66,7 +66,7 @@ Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
 	myG = new Bullet_Graphic(&myS);
 	myP = new Bullp(&myS);
 
-	std::cout << "ÃÑ¾Ë »ý¼º" << std::endl;
+	std::cout << "new bullet"<< std::endl;
 }
 
 Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {
