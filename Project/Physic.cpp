@@ -34,19 +34,6 @@ bool Physic::is_fire() {
 }
 
 void Physic::PhyUpdate() {
-	status& s = *st;
-
-	s.x -= vz*speed*sin(s.degree*R);
-	s.z += vz*speed*cos(s.degree*R);
-	s.x += vx*speed*cos(s.degree*R);
-	s.z -= vx*speed*sin(s.degree*R);
-
-
-	if (vx > 0) vx = fmax(vx - brake, 0);
-	else		vx = fmin(vx + brake, 0);
-	if (vz > 0) vz = fmax(vz - brake, 0);
-	else		vz = fmin(vz + brake, 0);
-
 }
 
 Unit::Unit(status* in) :Physic(in) {
@@ -81,7 +68,7 @@ void Unit::PhyUpdate(){
 
 
 	//장전
-	if (timer > 3 * 30) {
+	if (timer > 3 *FPS) {
 		timer = -1;
 		magazin = 10;
 		std::cout << "재장전 완료" << std::endl;
@@ -103,12 +90,27 @@ void Bullp::PhyUpdate() {
 	s.z += vz*speed*cos(s.degree*R);
 }
 
+Paticlep::Paticlep(status* in) {
+	deadcount = 3 * FPS;
+}
+Paticlep::PhyUpdate() {
+	if (--deadcount < 0)
+		s->live = false;
+}
+
 double clamp(double n) {
 	if (n < 1)
 		return 1;
 	if (n > 1000 -1)
 		return 1000 -1;
 	return n;
+}
+int list_blink() {
+	for (int i = 1; i < OBJMAX; i++) {
+		if (objects[i] == NULL)
+			return i;
+	}
+	return -1;
 }
 bool is_crash(status a, status b) {
 

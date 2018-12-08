@@ -85,23 +85,7 @@ void World::worlddraw() {
 	}
 	glEnd();
 	glPopMatrix();
-	
-	
-	/*glPushMatrix();
-	glBegin(GL_LINES);
-	glColor3f(1.0, 1.0, 1.0);
-	for (int i = 0; i < 100; i++) {
-		for (int j = 0; j < 100; j++) {
-			int x = i * 100, z = -j * 100;
-			glColor3f(0.5, 0.5, i / 100.0);
-			glVertex3i(x, field[j + 1][i]+1, z);
-			glVertex3i(x, field[j][i]+1, z + 100);
-			glVertex3i(x + 100, field[j][i + 1]+1, z + 100);
-			glVertex3i(x + 100, field[j + 1][i + 1]+1, z);
-		}
-	}
-	glEnd();
-	glPopMatrix();*/
+
 
 	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] != NULL)
@@ -154,22 +138,18 @@ void World::worldupdate() {
 
 }
 
-void World::addOBJ(_name o,int x, int y, int z,double d) {
-	for (int i = 1; i < OBJMAX; i++) {
-		if (objects[i] == NULL) {
-			switch (o)
-			{
-			case zaku:
-				objects[i] = new Zaku(i);
-				break;
-			case bullet:
-				objects[i] = new Bullet(i,x,0, z,d);
-				break;
-			default:
-				break;
-			}
-			break;
-		}
-	}
+void World::addOBJ(_name o, int x, int y, int z, double d) {
+	int i = list_blink();
 
+	switch (o)
+	{
+	case zaku:
+		objects[i] = new Zaku(i);
+		break;
+	case bullet:
+		objects[i] = new Bullet(i, x, 0, z, d);
+		break;
+	default:
+		break;
+	}
 }

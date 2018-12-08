@@ -4,7 +4,7 @@
 
 enum _name
 {
-	gundam,zaku,bullet
+	gundam,zaku,bullet,paticle
 };
 
 
@@ -18,7 +18,7 @@ public:
 	Physic* myP;
 	Object(int id, _name name);
 	bool checkName(_name name);
-	void Kill();
+	virtual bool Kill();
 };
 
 class G :public Object {
@@ -30,10 +30,16 @@ class Zaku :public Object {
 public:
 	Zaku(int id);
 	Zaku(int id, int x, int y, int z, double d);
+	bool Kill();
 };
 
 class Bullet :public Object {
 public:
-	static unsigned int magarzin;
 	Bullet(int id, int x,int y, int z, double d);
+};
+
+class Paticle :public Object {
+public:
+	Paticle(int id, int x,int y, int z);
+	bool Kill();
 };

@@ -14,7 +14,7 @@ bool Object::checkName(_name n) {
 		return false;
 }
 
-void Object::Kill() {}
+bool Object::Kill() { return true; }
 
 
 G::G() :Object(0, gundam) {
@@ -44,6 +44,15 @@ Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 
 	std::cout << "磊捻 瘤沥积己 (" << myS.x<<","<< myS.y << "," <<myS.z << ")"<< std::endl;
 }
+bool Zaku::Kill() {
+	myS.live = true;
+	delete myP;
+	myP = new Paticlep(&myS);
+	delete myG;
+	myG = new Box(&myS);
+
+	return false;
+}
 
 Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
 	myS.set_position(x, y, z);
@@ -53,4 +62,11 @@ Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
 	myP = new Bullp(&myS);
 
 	std::cout << "醚舅 积己" << std::endl;
+}
+
+Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {
+	myS.set_position(x, y, z);
+	myS.set_size(1,1,1);
+	myP = new Paticlep(&myS);
+	myG = new Box(&myS);
 }
