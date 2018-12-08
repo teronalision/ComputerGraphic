@@ -17,7 +17,7 @@ zakubrain::zakubrain(Physic* in):st(in){
 
 void zakubrain::AIupdate(Physic taget) {
 	timer++;
-	if (timer < FPS*2)
+	if (timer < FPS*5)
 		return;
 
 
@@ -36,10 +36,12 @@ void zakubrain::AIupdate(Physic taget) {
 			st->vx = -1 + (rand() % 2) * 2;
 			std::cout << "Fire!! " << std::endl;
 		}
-		timer = 0;
+		timer = FPS*2;
 	}
 	else {
-		st->vz = 0;
+		st->st->degree = rand() % 360;
+		st->vz = rand()%2;
 		st->vx = 0;
+		timer = 0;
 	}
 }

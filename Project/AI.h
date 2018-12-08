@@ -1,7 +1,7 @@
 #pragma once
 #include "Physic.h"
 
-#define SERCH_LEN 150
+#define SERCH_LEN 100
 #define FIRE_LEN 30
 
 
