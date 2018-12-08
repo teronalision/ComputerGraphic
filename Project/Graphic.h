@@ -31,17 +31,18 @@ public:
 	void draw();
 };
 
+class Bullet_Graphic : public Graphic {
+public:
+	Bullet_Graphic(status*in);
+	~Bullet_Graphic();
+
+	void draw();
+};
+
 class Zaku_Graphic : public Graphic {
 public:
 	Zaku_Graphic(status*in);
 	~Zaku_Graphic();
-	void draw();
-};
-
-class GUI {
-public:
-	GUI();
-	~GUI();
 	void draw();
 };
 

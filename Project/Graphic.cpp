@@ -22,7 +22,6 @@ void Box::draw() {
 	glPopMatrix();
 }
 
-
 Gundam::Gundam(status* in) : Graphic(in) {}
 Gundam::~Gundam() {}
 void Gundam::draw() {
@@ -103,6 +102,18 @@ void Gundam::draw() {
 	} glPopMatrix(); // [robot end]
 }
 
+Bullet_Graphic::Bullet_Graphic(status*in) : Graphic(in) {}
+Bullet_Graphic::~Bullet_Graphic() {}
+void Bullet_Graphic::draw() {
+	glPushMatrix();
+	glTranslated(st->x, st->y, st->z);
+	glColor3f(1.0, 1.0, 0.0);
+	glRotated(90 -st->degree, 0, 1, 0);
+	glScaled(1.0, 0.1, 0.1);
+	glutSolidSphere(5, 5, 5);
+
+	glPopMatrix();
+}
 
 Zaku_Graphic::Zaku_Graphic(status* in) : Graphic(in) {}
 Zaku_Graphic::~Zaku_Graphic() {}
@@ -197,10 +208,4 @@ void Field::draw() {
 		glColor3f(0.5, 0.5, 0.0);
 		glutSolidCube(1000.0);
 	} glPopMatrix();
-}
-
-GUI::GUI() {}
-GUI::~GUI() {}
-void GUI::draw() {
-
 }
