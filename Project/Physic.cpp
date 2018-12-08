@@ -1,6 +1,12 @@
 #include "Physic.h"
-#include "Define.h"
 
+void loadmap(unsigned char* data) {
+	for (int i = 0; i < 100; i++) {
+		for (int j = 0; j < 100; j++) {
+			field[i][j] = data[i * 100 + j];
+		}
+	}
+}
 
 Physic::Physic(status* in)
 {
@@ -28,19 +34,6 @@ bool Physic::is_fire() {
 }
 
 void Physic::PhyUpdate() {
-	status& s = *st;
-
-	s.x -= vz*speed*sin(s.degree*R);
-	s.z += vz*speed*cos(s.degree*R);
-	s.x += vx*speed*cos(s.degree*R);
-	s.z -= vx*speed*sin(s.degree*R);
-
-
-	if (vx > 0) vx = fmax(vx - brake, 0);
-	else		vx = fmin(vx + brake, 0);
-	if (vz > 0) vz = fmax(vz - brake, 0);
-	else		vz = fmin(vz + brake, 0);
-
 }
 
 Unit::Unit(status* in) :Physic(in) {
@@ -61,8 +54,10 @@ void Unit::PhyUpdate(){
 	double tx = double(int(s.x) % 10) / 10.0;
 	double tz = double(int(s.z) % 10) / 10.0;
 
-	int floor = (1 - tx)*(1 - tz)*field[int(s.z) / 10][int(s.x) / 10] + (1 - tx)*tz*field[int(s.z) / 10 + 1][int(s.x) / 10]
-		+ tx*(1 - tz)*field[int(s.z) / 10][int(s.x) / 10 + 1] + tx*tz*field[int(s.z) / 10 + 1][int(s.x) / 10 + 1];
+	int p[4] = { field[int(s.z/10)][int(s.x/10)],field[int(s.z/10)][int(s.x/10)+1]
+				,field[int(s.z/10)+1][int(s.x/10)],field[int(s.z/10)+1][int(s.x/10)+1] };
+
+	int floor = (1 - tx)*(1 - tz)*p[0] + (1 - tx)*tz*p[2] + tx*(1 - tz)*p[1] + tx*tz*p[3];
 	if (s.y <= floor) {
 		s.y = floor;
 		vy = 0;
@@ -73,7 +68,7 @@ void Unit::PhyUpdate(){
 
 
 	//장전
-	if (timer > 3 * 30) {
+	if (timer > 3 *FPS) {
 		timer = -1;
 		magazin = 10;
 		std::cout << "재장전 완료" << std::endl;
@@ -93,6 +88,14 @@ void Bullp::PhyUpdate() {
 
 	s.x -= vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
+}
+
+Paticlep::Paticlep(status* in):Physic(in) {
+	deadcount = 3 * FPS;
+}
+void Paticlep::PhyUpdate() {
+	if (--deadcount < 0)
+		st->live = false;
 }
 
 double clamp(double n) {
