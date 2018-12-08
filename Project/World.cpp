@@ -139,17 +139,20 @@ void World::worldupdate() {
 }
 
 void World::addOBJ(_name o, int x, int y, int z, double d) {
-	int i = list_blink();
+	for (int i = 1; i < OBJMAX; i++) {
+		if (objects[i] == NULL) {
 
-	switch (o)
-	{
-	case zaku:
-		objects[i] = new Zaku(i);
-		break;
-	case bullet:
-		objects[i] = new Bullet(i, x, 0, z, d);
-		break;
-	default:
-		break;
+			switch (o)
+			{
+			case zaku:
+				objects[i] = new Zaku(i);
+				break;
+			case bullet:
+				objects[i] = new Bullet(i, x, 0, z, d);
+				break;
+			default:
+				break;
+			}
+		}
 	}
 }

@@ -41,7 +41,6 @@ public:
 };
 
 double clamp(double n);
-int list_blink();						//blink of list
 bool is_crash(status a, status b);		//AABB Check
 void knockback(Physic taget, Physic s);	//knockback
 void loadmap(unsigned char* data);

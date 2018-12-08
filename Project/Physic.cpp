@@ -90,12 +90,12 @@ void Bullp::PhyUpdate() {
 	s.z += vz*speed*cos(s.degree*R);
 }
 
-Paticlep::Paticlep(status* in) {
+Paticlep::Paticlep(status* in):Physic(in) {
 	deadcount = 3 * FPS;
 }
-Paticlep::PhyUpdate() {
+void Paticlep::PhyUpdate() {
 	if (--deadcount < 0)
-		s->live = false;
+		st->live = false;
 }
 
 double clamp(double n) {
@@ -104,13 +104,6 @@ double clamp(double n) {
 	if (n > 1000 -1)
 		return 1000 -1;
 	return n;
-}
-int list_blink() {
-	for (int i = 1; i < OBJMAX; i++) {
-		if (objects[i] == NULL)
-			return i;
-	}
-	return -1;
 }
 bool is_crash(status a, status b) {
 

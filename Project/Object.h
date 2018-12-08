@@ -41,5 +41,4 @@ public:
 class Paticle :public Object {
 public:
 	Paticle(int id, int x,int y, int z);
-	bool Kill();
 };
