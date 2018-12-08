@@ -109,8 +109,8 @@ Zaku_Graphic::~Zaku_Graphic() {}
 void Zaku_Graphic::draw() {
 	glPushMatrix(); { //								#Draw robot start
 					  //master location status
-		glTranslated(st->x, 0, st->z);
-		glTranslated(0, 50.0, 0);
+		glTranslated(st->x, 0, -st->z);
+		glTranslated(0, (st->ysize)/2, 0);
 		glRotated(-st->degree, 0, 1, 0);
 		glPushMatrix(); { //							#Draw body start
 			glTranslated(0, (st->ysize) / 10, 0); // move to the Y-axis center of body
