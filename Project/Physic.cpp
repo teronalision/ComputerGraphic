@@ -33,7 +33,7 @@ void Physic::PhyUpdate() {
 	s.x -= vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
 	s.x += vx*speed*cos(s.degree*R);
-	s.z += vx*speed*sin(s.degree*R);
+	s.z -= vx*speed*sin(s.degree*R);
 
 
 	if (vx > 0) vx = fmax(vx - brake, 0);
@@ -49,10 +49,10 @@ void Unit::PhyUpdate(){
 	status& s = *st;
 	
 
-	s.x -= vz*speed*sin(s.degree*R);
+	s.x += vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
 	s.x += vx*speed*cos(s.degree*R);
-	s.z += vx*speed*sin(s.degree*R);
+	s.z -= vx*speed*sin(s.degree*R);
 	s.y += vy;
 	
 	s.x = clamp(s.x);
@@ -66,7 +66,7 @@ void Unit::PhyUpdate(){
 	if (s.y <= floor) {
 		s.y = floor;
 		vy = 0;
-		std::cout << "¹Ù´Ú Ãæµ¹ :" <<s.x<<"," << s.y << "," << s.z<<std::endl;
+		std::cout << "¹Ù´Ú Ãæµ¹ :"<<s.degree<<"/" <<s.x<<"," << s.y << "," << s.z<<std::endl;
 	}
 	else
 		vy -= gravity;

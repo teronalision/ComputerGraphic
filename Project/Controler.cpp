@@ -10,13 +10,13 @@ void KeyboardDown(unsigned char key, int x, int y) {
 	switch (key)
 	{
 	case 'w':
-		hero.vz = -1;
+		hero.vz = 1;
 		break;
 	case 'a':
 		hero.vx = -1;
 		break;
 	case 's':
-		hero.vz = 1;
+		hero.vz = -1;
 		break;
 	case 'd':
 		hero.vx = 1;
@@ -33,13 +33,13 @@ void KeyboardUp(unsigned char key, int x, int y) {
 	switch (key)
 	{
 	case 'w':
-		hero.vz += 1;
+		hero.vz -= 1;
 		break;
 	case 'a':
 		hero.vx += 1;
 		break;
 	case 's':
-		hero.vz -= 1;
+		hero.vz += 1;
 		break;
 	case 'd':
 		hero.vx -= 1;

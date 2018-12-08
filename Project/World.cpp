@@ -63,23 +63,24 @@ World::~World()
 
 void World::worlddraw() {
 	
-	gluLookAt(-sin((objects[0]->myS.degree)*R)*5,2,cos((objects[0]->myS.degree)*R)*5, 0, 0, 0, 0, 1, 0);
-	glTranslated(0,-1,0);
-
+	//gluLookAt(-sin((objects[0]->myS.degree)*R)*5,2,cos((objects[0]->myS.degree)*R)*5, 0, 0, 0, 0, 1, 0);
+	glTranslated(0,-2,-4);
 	objects[0]->myG->draw();
-	glTranslated(-objects[0]->myS.x, -objects[0]->myS.y, -objects[0]->myS.z);
+
+	glRotated(objects[0]->myS.degree,0,1,0);
+	glTranslated(-objects[0]->myS.x, -objects[0]->myS.y, objects[0]->myS.z);
 
 	glPushMatrix();
 	glBegin(GL_QUADS);
 	glColor3f(0.5,0.5,0);
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
-			int x = j * 10, z = i * 10;
+			int x = j * 10, z = i * -10;
 			glColor3f(j/100.0,0,i/100.0);
 			glVertex3i(x, field[i][j], z);
-			glVertex3i(x, field[i+1][j], z + 10);
-			glVertex3i(x+10, field[i+1][j+1], z+10);
-			glVertex3i(x + 10, field[i][j+1],z);
+			glVertex3i(x + 10, field[i][j + 1], z);
+			glVertex3i(x+10, field[i+1][j+1], z-10);
+			glVertex3i(x, field[i + 1][j], z - 10);
 		}
 	}
 	glEnd();
