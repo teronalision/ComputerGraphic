@@ -29,7 +29,7 @@ void Gundam::draw() {
 	glPushMatrix(); { //								#Draw robot start
 		//master location status
 		glTranslated(0, (st->ysize) / 2, 0); // move to the Y-axis center of robot
-		glRotated(-st->degree + 90.0, 0, 1, 0); // rotate the robot proper way (following mouse mothion command)
+		glRotated(90.0, 0, 1, 0); // rotate the robot proper way (following mouse mothion command)
 		glPushMatrix(); { //							#Draw body start
 			glTranslated(0, (st->ysize) / 10, 0); // move to the Y-axis center of body
 			glPushMatrix(); { //						#Draw legs start
