@@ -39,6 +39,7 @@ GLubyte* Loadbmp(const char* filename, BITMAPINFO** info) {
 }
 World::World()
 {
+	worldtime = 0;
 	srand(time(NULL));
 	Yaim = 0;
 
@@ -142,7 +143,7 @@ void World::worldupdate() {
 	if (rand() % 200 == 0) {
 		addOBJ(zaku);
 	}
-
+	worldtime += 1.0/30.0;
 }
 
 void World::addOBJ(_name o, int x, int y, int z, double d) {
@@ -167,6 +168,10 @@ void World::addOBJ(_name o, int x, int y, int z, double d) {
 
 void GUIdraw(int hp, int bullet, World worldinfo) {
 
+	int hour = 0;
+	int minute = 0;
+	int second = 0;
+
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
@@ -183,8 +188,8 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	glColor3f(0.0, 1.0, 0.0);
 	glBegin(GL_QUADS);
 	glVertex3d(-230, 180, 1);
-	glVertex3d(-230, 160, 1);
-	glVertex3d(-230 + hp*6, 160, 1);
+	glVertex3d(-230, 170, 1);
+	glVertex3d(-230 + hp*6, 170, 1);
 	glVertex3d(-230 + hp*6, 180, 1);
 	glEnd();
 
@@ -243,6 +248,19 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	glVertex3d(150+(worldinfo.objects[0]->myS.x)/1000*90, -190+(worldinfo.objects[0]->myS.z)/1000*90, 1.0);
 	glEnd();
 
+	//Timer Information
+	hour = (int)(worldinfo.worldtime/3600);
+	minute = (int)(worldinfo.worldtime - hour * 3600)/60;
+	second = (int)(worldinfo.worldtime - hour * 3600) % 60;
+
+	glColor3f(1.0, 1.0, 0.0);
+	char string3[13];
+	sprintf(string3, "%2d : %2d : %2d", hour, minute, second);
+	glRasterPos2d(200, 180);
+	len = (int)strlen(string3);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string3[i]);
+
 	//Zaku Location
 	glColor3f(1.0, 0.0, 0.0);
 	glPointSize(5.0);
@@ -262,6 +280,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 	glEnable(GL_LIGHTING);
+
 }
 
 void ModelInit() {
@@ -284,7 +303,7 @@ void DrawSun(double x, double y, double z) {
 
 void SunLight(double x, double y, double z) {
 
-	DrawSun(x, y+1000, z);
+	DrawSun(0, 1000, 0);
 
 	GLfloat qaAmbientLight[] = { 0.2,0.2,0.2,1.0 };
 	GLfloat qaDiffuseLight[] = { 0.8,0.8,0.8,1.0 };
@@ -293,12 +312,21 @@ void SunLight(double x, double y, double z) {
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, qaDiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, qaSpecularLight);
 
-	GLfloat qaLightPosition[] = { x ,y + 1000, z, 1.0 };
+	GLfloat qaLightPosition[] = { 0 , 1000, 0, 1.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, qaLightPosition);
+
+
+	glLightfv(GL_LIGHT1, GL_AMBIENT, qaAmbientLight);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, qaDiffuseLight);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, qaSpecularLight);
+
+	GLfloat qaLightPosition2[] = { 0 ,1, 0, 0 };
+	glLightfv(GL_LIGHT1, GL_POSITION, qaLightPosition2);
 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, qaAmbientLight);
 	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 0.0);
 	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, 0.0);
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
 }
