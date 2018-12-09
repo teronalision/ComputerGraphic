@@ -133,6 +133,9 @@ void World::worldupdate() {
 		else if (objects[i]->checkName(bullet_z) && is_crash(objects[0]->myS, objects[i]->myS)) {
 			objects[0]->myS.hp -= 1;
 			objects[i]->myS.live = false;
+			if (objects[0]->myS.hp <= 0)
+				state = _gameover;
+
 			std::cout << "충돌 : 건담 피격! " << std::endl;
 		}
 	}
