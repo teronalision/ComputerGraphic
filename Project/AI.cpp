@@ -64,7 +64,7 @@ void zakuAttacker::AIupdate(Physic taget) {
 		st->vx = 0;
 		st->vz = 1;
 		std::cout << "Find!! " << std::endl;
-		in_fire_range = false;
+		in_fire_range = true;
 		timer = FPS * 3;
 	}
 	//attack
