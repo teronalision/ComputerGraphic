@@ -18,7 +18,7 @@ struct status
 	int hp;
 	bool live = true;
 
-	void set_position(int ix, int iy, int iz) {
+	void set_position(double ix, double iy, double iz) {
 		x = ix;
 		y = iy;
 		z = iz;

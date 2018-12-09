@@ -66,6 +66,12 @@ void Bullp::PhyUpdate() {
 	s.x += vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
 	s.y += 2*sin(-s.ysize*R);
+
+	int floor = field[int(s.z/2)][int(s.x/2)];
+	if (s.y <= floor-3) {
+		s.live = false;
+		//std::cout << "under ground" <<std::endl;
+	}
 }
 
 Paticlep::Paticlep(status* in):Physic(in) {
