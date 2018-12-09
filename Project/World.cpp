@@ -248,7 +248,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glRasterPos2d(-230, -180);
 		len = (int)strlen(string);
 		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i]);
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
 	}
 	else {
 		char string2[6];
@@ -256,7 +256,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glRasterPos2d(-230, -180);
 		len = (int)strlen(string2);
 		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string2[i]);
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string2[i]);
 	}
 
 	//Maps - Mapsize = 90x90 / Worldsize = 1,000
@@ -285,7 +285,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	glRasterPos2d(190, 180);
 	len = (int)strlen(string3);
 	for (int i = 0; i < len; i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string3[i]);
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string3[i]);
 
 	//Zaku Location
 	glColor3f(1.0, 0.0, 0.0);
