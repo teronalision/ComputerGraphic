@@ -4,6 +4,11 @@
 
 #define GUNDAM_HEIGHT 2
 
+typedef struct PARTICLE {
+	double x, y, z;
+	double vectorX, vectorY, vectorZ;
+} Particle;
+
 class Graphic
 {
 public:
@@ -37,26 +42,53 @@ public:
 	~Gundam();
 
 	void draw();
+	void draw_body();
+	void draw_head(double yangle = 0);
+	void draw_left_upper_arm(double u_yangle = 0,double l_yangle = 0);
+	void draw_right_upper_arm(double u_yangle = 0, double l_yangle = 0);
+	void draw_left_upper_leg(double u_yangle = 0, double l_yangle = 0);
+	void draw_right_upper_leg(double u_yangle = 0,double l_yangle = 0);
+	void draw_left_lower_arm(double yangle = 0);
+	void draw_right_lower_arm(double yangle = 0);
+	void draw_left_lower_leg(double yangle = 0);
+	void draw_right_lower_leg(double yangle = 0);
 };
 
 class Zaku_Graphic : public Graphic {
 public:
 	Zaku_Graphic(status*in);
 	~Zaku_Graphic();
+
+	void draw();
+	void draw_body();
+	void draw_head(double yangle = 0);
+	void draw_left_upper_arm(double u_yangle = 0, double l_yangle = 0);
+	void draw_right_upper_arm(double u_yangle = 0, double l_yangle = 0);
+	void draw_left_upper_leg(double u_yangle = 0, double l_yangle = 0);
+	void draw_right_upper_leg(double u_yangle = 0, double l_yangle = 0);
+	void draw_left_lower_arm(double yangle = 0);
+	void draw_right_lower_arm(double yangle = 0);
+	void draw_left_lower_leg(double yangle = 0);
+	void draw_right_lower_leg(double yangle = 0);
+
+};
+
+class Zaku_Dead_Particle : public Graphic {
+public:
+	Particle particle[100];
+	Zaku_Dead_Particle(status*in);
+	~Zaku_Dead_Particle();
+
+	void Update();
 	void draw();
 };
 
-class GUI {
+class Jump_Particle : public Graphic {
 public:
-	GUI();
-	~GUI();
-	void draw();
-};
+	Particle particle[100];
+	Jump_Particle(status*in);
+	~Jump_Particle();
 
-class Field : public Graphic {
-public:
-	Field(status*in);
-	~Field();
-
+	void Update();
 	void draw();
 };
