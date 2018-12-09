@@ -349,11 +349,8 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glBindTexture(GL_TEXTURE_2D, textures[0]);
 		texbits = Loadbmp("PAUSE.bmp", &texture);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, 300, 150, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
+		glTexImage2D(GL_TEXTURE_2D, 0, 3, 128, 64, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, GL_DECAL);
 
@@ -362,54 +359,22 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 1.0);
-		glVertex2d(-75, 100);
+		glVertex2d(-150, 75);
 		glTexCoord2f(0.0, 0.0);
-		glVertex2d(-75, 50);
+		glVertex2d(-150, -75);
 		glTexCoord2f(1.0, 0.0);
-		glVertex2d(75, 50);
+		glVertex2d(150, -75);
 		glTexCoord2f(1.0, 1.0);
-		glVertex2d(75, 100);
-		glEnd();
-
-		glGenTextures(1, textures);
-		int pause_select = 0;
-		glBindTexture(GL_TEXTURE_2D, textures[0]);
-
-		switch (pause_select) {
-		case 0:
-			texbits = Loadbmp("RESUME.bmp", &texture);
-			break;
-		case 1:
-			texbits = Loadbmp("MAIN.bmp", &texture);
-			break;
-		case 2:
-			texbits = Loadbmp("QUIT.bmp", &texture);
-			break;
-
-		}
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, 300, 150, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, GL_DECAL);
-
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, textures[0]);
-
-		glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 1.0);
-		glVertex2d(-75, -50);
-		glTexCoord2f(0.0, 0.0);
-		glVertex2d(-75, -100);
-		glTexCoord2f(1.0, 0.0);
-		glVertex2d(75, -100);
-		glTexCoord2f(1.0, 1.0);
-		glVertex2d(75, -50);
+		glVertex2d(150, 75);
 		glEnd();
 
 		glDisable(GL_TEXTURE_2D);
+		glColor3f(1.0, 1.0, 0.0);
+		char *string = "HP";
+		glRasterPos2d(-230, 180);
+		int len = (int)strlen(string);
+		for (int i = 0; i < len; i++)
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
 
 
 		
