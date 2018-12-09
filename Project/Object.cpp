@@ -36,7 +36,7 @@ bool G::fire() {
 		delay = FPS / 4;
 		if (magazin > 0) {
 			magazin -= 1;
-			que::push_q(bullet, myS.x, myS.y, myS.z, myS.degree, Graphic::gety());
+			que::push_q(bullet, myS.x, myS.y, myS.z, myS.degree, 2*Graphic::gety());
 			return true;
 		}
 		else {

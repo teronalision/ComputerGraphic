@@ -356,10 +356,24 @@ void SunLight(double x, double y, double z) {
 
 void World::WaveControl() {
 	static int wave = 0;
-	if (worldtime > 3 && wave == 0) {
+	int time = int(worldtime) % 120;
+	if (time > 0 && wave == 0) {
 		for (int i = 0; i < 10; i++)
 			addOBJ(zaku_a, rand() % 100 + 50, 30, rand() % 400 + 300, 90);
 
 		wave++;
+	}
+	if (time > 40 && wave == 1) {
+		for (int i = 0; i < 10; i++)
+			addOBJ(zaku_a, rand() % 100 + 850, 30, rand() % 400 + 300, 90);
+
+		wave++;
+	}
+	
+	if (time > 80 && wave == 3) {
+		for (int i = 0; i < 10; i++)
+			addOBJ(zaku_a, rand() % 400 + 300, 30, rand() % 100 + 850, 90);
+
+		wave = 0;
 	}
 }

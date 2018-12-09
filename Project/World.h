@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 
-#define OBJMAX 100
+#define OBJMAX 200
 
 
 class World

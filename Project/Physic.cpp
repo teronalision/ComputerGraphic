@@ -62,7 +62,7 @@ void Bullp::PhyUpdate() {
 
 	s.x += vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
-	s.y += 2*sin(-s.ysize*R);
+	s.y += sin(-s.ysize*R);
 }
 
 Paticlep::Paticlep(status* in):Physic(in) {
@@ -83,7 +83,7 @@ bool is_crash(status a, status b) {
 	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize > b.x + b.xsize)
 		return false;
 	//yรเ
-	if (a.y + a.ysize < b.y - b.ysize || a.y - a.ysize > b.y + b.ysize)
+	if (a.y + a.ysize < b.y - abs(b.ysize) || a.y - a.ysize > b.y + abs(b.ysize))
 		return false;
 	//zรเ
 	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize > b.z + b.zsize)
