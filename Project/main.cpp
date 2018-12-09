@@ -25,7 +25,7 @@ GLvoid DrawScene(GLvoid) {
 
 
 	glPopMatrix();
-	GUIdraw(world.objects[0]->myS.hp,world.objects[0]->myP->magazin,world); // temporary function
+	GUIdraw(world.objects[0]->myS.hp,world.objects[0]->magazin,world); // temporary function
 	glutSwapBuffers();
 }
 GLvoid Reshape(int w, int h) {

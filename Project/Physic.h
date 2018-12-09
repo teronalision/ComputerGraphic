@@ -13,12 +13,9 @@ public:
 	double vx, vy, vz;
 	double speed;
 	double jump_count;
-	int magazin;
-	int timer;
 	Physic(status* in);
 	~Physic();
 	virtual void PhyUpdate();
-	bool is_fire();	//발사 가능한지
 };
 
 class Unit :public Physic {

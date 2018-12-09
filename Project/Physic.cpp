@@ -12,25 +12,9 @@ Physic::Physic(status* in)
 {
 	st = in;
 	speed = 5;
-	magazin = 0;
-	timer = -1;
 }
 Physic::~Physic()
 {
-}
-
-bool Physic::is_fire() {
-	if (magazin > 0) {
-		magazin -= 1;
-		return true;
-	}
-	else {
-		if (timer == -1) {
-			timer = 0;
-			std::cout<<"start reload"<<std::endl;
-		}
-		return false;
-	}
 }
 
 void Physic::PhyUpdate() {
@@ -66,16 +50,6 @@ void Unit::PhyUpdate(){
 	else
 		vy -= gravity;
 
-
-	//ÀåÀü
-	if (timer > 3 *FPS) {
-		timer = -1;
-		magazin = 10;
-		std::cout << "reloading over" << std::endl;
-	}
-	else if (timer > -1) {
-		timer++;
-	}
 }
 
 Bullp::Bullp(status* in):Physic(in) {

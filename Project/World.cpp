@@ -134,16 +134,17 @@ void World::worldupdate() {
 		objects[i]->update();
 
 		if (objects[i]->myS.live == false) {//°´Ã¼ »èÁ¦
-			objects[i]->Kill();
-			delete objects[i];
-			objects[i] = NULL;
+			if (objects[i]->Kill()) {
+				delete objects[i];
+				objects[i] = NULL;
+			}
 		}
 	}
 
-	if (rand() % 200 == 0) {
+	if (rand() % 100 == 0) {
 		addOBJ(zaku);
 	}
-	worldtime += 1.0/30.0;
+	worldtime += 1.0/FPS;
 }
 
 void World::addOBJ(_name o, int x, int y, int z, double d) {
