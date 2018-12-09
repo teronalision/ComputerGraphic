@@ -73,6 +73,14 @@ void World::worlddraw() {
 	glRotated(objects[0]->myS.degree,0,1,0);
 	glTranslated(-objects[0]->myS.x, -objects[0]->myS.y, objects[0]->myS.z);
 
+	glBegin(GL_QUADS);
+	glColor3f(0,0,0.3);
+	glVertex3f(0,water,0);
+	glVertex3f(1000, water, 0);
+	glVertex3f(1000, water, -1000);
+	glVertex3f(0, water, -1000);
+	glEnd();
+
 	glPushMatrix();
 	glBegin(GL_QUADS);
 	glColor3f(0.5,0.5,0);
