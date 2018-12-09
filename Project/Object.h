@@ -1,6 +1,8 @@
 #pragma once
 #include "Graphic.h"
 #include "AI.h"
+#define water 36
+
 
 enum _name
 {
@@ -8,7 +10,7 @@ enum _name
 };
 enum _hp
 {
-	hp_g = 2, hp_z = 0
+	hp_g = 20, hp_z = 0
 };
 enum _magazin
 {
