@@ -67,9 +67,9 @@ void MouseMove(int x, int y) {
 	int oldx =WIN_W, oldy =WIN_H;
 
 	if(oldx >x)
-		taget[0]->myS.degree -= 0.5;
+		taget[0]->myS.degree -= 0.8;
 	else if (oldx < x)
-		taget[0]->myS.degree += 0.5;
+		taget[0]->myS.degree += 0.8;
 
 	if (oldy > y)
 		Graphic::sety(-0.2);

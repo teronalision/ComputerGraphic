@@ -45,7 +45,7 @@ World::World()
 
 	GLubyte *map;
 	BITMAPINFO *info;
-	map = Loadbmp("miramar.bmp", &info);
+	map = Loadbmp("map1.bmp", &info);
 	loadmap(map);
 	
 	for (int i = 0; i < RESOLUTION; i++) {
@@ -80,11 +80,14 @@ void World::worlddraw() {
 		for (int j = 0; j < RESOLUTION; j++) {
 			int t = 1000 / RESOLUTION;
 			int x = j*t, z = -i*t;
-			glColor3f(0, field[i][j]/255.0,0);
-			glVertex3i(x, field[i][j], z);
-			glVertex3i(x + t, field[i][j + 1], z);
-			glVertex3i(x + t, field[i+1][j+1], z-t);
-			glVertex3i(x, field[i + 1][j], z - t);
+			int p[4] = { field[i][j] ,field[i][j+1] ,field[i+1][j] ,field[i+1][j+1] };
+
+			glNormal3f(p[0]-p[1],1,p[0]-p[2]);
+			glColor3f(0, p[0]/255.0,0);
+			glVertex3i(x, p[0], z);
+			glVertex3i(x + t, p[1], z);
+			glVertex3i(x + t, p[3], z-t);
+			glVertex3i(x, p[2], z - t);
 		}
 	}
 	glEnd();
