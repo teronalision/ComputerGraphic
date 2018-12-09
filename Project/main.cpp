@@ -28,6 +28,7 @@ GLvoid DrawScene(GLvoid) {
 	}
 	else {
 		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world); // temporary function
 	}
 
 	glutSwapBuffers();
