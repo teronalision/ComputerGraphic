@@ -50,11 +50,13 @@ void Unit::PhyUpdate(){
 		vy = 0;
 		//std::cout << "¹Ù´Ú Ãæµ¹ :"<<s.degree<<"/" <<s.x<<"," << s.y << "," << s.z<<std::endl;
 	}
-	//if (s.y < 37)
-		//s.live = false;
 	else
 		vy<-3? -3: vy -= gravity;
 
+	if (s.y < 37) {
+		s.hp -= 1;
+		std::cout << "aaaa";
+	}
 }
 
 Bullp::Bullp(status* in):Physic(in) {

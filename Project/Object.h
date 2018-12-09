@@ -10,7 +10,7 @@ enum _name
 };
 enum _hp
 {
-	hp_g = 20, hp_z = 0
+	hp_g = 20, hp_z = 1
 };
 enum _magazin
 {

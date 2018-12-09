@@ -141,19 +141,21 @@ void World::worldupdate() {
 		else if (objects[i]->checkName(bullet_z) && is_crash(objects[0]->myS, objects[i]->myS)) {
 			objects[0]->myS.hp -= 1;
 			objects[i]->myS.live = false;
-			if (objects[0]->myS.hp <= 0)
-				state = _gameover;
 
 			std::cout << "충돌 : 건담 피격! " << std::endl;
 		}
 	}
-
+	if (objects[0]->myS.hp <= 0)
+		state = _gameover;
 
 	for (int i = 0; i < OBJMAX; i++) {
 		if (objects[i] == NULL)
 			continue;
 
 		objects[i]->update();
+
+		if (objects[i]->myS.hp <= 0)
+			objects[i]->myS.live = false;
 
 		if (objects[i]->myS.live == false) {//객체 삭제
 			if (objects[i]->Kill()) {
