@@ -193,199 +193,134 @@ void World::addOBJ(_name o, int x, int y, int z, double d) {
 }
 
 void GUIdraw(int hp, int bullet, World worldinfo) {
-	
-	if(worldinfo.state == _play){
-		int hour = 0;
-		int minute = 0;
-		int second = 0;
 
-		glMatrixMode(GL_PROJECTION);
-		glPushMatrix();
-		glLoadIdentity();
-		glOrtho(-WIN_W / 2, WIN_W / 2, -WIN_H / 2, WIN_H / 2, -1, 1);
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix();
-		glLoadIdentity();
-		glDisable(GL_CULL_FACE);
-		glDisable(GL_LIGHTING);
+	int hour = 0;
+	int minute = 0;
+	int second = 0;
 
-		glClear(GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glOrtho(-WIN_W / 2, WIN_W / 2, -WIN_H / 2, WIN_H / 2,-1,1);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	glDisable(GL_CULL_FACE);
+	glDisable(GL_LIGHTING);
 
-		//HP_GREEN
-		glColor3f(0.0, 1.0, 0.0);
-		glBegin(GL_QUADS);
-		glVertex3d(-230, 180, 1);
-		glVertex3d(-230, 170, 1);
-		glVertex3d(-230 + hp * 6, 170, 1);
-		glVertex3d(-230 + hp * 6, 180, 1);
-		glEnd();
+	glClear(GL_DEPTH_BUFFER_BIT);
 
-		//HP_RED
-		glColor3f(1.0, 0.0, 0.0);
-		glBegin(GL_QUADS);
-		glVertex3d(-230, 180, 1);
-		glVertex3d(-230, 170, 1);
-		glVertex3d(-230 + 120, 170, 1);
-		glVertex3d(-230 + 120, 180, 1);
-		glEnd();
+	//HP_GREEN
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_QUADS);
+	glVertex3d(-230, 180, 1);
+	glVertex3d(-230, 170, 1);
+	glVertex3d(-230 + hp*6, 170, 1);
+	glVertex3d(-230 + hp*6, 180, 1);
+	glEnd();
 
-		glColor3f(1.0, 1.0, 0.0);
-		char *string = "HP";
-		glRasterPos2d(-230, 180);
-		int len = (int)strlen(string);
-		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+	//HP_RED
+	glColor3f(1.0,0.0, 0.0);
+	glBegin(GL_QUADS);
+	glVertex3d(-230, 180, 1);
+	glVertex3d(-230, 170, 1);
+	glVertex3d(-230 + 120, 170, 1);
+	glVertex3d(-230 + 120, 180, 1);
+	glEnd();
+
+	glColor3f(1.0, 1.0, 0.0);
+	char *string = "HP";
+	glRasterPos2d(-230, 180);
+	int len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
 
 
-		//Bullets
-		string = "BULLET";
-		glRasterPos2d(-230, -160);
+	//Bullets
+	string = "BULLET";
+	glRasterPos2d(-230, -160);
+	len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+
+	if (bullet == 0) {
+		string = "RELOADING...";
+		glRasterPos2d(-230, -180);
 		len = (int)strlen(string);
 		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
-
-		if (bullet == 0) {
-			string = "RELOADING...";
-			glRasterPos2d(-230, -180);
-			len = (int)strlen(string);
-			for (int i = 0; i < len; i++)
-				glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i]);
-		}
-		else {
-			char string2[6];
-			sprintf(string2, "%2d/20", bullet);
-			glRasterPos2d(-230, -180);
-			len = (int)strlen(string2);
-			for (int i = 0; i < len; i++)
-				glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string2[i]);
-		}
-
-		//Maps - Mapsize = 90x90 / Worldsize = 1,000
-		glColor4f(0.5, 0.5, 0.5, 0.0);
-		glBegin(GL_QUADS);
-		glVertex2d(240, -100);
-		glVertex2d(240, -190);
-		glVertex2d(150, -190);
-		glVertex2d(150, -100);
-		glEnd();
-		//Gundam Location
-		glColor3f(0.0, 0.0, 1.0);
-		glPointSize(5.0);
-		glBegin(GL_POINTS);
-		glVertex3d(150 + (worldinfo.objects[0]->myS.x) / 1000 * 90, -190 + (worldinfo.objects[0]->myS.z) / 1000 * 90, 1.0);
-		glEnd();
-
-		//Timer Information
-		hour = (int)(worldinfo.worldtime / 3600);
-		minute = (int)(worldinfo.worldtime - hour * 3600) / 60;
-		second = (int)(worldinfo.worldtime - hour * 3600) % 60;
-
-		glColor3f(1.0, 1.0, 0.0);
-		char string3[13];
-		sprintf(string3, "%02d : %02d : %02d", hour, minute, second);
-		glRasterPos2d(190, 180);
-		len = (int)strlen(string3);
-		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string3[i]);
-
-		//Zaku Location
-		glColor3f(1.0, 0.0, 0.0);
-		glPointSize(5.0);
-		glBegin(GL_POINTS);
-		for (int i = 1; i < 100; i++)
-		{
-			if (worldinfo.objects[i] == NULL)
-				continue;
-			if (worldinfo.objects[i]->checkName(zaku)) {
-				glVertex3d(150 + (worldinfo.objects[i]->myS.x) / 1000 * 90, -190 + (worldinfo.objects[i]->myS.z) / 1000 * 90, 1.0);
-			}
-		}
-		glEnd();
-
-		//Aim GUI
-		glColor3f(0.5, 0.5, 0.5);
-		string = "--";
-		glRasterPos2d(-5, 85);
-		len = (int)strlen(string);
-		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
-		glColor3f(0.5, 0.5, 0.5);
-		string = "|";
-		glRasterPos2d(-0.5003, 85);
-		len = (int)strlen(string);
-		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
-		glMatrixMode(GL_PROJECTION);
-		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
-		glPopMatrix();
-		glEnable(GL_LIGHTING);
+			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i]);
 	}
-	else if (worldinfo.state == _pause) {
-		int hour = 0;
-		int minute = 0;
-		int second = 0;
-
-		glMatrixMode(GL_PROJECTION);
-		glPushMatrix();
-		glLoadIdentity();
-		glOrtho(-WIN_W / 2, WIN_W / 2, -WIN_H / 2, WIN_H / 2, -1, 1);
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix();
-		glLoadIdentity();
-		glDisable(GL_CULL_FACE);
-		glDisable(GL_LIGHTING);
-
-		glClear(GL_DEPTH_BUFFER_BIT);
-		
-		GLuint textures[3];
-		//glGenTextures(3, textures);
-		GLubyte* texbits;
-		BITMAPINFO*texture;
-		//glBindTexture(GL_TEXTURE_2D, textures[0]);
-		texbits = Loadbmp("PAUSE.bmp", &texture);
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, 300, 64, 0, GL_BGR_EXT,
-			GL_UNSIGNED_BYTE, texbits);
-		glEnable(GL_TEXTURE_2D);
-		glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 1.0);
-		glVertex2d(-150, 75);
-		glTexCoord2f(0.0, 0.0);
-		glVertex2d(-150, -75);
-		glTexCoord2f(1.0, 0.0);
-		glVertex2d(150, -75);
-		glTexCoord2f(1.0, 1.0);
-		glVertex2d(150, 75);
-		glEnd();
-
-
-		//HP_RED
-		glColor3f(1.0, 0.0, 0.0);
-		glBegin(GL_QUADS);
-		glVertex3d(-230, 180, 1);
-		glVertex3d(-230, 170, 1);
-		glVertex3d(-230 + 120, 170, 1);
-		glVertex3d(-230 + 120, 180, 1);
-		glEnd();
-
-		glColor3f(1.0, 1.0, 0.0);
-		char *string = "HP";
-		glRasterPos2d(-230, 180);
-		int len = (int)strlen(string);
+	else {
+		char string2[6];
+		sprintf(string2, "%2d/20", bullet);
+		glRasterPos2d(-230, -180);
+		len = (int)strlen(string2);
 		for (int i = 0; i < len; i++)
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
-
-
-		
-		glMatrixMode(GL_PROJECTION);
-		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
-		glPopMatrix();
-		glEnable(GL_LIGHTING);
+			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string2[i]);
 	}
+
+	//Maps - Mapsize = 90x90 / Worldsize = 1,000
+	glColor4f(0.5, 0.5, 0.5, 0.0);
+	glBegin(GL_QUADS);
+	glVertex2d(240, -100);
+	glVertex2d(240, -190);
+	glVertex2d(150, -190);
+	glVertex2d(150, -100);
+	glEnd();
+	//Gundam Location
+	glColor3f(0.0, 0.0, 1.0);
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
+	glVertex3d(150+(worldinfo.objects[0]->myS.x)/1000*90, -190+(worldinfo.objects[0]->myS.z)/1000*90, 1.0);
+	glEnd();
+
+	//Timer Information
+	hour = (int)(worldinfo.worldtime/3600);
+	minute = (int)(worldinfo.worldtime - hour * 3600)/60;
+	second = (int)(worldinfo.worldtime - hour * 3600) % 60;
+
+	glColor3f(1.0, 1.0, 0.0);
+	char string3[13];
+	sprintf(string3, "%02d : %02d : %02d", hour, minute, second);
+	glRasterPos2d(190, 180);
+	len = (int)strlen(string3);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string3[i]);
+
+	//Zaku Location
+	glColor3f(1.0, 0.0, 0.0);
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
+	for (int i = 1; i < 100; i++)
+	{
+		if (worldinfo.objects[i] == NULL)
+			continue;
+		if (worldinfo.objects[i]->checkName(zaku)) {
+			glVertex3d(150 + (worldinfo.objects[i]->myS.x) / 1000 * 90, -190 + (worldinfo.objects[i]->myS.z) / 1000 * 90, 1.0);
+		}
+	}
+	glEnd();
+
+	//Aim GUI
+	glColor3f(0.5, 0.5, 0.5);
+	string = "--";
+	glRasterPos2d(-5, 85);
+	len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+	glColor3f(0.5, 0.5, 0.5);
+	string = "|";
+	glRasterPos2d(-0.5003, 85);
+	len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+
 }
-
-
 
 void ModelInit() {
 	glNormal3f(0.0, 0.0, 1.0);
