@@ -55,7 +55,6 @@ void Unit::PhyUpdate(){
 
 	if (s.y < 37) {
 		s.hp -= 1;
-		std::cout << "aaaa";
 	}
 }
 

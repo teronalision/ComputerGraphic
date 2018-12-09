@@ -147,8 +147,8 @@ void World::worldupdate() {
 	}
 	if (objects[0]->myS.hp <= 0)
 		state = _gameover;
-
-	for (int i = 0; i < OBJMAX; i++) {
+	objects[0]->update();
+	for (int i = 1; i < OBJMAX; i++) {
 		if (objects[i] == NULL)
 			continue;
 
@@ -179,9 +179,6 @@ void World::worldupdate() {
 	}
 
 
-	if (rand() % 300 == 0) {
-		addOBJ(zaku);
-	}
 	WaveControl();
 	worldtime += 1.0/FPS;
 }
@@ -520,24 +517,28 @@ void SunLight(double x, double y, double z) {
 
 void World::WaveControl() {
 	static int wave = 0;
-	int time = int(worldtime) % 120;
+	int time = int(worldtime) % 100;
 	if (time > 0 && wave == 0) {
 		for (int i = 0; i < 5; i++)
-			addOBJ(zaku_a, rand() % 100 + 50, 30, rand() % 400 + 300, 90);
+			addOBJ(zaku_a, rand() % 100 + 150, 30, rand() % 100 + 310, 90);
 
 		wave++;
 	}
 	if (time > 40 && wave == 1) {
 		for (int i = 0; i < 8; i++)
-			addOBJ(zaku_a, rand() % 100 + 850, 30, rand() % 400 + 300, 90);
+			addOBJ(zaku_a, rand() % 300 + 550, 30, rand() % 200 + 700, 90);
 
 		wave++;
 	}
 	
 	if (time > 80 && wave == 3) {
-		for (int i = 0; i < 10; i++)
-			addOBJ(zaku_a, rand() % 400 + 300, 30, rand() % 100 + 850, 90);
+		for (int i = 0; i < 12; i++)
+			addOBJ(zaku_a, rand() % 200 + 650, 30, rand() % 200 + 400, 90);
 
 		wave = 0;
+	}
+
+	if (rand() % 100 == 0) {
+		addOBJ(zaku);
 	}
 }
