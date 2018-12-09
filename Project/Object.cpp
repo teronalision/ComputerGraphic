@@ -18,7 +18,7 @@ bool Object::Kill() { return true; }
 
 
 G::G() :Object(0, gundam) {
-	myS.set_position(450, 200, 500);
+	myS.set_position(450, 100, 500);
 	myS.degree = 0;
 	myS.hp = hp_g;
 	myS.set_size(1, 2, 1);
