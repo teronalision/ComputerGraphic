@@ -4,7 +4,7 @@
 
 enum _name
 {
-	gundam,zaku,zaku_a,bullet,bullet_z,paticle
+	gundam,zaku,zaku_a,bullet,bullet_z,paticle,jumppaticle
 };
 enum _hp
 {
@@ -62,6 +62,12 @@ class Paticle :public Object {
 public:
 	int Dcount;
 	Paticle(int id, int x,int y, int z);
+	void update();
+};
+class JumpPaticle :public Object {
+public:
+	int Dcount;
+	JumpPaticle(int id, int x, int y, int z);
 	void update();
 };
 

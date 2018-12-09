@@ -2,7 +2,7 @@
 #include "Define.h"
 
 #define brake 0.1
-#define gravity 0.6
+#define gravity 3.0/FPS
 
 static int field[101][101];
 

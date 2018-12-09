@@ -33,7 +33,7 @@ G::G() :Object(0, gundam) {
 }
 bool G::fire() {
 	if (delay < 0) {
-		delay = FPS / 3;
+		delay = FPS / 4;
 		if (magazin > 0) {
 			magazin -= 1;
 			que::push_q(bullet, myS.x, myS.y, myS.z, myS.degree);
@@ -113,7 +113,7 @@ void Zaku::update() {
 }
 bool Zaku::fire() {
 	if (delay < 0) {
-		delay = FPS / 3;
+		delay = FPS / 2;
 		if (magazin > 0) {
 			magazin -= 1;
 			que::push_q(bullet_z, myS.x, myS.y, myS.z, myS.degree);
@@ -178,6 +178,30 @@ void Paticle::update() {
 	}
 }
 
+JumpPaticle::JumpPaticle(int id, int x, int y, int z) :Object(id, paticle) {
+	myS.set_position(x, y-1, z);
+	myS.set_size(1, 1, 1);
+	myP = new Paticlep(&myS);
+	myG = new Zaku_Dead_Particle(&myS);
+	Dcount = FPS * 2;
+
+	for (int i = 0; i < JumpParticle_MAX; i++) {
+		myG->pi[i].set_position(x, y + 1, z);
+		myG->pi[i].degree = i*36;
+	}
+
+	std::cout << "new paticle" << std::endl;
+}
+void JumpPaticle::update() {
+	if (--Dcount < 0)
+		myS.live = false;
+
+	for (int i = 0; i < JumpParticle_MAX; i++) {
+		myG->pi[i].x += sin(myG->pi[i].degree*R) / FPS;
+		myG->pi[i].z += cos(myG->pi[i].degree*R) / FPS;
+	}
+}
+
 void que::push_q(_name name, int x, int y, int z, int d) {
 	node* t;
 	if (head == NULL) {
@@ -207,6 +231,9 @@ void que::push_q(_name name, int x, int y, int z, int d) {
 		break;
 	case paticle:
 		t->data = new Paticle(-1,x,y,z);
+		break;
+	case jumppaticle:
+		t->data = new JumpPaticle(-1, x, y, z);
 		break;
 	}
 }

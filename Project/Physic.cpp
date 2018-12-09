@@ -48,7 +48,7 @@ void Unit::PhyUpdate(){
 		//std::cout << "¹Ù´Ú Ãæµ¹ :"<<s.degree<<"/" <<s.x<<"," << s.y << "," << s.z<<std::endl;
 	}
 	else
-		vy -= gravity;
+		vy<-3? -3: vy -= gravity;
 
 }
 

@@ -23,7 +23,8 @@ void KeyboardDown(unsigned char key, int x, int y) {
 		hero.vx = 1;
 		break;
 	case ' ':
-		hero.vy = 10;
+		hero.vy = 3;
+		que::push_q(jumppaticle,hero.st->x, hero.st->y, hero.st->z);
 		break;
 	default:
 		break;

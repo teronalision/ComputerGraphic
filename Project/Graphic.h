@@ -4,6 +4,7 @@
 
 #define GUNDAM_HEIGHT 2
 #define Particle_MAX 20
+#define JumpParticle_MAX 10
 
 typedef struct PARTICLE {
 	double x, y, z;
