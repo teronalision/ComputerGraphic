@@ -7,7 +7,8 @@ World world;
 
 void Timerf(int value) {
 	
-	world.worldupdate();
+	if(world.state == _play)
+		world.worldupdate();
 
 	glutPostRedisplay();
 	glutTimerFunc(1000 / FPS, Timerf, 1);
@@ -16,16 +17,19 @@ GLvoid DrawScene(GLvoid) {
 	glClearColor(0.6f, 0.8f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	glPushMatrix();
 	
-
-	//юс╫ц
 	
-	world.worlddraw();
+	if (world.state == _play) {
+		glutSetCursor(GLUT_CURSOR_NONE);
+		glPushMatrix();
+		world.worlddraw();
+		glPopMatrix();
+		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world); // temporary function
+	}
+	else {
+		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+	}
 
-
-	glPopMatrix();
-	GUIdraw(world.objects[0]->myS.hp,world.objects[0]->magazin,world); // temporary function
 	glutSwapBuffers();
 }
 GLvoid Reshape(int w, int h) {
@@ -45,7 +49,6 @@ GLvoid Reshape(int w, int h) {
 	glEnable(GL_CULL_FACE);
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_LIGHTING);
-	glutSetCursor(GLUT_CURSOR_NONE);
 }
 
 

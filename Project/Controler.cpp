@@ -10,6 +10,12 @@ void KeyboardDown(unsigned char key, int x, int y) {
 
 	switch (key)
 	{
+	case 27:
+		if (ww->state == _play)
+			ww->state = _pause;
+		else if (ww->state == _pause)
+			ww->state = _play;
+		break;
 	case 'w':
 		hero.vz = 1;
 		break;
@@ -70,6 +76,6 @@ void MouseMove(int x, int y) {
 	else if (oldy < y)
 		Graphic::sety(0.1);
 
-
-	glutWarpPointer(WIN_W,WIN_H);
+	if(ww->state == _play)
+		glutWarpPointer(WIN_W,WIN_H);
 }

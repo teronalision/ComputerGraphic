@@ -3,10 +3,14 @@
 
 #define OBJMAX 200
 
+enum {
+	_start, _play, _pause, _stop
+};
 
 class World
 {
 public:
+	int state;
 	double worldtime;
 	Object* objects[OBJMAX];
 

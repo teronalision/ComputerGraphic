@@ -39,6 +39,7 @@ GLubyte* Loadbmp(const char* filename, BITMAPINFO** info) {
 }
 World::World()
 {
+	state = _play;
 	worldtime = 0;
 	srand(time(NULL));
 
@@ -64,8 +65,8 @@ World::~World()
 void World::worlddraw() {
 	
 	//gluLookAt(-sin((objects[0]->myS.degree)*R)*5,2,cos((objects[0]->myS.degree)*R)*5, 0, 0, 0, 0, 1, 0);
-	glTranslated(0,-2,-4);
-	glRotated(15,1,0,0);
+	glTranslated(0,-2,-5);
+	glRotated(10,1,0,0);
 	glRotated(Graphic::gety(),1,0,0);
 	objects[0]->myG->draw();
 
