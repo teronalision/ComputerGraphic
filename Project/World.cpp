@@ -300,6 +300,19 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	}
 	glEnd();
 
+	//Aim GUI
+	glColor3f(0.5, 0.5, 0.5);
+	string = "--";
+	glRasterPos2d(-5, 85);
+	len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+	glColor3f(0.5, 0.5, 0.5);
+	string = "|";
+	glRasterPos2d(-0.5003, 85);
+	len = (int)strlen(string);
+	for (int i = 0; i < len; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
