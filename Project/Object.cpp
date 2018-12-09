@@ -13,7 +13,7 @@ bool Object::checkName(_name n) {
 	else
 		return false;
 }
-bool Object::is_fire() { return false; }
+bool Object::fire() { return false; }
 bool Object::Kill() { return true; }
 
 
@@ -31,11 +31,12 @@ G::G() :Object(0, gundam) {
 
 	hero = this;
 }
-bool G::is_fire() {
+bool G::fire() {
 	if (delay < 0) {
 		delay = FPS / 3;
 		if (magazin > 0) {
 			magazin -= 1;
+			que::push_q(bullet, myS.x, myS.y, myS.z, myS.degree);
 			return true;
 		}
 		else {
@@ -98,6 +99,9 @@ void Zaku::update() {
 	myA->AIupdate(*hero->myP);
 	delay--;
 
+	if (myA->in_fire_range)
+		fire();
+
 	if (reload_timer > 2 * FPS) {
 		reload_timer = -1;
 		magazin = ma_z;
@@ -107,11 +111,12 @@ void Zaku::update() {
 		reload_timer++;
 	}
 }
-bool Zaku::is_fire() {
+bool Zaku::fire() {
 	if (delay < 0) {
 		delay = FPS / 3;
 		if (magazin > 0) {
 			magazin -= 1;
+			que::push_q(bullet_z, myS.x, myS.y, myS.z, myS.degree);
 			return true;
 		}
 		else {
@@ -195,6 +200,10 @@ void que::push_q(_name name, int x, int y, int z, int d) {
 		break;
 	case bullet:
 		t->data = new Bullet(-1,x,y,z,d);
+		break;
+	case bullet_z:
+		t->data = new Bullet(-1, x, y, z, d);
+		t->data->NAME = bullet_z;
 		break;
 	case paticle:
 		t->data = new Paticle(-1,x,y,z);

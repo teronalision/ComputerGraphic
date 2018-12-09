@@ -9,6 +9,7 @@ class AI
 {
 public:
 	int timer;
+	bool in_fire_range;
 	AI();
 	~AI();
 	virtual void AIupdate(Physic taget) = 0;

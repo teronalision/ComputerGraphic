@@ -30,6 +30,7 @@ void zakubrain::AIupdate(Physic taget) {
 			st->vx = 0;
 			st->vz = 1;
 			std::cout << "Find!! " << std::endl;
+			in_fire_range = false;
 			timer = FPS * 3;
 		}
 		//attack
@@ -38,6 +39,7 @@ void zakubrain::AIupdate(Physic taget) {
 			st->vz = 0;
 			st->vx = -1 + (rand() % 2) * 2;
 			std::cout << "Fire!! " << std::endl;
+			in_fire_range = true;
 			timer = FPS * 4;
 		}
 	}
@@ -62,6 +64,7 @@ void zakuAttacker::AIupdate(Physic taget) {
 		st->vx = 0;
 		st->vz = 1;
 		std::cout << "Find!! " << std::endl;
+		in_fire_range = false;
 		timer = FPS * 3;
 	}
 	//attack
@@ -70,6 +73,7 @@ void zakuAttacker::AIupdate(Physic taget) {
 		st->vz = 0;
 		st->vx = -1 + (rand() % 2) * 2;
 		std::cout << "Fire!! " << std::endl;
+		in_fire_range = false;
 		timer = FPS * 4;
 	}
 

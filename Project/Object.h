@@ -4,7 +4,7 @@
 
 enum _name
 {
-	gundam,zaku,zaku_a,bullet,paticle
+	gundam,zaku,zaku_a,bullet,bullet_z,paticle
 };
 enum _hp
 {
@@ -28,7 +28,7 @@ public:
 	Object(int id, _name name);
 	virtual void update() = 0;
 	bool checkName(_name name);
-	virtual bool is_fire();
+	virtual bool fire();
 	virtual bool Kill();
 };
 
@@ -38,7 +38,7 @@ public:
 	int reload_timer;
 	int delay;
 	void update();
-	bool is_fire();	//발사 가능한지
+	bool fire();
 };
 
 class Zaku :public Object {
@@ -48,7 +48,7 @@ public:
 	Zaku(int id);
 	Zaku(int id, int x, int y, int z, double d);
 	void update();
-	bool is_fire();
+	bool fire();
 	bool Kill();
 };
 
