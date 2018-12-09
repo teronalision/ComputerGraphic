@@ -126,14 +126,9 @@ bool Zaku::is_fire() {
 }
 
 bool Zaku::Kill() {
-	myS.live = true;
-	NAME = paticle;
-	delete myP;
-	myP = new Paticlep(&myS);
-	delete myG;
-	myG = new Zaku_Dead_Particle(&myS);
+	que::push_q(paticle,myS.x, myS.y, myS.z);
 
-	return false;
+	return true;
 }
 
 Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
@@ -160,4 +155,37 @@ Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {
 	myG = new Zaku_Dead_Particle(&myS);
 
 	std::cout << "new paticle" << std::endl;
+}
+void Paticle::update() {
+
+}
+
+void que::push_q(_name name, int x, int y, int z, int d) {
+	node* t = head;
+	while (t != NULL)
+	{
+		t = t->next;
+	}
+	t = new node;
+	switch (name)
+	{
+	case zaku:
+		t->data = new Zaku(-1,x,y,z,d);
+		break;
+	case bullet:
+		t->data = new Bullet(-1,x,y,z,d);
+		break;
+	case paticle:
+		t->data = new Paticle(-1,x,y,z);
+		break;
+	}
+}
+Object* que::pop_q() {
+	if (head == NULL)
+		return NULL;
+	Object* r = head->data;
+	node* d = head;
+	head = head->next;
+	delete d;
+	return r;
 }

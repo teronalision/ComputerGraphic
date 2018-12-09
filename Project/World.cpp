@@ -140,6 +140,19 @@ void World::worldupdate() {
 			}
 		}
 	}
+	
+	//pop que
+	Object* re = que::pop_q();
+	if (re != NULL) {
+		for (int i = 1; i < OBJMAX; i++) {
+			if (objects[i] == NULL) {
+				objects[i] = re;
+				objects[i]->ID = i;
+				break;
+			}
+		}
+	}
+
 
 	if (rand() % 100 == 0) {
 		addOBJ(zaku);

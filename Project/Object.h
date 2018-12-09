@@ -61,6 +61,18 @@ public:
 class Paticle :public Object {
 public:
 	Paticle(int id, int x,int y, int z);
+	void update();
 };
 
 static G* hero;
+
+class que {
+public:
+	struct node {
+		Object* data = NULL;
+		node* next = NULL;
+	};
+	static void push_q(_name, int x, int y, int z, int d=0);
+	static Object* pop_q();
+};
+static que::node* head = NULL;
