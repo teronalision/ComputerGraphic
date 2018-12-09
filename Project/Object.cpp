@@ -36,7 +36,7 @@ bool G::fire() {
 		delay = FPS / 4;
 		if (magazin > 0) {
 			magazin -= 1;
-			que::push_q(bullet, myS.x, myS.y, myS.z, myS.degree);
+			que::push_q(bullet, myS.x, myS.y, myS.z, myS.degree, Graphic::gety());
 			return true;
 		}
 		else {
@@ -116,7 +116,8 @@ bool Zaku::fire() {
 		delay = FPS / 2;
 		if (magazin > 0) {
 			magazin -= 1;
-			que::push_q(bullet_z, myS.x, myS.y, myS.z, myS.degree);
+			int d = atan2(hero->myS.y - myS.y,hero->myS.x - myS.x)/3.14*180;
+			que::push_q(bullet_z, myS.x, myS.y, myS.z, myS.degree, -d);
 			return true;
 		}
 		else {
@@ -136,11 +137,11 @@ bool Zaku::Kill() {
 	return true;
 }
 
-Bullet::Bullet(int id, int x,int y, int z,double d):Object(id, bullet) {
+Bullet::Bullet(int id, int x,int y, int z,double d, int yd):Object(id, bullet) {
 	myS.set_position(x, y, z);
 	myS.degree = d;
 	myS.hp = 1;
-	myS.set_size(0.5, 0.5, 0.5);
+	myS.set_size(0.5, yd, 0.5);
 	myG = new Bullet_Graphic(&myS);
 	myP = new Bullp(&myS);
 
@@ -202,7 +203,7 @@ void JumpPaticle::update() {
 	}
 }
 
-void que::push_q(_name name, int x, int y, int z, int d) {
+void que::push_q(_name name, int x, int y, int z, int d, int yd) {
 	node* t;
 	if (head == NULL) {
 		head = new node;
@@ -223,10 +224,10 @@ void que::push_q(_name name, int x, int y, int z, int d) {
 		t->data = new Zaku(-1,x,y,z,d);
 		break;
 	case bullet:
-		t->data = new Bullet(-1,x,y,z,d);
+		t->data = new Bullet(-1,x,y,z,d,yd);
 		break;
 	case bullet_z:
-		t->data = new Bullet(-1, x, y, z, d);
+		t->data = new Bullet(-1, x, y, z, d,yd);
 		t->data->NAME = bullet_z;
 		break;
 	case paticle:

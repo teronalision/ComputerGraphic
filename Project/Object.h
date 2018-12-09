@@ -54,7 +54,7 @@ public:
 
 class Bullet :public Object {
 public:
-	Bullet(int id, int x,int y, int z, double d);
+	Bullet(int id, int x,int y, int z, double d, int yd =0);
 	void update();
 };
 
@@ -79,7 +79,7 @@ public:
 		Object* data = NULL;
 		node* next = NULL;
 	};
-	static void push_q(_name, int x, int y, int z, int d=0);
+	static void push_q(_name, int x, int y, int z, int d=0,int yd=0);
 	static Object* pop_q();
 };
 static que::node* head = NULL;

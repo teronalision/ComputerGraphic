@@ -62,6 +62,7 @@ void Bullp::PhyUpdate() {
 
 	s.x += vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
+	s.y += 2*sin(-s.ysize*R);
 }
 
 Paticlep::Paticlep(status* in):Physic(in) {
