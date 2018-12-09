@@ -45,6 +45,7 @@ GLvoid Reshape(int w, int h) {
 	glEnable(GL_CULL_FACE);
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_LIGHTING);
+	glutSetCursor(GLUT_CURSOR_NONE);
 }
 
 

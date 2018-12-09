@@ -58,7 +58,7 @@ void MouseClick(int button, int state, int x, int y) {
 
 }
 void MouseMove(int x, int y) {
-	static int oldx =0, oldy =0;
+	int oldx =WIN_W, oldy =WIN_H;
 
 	if(oldx >x)
 		taget[0]->myS.degree -= 1;
@@ -69,6 +69,7 @@ void MouseMove(int x, int y) {
 		Graphic::sety(-0.1);
 	else if (oldy < y)
 		Graphic::sety(0.1);
-	oldx = x;
-	oldy = y;
+
+
+	glutWarpPointer(WIN_W,WIN_H);
 }
