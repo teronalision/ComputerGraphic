@@ -4,6 +4,11 @@
 
 #define GUNDAM_HEIGHT 2
 
+typedef struct PARTICLE {
+	double x, y, z;
+	double vectorX, vectorY, vectorZ;
+} Particle;
+
 class Graphic
 {
 public:
@@ -68,17 +73,22 @@ public:
 
 };
 
-class GUI {
+class Zaku_Dead_Particle : public Graphic {
 public:
-	GUI();
-	~GUI();
+	Particle particle[100];
+	Zaku_Dead_Particle(status*in);
+	~Zaku_Dead_Particle();
+
+	void Update();
 	void draw();
 };
 
-class Field : public Graphic {
+class Jump_Particle : public Graphic {
 public:
-	Field(status*in);
-	~Field();
+	Particle particle[100];
+	Jump_Particle(status*in);
+	~Jump_Particle();
 
+	void Update();
 	void draw();
 };

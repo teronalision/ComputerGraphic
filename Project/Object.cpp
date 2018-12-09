@@ -67,7 +67,7 @@ bool Zaku::Kill() {
 	delete myP;
 	myP = new Paticlep(&myS);
 	delete myG;
-	myG = new Box(&myS);
+	myG = new Zaku_Dead_Particle(&myS);
 
 	return false;
 }
@@ -91,4 +91,6 @@ Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {
 	myS.set_size(1,1,1);
 	myP = new Paticlep(&myS);
 	myG = new Box(&myS);
+
+	std::cout << "new bullet" << std::endl;
 }
