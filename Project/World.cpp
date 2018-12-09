@@ -94,7 +94,7 @@ void World::worlddraw() {
 		if (objects[i] != NULL)
 			objects[i]->myG->draw();
 	}
-	SunLight(500, 0, -500 );
+	SunLight(-500, 1000, -500 );
 }
 
 void World::worldupdate() {
@@ -399,16 +399,19 @@ void ModelInit() {
 }
 
 void DrawSun(double x, double y, double z) {
+	GLfloat qaWhite[] = { 1.0,1.0,1.0,1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, qaWhite);
 	glPushMatrix(); {
+		glEnable(GL_COLOR_MATERIAL);
 		glTranslated(x, y, z);
 		glColor3f(1.0, 1.0, 0.0);
-		glutSolidSphere(20, 10, 10);
+		glutSolidSphere(100, 10, 10);
 	}glPopMatrix();
 }
 
 void SunLight(double x, double y, double z) {
 
-	DrawSun(0, 1000, 0);
+	DrawSun(x, y+200, z);
 
 	GLfloat qaAmbientLight[] = { 0.2,0.2,0.2,1.0 };
 	GLfloat qaDiffuseLight[] = { 0.8,0.8,0.8,1.0 };
@@ -417,7 +420,7 @@ void SunLight(double x, double y, double z) {
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, qaDiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, qaSpecularLight);
 
-	GLfloat qaLightPosition[] = { 0 , 1000, 0, 1.0 };
+	GLfloat qaLightPosition[] = { x , y, z, 1.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, qaLightPosition);
 
 
