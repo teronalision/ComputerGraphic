@@ -45,12 +45,12 @@ World::World()
 
 	GLubyte *map;
 	BITMAPINFO *info;
-	map = Loadbmp("map1.bmp", &info);
+	map = Loadbmp("miramar.bmp", &info);
 	loadmap(map);
 	
-	for (int i = 0; i < 100; i++) {
-		for (int j = 0; j < 100; j++) {
-			field[i][j] = map[i*100+j];
+	for (int i = 0; i < RESOLUTION; i++) {
+		for (int j = 0; j < RESOLUTION; j++) {
+			field[i][j] = map[i*RESOLUTION +j];
 		}
 	}
 	objects[0] = new G();
@@ -76,14 +76,15 @@ void World::worlddraw() {
 	glPushMatrix();
 	glBegin(GL_QUADS);
 	glColor3f(0.5,0.5,0);
-	for (int i = 0; i < 100; i++) {
-		for (int j = 0; j < 100; j++) {
-			int x = j * 10, z = i * -10;
-			glColor3f(j/100.0,0,i/100.0);
+	for (int i = 0; i < RESOLUTION; i++) {
+		for (int j = 0; j < RESOLUTION; j++) {
+			int t = 1000 / RESOLUTION;
+			int x = j*t, z = -i*t;
+			glColor3f(0, field[i][j]/255.0,0);
 			glVertex3i(x, field[i][j], z);
-			glVertex3i(x + 10, field[i][j + 1], z);
-			glVertex3i(x+10, field[i+1][j+1], z-10);
-			glVertex3i(x, field[i + 1][j], z - 10);
+			glVertex3i(x + t, field[i][j + 1], z);
+			glVertex3i(x + t, field[i+1][j+1], z-t);
+			glVertex3i(x, field[i + 1][j], z - t);
 		}
 	}
 	glEnd();
