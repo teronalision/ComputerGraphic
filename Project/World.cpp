@@ -338,25 +338,15 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 
 		glClear(GL_DEPTH_BUFFER_BIT);
 		
-		glColor3f(1.0, 1.0, 1.0);
+		GLuint textures[3];
+		//glGenTextures(3, textures);
 		GLubyte* texbits;
 		BITMAPINFO*texture;
-		
-		GLuint textures[1];
-
-		glGenTextures(1, textures);
-
-		glBindTexture(GL_TEXTURE_2D, textures[0]);
+		//glBindTexture(GL_TEXTURE_2D, textures[0]);
 		texbits = Loadbmp("PAUSE.bmp", &texture);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, 128, 64, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, GL_DECAL);
-
+		glTexImage2D(GL_TEXTURE_2D, 0, 3, 300, 64, 0, GL_BGR_EXT,
+			GL_UNSIGNED_BYTE, texbits);
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, textures[0]);
-
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 1.0);
 		glVertex2d(-150, 75);
@@ -368,7 +358,16 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glVertex2d(150, 75);
 		glEnd();
 
-		glDisable(GL_TEXTURE_2D);
+
+		//HP_RED
+		glColor3f(1.0, 0.0, 0.0);
+		glBegin(GL_QUADS);
+		glVertex3d(-230, 180, 1);
+		glVertex3d(-230, 170, 1);
+		glVertex3d(-230 + 120, 170, 1);
+		glVertex3d(-230 + 120, 180, 1);
+		glEnd();
+
 		glColor3f(1.0, 1.0, 0.0);
 		char *string = "HP";
 		glRasterPos2d(-230, 180);
