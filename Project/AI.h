@@ -20,3 +20,9 @@ public:
 	zakubrain(Physic* in);
 	void AIupdate(Physic taget);
 };
+class zakuAttacker :public AI {
+public:
+	Physic* st;
+	zakuAttacker(Physic* in);
+	void AIupdate(Physic taget);
+};

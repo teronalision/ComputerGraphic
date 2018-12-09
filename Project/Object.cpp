@@ -85,7 +85,7 @@ Zaku::Zaku(int id, int x, int y, int z, double d):Object(id, zaku) {
 	myS.set_size(2, 2, 1);
 	myG = new Zaku_Graphic(&myS);
 	myP = new Unit(&myS);
-	myA = new zakubrain(myP);
+	myA = new zakuAttacker(myP);
 	myP->speed = 10;
 	magazin = ma_z;
 	delay = 0;

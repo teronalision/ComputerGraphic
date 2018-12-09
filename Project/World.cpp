@@ -54,7 +54,6 @@ World::World()
 		}
 	}
 	objects[0] = new G();
-	objects[1] = new Paticle(1, 500,10, 500);
 }
 
 
@@ -157,6 +156,7 @@ void World::worldupdate() {
 	if (rand() % 100 == 0) {
 		addOBJ(zaku);
 	}
+	WaveControl();
 	worldtime += 1.0/FPS;
 }
 
@@ -168,6 +168,9 @@ void World::addOBJ(_name o, int x, int y, int z, double d) {
 			{
 			case zaku:
 				objects[i] = new Zaku(i);
+				break;
+			case zaku_a:
+				objects[i] = new Zaku(i, x, y, z, d);
 				break;
 			case bullet:
 				objects[i] = new Bullet(i, x, 0, z, d);
@@ -344,4 +347,14 @@ void SunLight(double x, double y, double z) {
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
+}
+
+void World::WaveControl() {
+	static int wave = 0;
+	if (worldtime > 3 && wave == 0) {
+		for (int i = 0; i < 10; i++)
+			addOBJ(zaku_a, rand() % 100 + 50, 30, rand() % 400 + 300, 90);
+
+		wave++;
+	}
 }

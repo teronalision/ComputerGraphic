@@ -4,7 +4,7 @@
 
 enum _name
 {
-	gundam,zaku,bullet,paticle
+	gundam,zaku,zaku_a,bullet,paticle
 };
 enum _hp
 {
