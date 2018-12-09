@@ -326,10 +326,6 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glEnable(GL_LIGHTING);
 	}
 	else if (worldinfo.state == _pause) {
-		int hour = 0;
-		int minute = 0;
-		int second = 0;
-
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
@@ -353,7 +349,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glBindTexture(GL_TEXTURE_2D, textures[0]);
 		texbits = Loadbmp("PAUSE.bmp", &texture);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, 300, 150, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
+		glTexImage2D(GL_TEXTURE_2D, 0, 3, 450, 150, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -366,32 +362,50 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 1.0);
-		glVertex2d(-75, 100);
+		glVertex2d(-225, 75);
 		glTexCoord2f(0.0, 0.0);
-		glVertex2d(-75, 50);
+		glVertex2d(-225, -75);
 		glTexCoord2f(1.0, 0.0);
-		glVertex2d(75, 50);
+		glVertex2d(225, -75);
 		glTexCoord2f(1.0, 1.0);
-		glVertex2d(75, 100);
+		glVertex2d(225, 75);
 		glEnd();
 
-		glGenTextures(1, textures);
-		int pause_select = 0;
+		glDisable(GL_TEXTURE_2D);
+
+
+
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+		glEnable(GL_LIGHTING);
+	}
+	else if (worldinfo.state == _gameover) {
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glOrtho(-WIN_W / 2, WIN_W / 2, -WIN_H / 2, WIN_H / 2, -1, 1);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+		glDisable(GL_CULL_FACE);
+		glDisable(GL_LIGHTING);
+
+		glClear(GL_DEPTH_BUFFER_BIT);
+
+		glColor3f(1.0, 1.0, 1.0);
+		GLubyte* texbits;
+		BITMAPINFO*texture;
+
+		GLuint textures[4];
+
+		glGenTextures(4, textures);
+
 		glBindTexture(GL_TEXTURE_2D, textures[0]);
+		texbits = Loadbmp("Died", &texture);
 
-		switch (pause_select) {
-		case 0:
-			texbits = Loadbmp("RESUME.bmp", &texture);
-			break;
-		case 1:
-			texbits = Loadbmp("MAIN.bmp", &texture);
-			break;
-		case 2:
-			texbits = Loadbmp("QUIT.bmp", &texture);
-			break;
-
-		}
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, 300, 150, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
+		glTexImage2D(GL_TEXTURE_2D, 0, 3, 450, 150, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -404,13 +418,13 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 1.0);
-		glVertex2d(-75, -50);
+		glVertex2d(-225, 75);
 		glTexCoord2f(0.0, 0.0);
-		glVertex2d(-75, -100);
+		glVertex2d(-225, -75);
 		glTexCoord2f(1.0, 0.0);
-		glVertex2d(75, -100);
+		glVertex2d(225, -75);
 		glTexCoord2f(1.0, 1.0);
-		glVertex2d(75, -50);
+		glVertex2d(225, 75);
 		glEnd();
 
 		glDisable(GL_TEXTURE_2D);

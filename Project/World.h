@@ -4,7 +4,7 @@
 #define OBJMAX 200
 
 enum {
-	_start, _play, _pause, _stop
+	_start, _play, _pause, _gameover
 };
 
 class World

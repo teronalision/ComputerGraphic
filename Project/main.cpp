@@ -26,8 +26,18 @@ GLvoid DrawScene(GLvoid) {
 		glPopMatrix();
 		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world); // temporary function
 	}
-	else {
+	else if(world.state == _pause){
 		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		glPushMatrix();
+		world.worlddraw();
+		glPopMatrix();
+		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world); // temporary function
+	}
+	else if (world.state == _gameover) {
+		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		glPushMatrix();
+		world.worlddraw();
+		glPopMatrix();
 		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world); // temporary function
 	}
 
