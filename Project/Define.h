@@ -7,7 +7,7 @@
 #define WIN_W 500.0
 #define DIS 500
 #define R 3.14/180
-
+#define RESOLUTION 500
 
 struct status
 {
