@@ -445,7 +445,7 @@ void DrawSun(double x, double y, double z) {
 
 void SunLight(double x, double y, double z) {
 
-	DrawSun(0, 1000, 0);
+	DrawSun(-200, 1000, 200);
 
 	GLfloat qaAmbientLight[] = { 0.2,0.2,0.2,1.0 };
 	GLfloat qaDiffuseLight[] = { 0.7,0.7,0.7,1.0 };
@@ -454,7 +454,7 @@ void SunLight(double x, double y, double z) {
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, qaDiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, qaSpecularLight);
 
-	GLfloat qaLightPosition[] = { 0 , 1000, 0, 1.0 };
+	GLfloat qaLightPosition[] = { 0 , 800, 0, 1.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, qaLightPosition);
 
 
