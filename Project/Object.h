@@ -60,6 +60,7 @@ public:
 
 class Paticle :public Object {
 public:
+	int Dcount;
 	Paticle(int id, int x,int y, int z);
 	void update();
 };

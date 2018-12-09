@@ -65,11 +65,8 @@ void Bullp::PhyUpdate() {
 }
 
 Paticlep::Paticlep(status* in):Physic(in) {
-	deadcount = 3 * FPS;
 }
 void Paticlep::PhyUpdate() {
-	if (--deadcount < 0)
-		st->live = false;
 }
 
 double clamp(double n) {

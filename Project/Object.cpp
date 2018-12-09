@@ -153,20 +153,30 @@ Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {
 	myS.set_size(1,1,1);
 	myP = new Paticlep(&myS);
 	myG = new Zaku_Dead_Particle(&myS);
+	Dcount = FPS*5;
 
 	std::cout << "new paticle" << std::endl;
 }
 void Paticle::update() {
-
+	if (--Dcount < 0)
+		myS.live = false;
 }
 
 void que::push_q(_name name, int x, int y, int z, int d) {
-	node* t = head;
-	while (t != NULL)
-	{
-		t = t->next;
+	node* t;
+	if (head == NULL) {
+		head = new node;
+		t = head;
 	}
-	t = new node;
+	else {
+		t = head->next;
+
+		while (t != NULL)
+		{
+			t = t->next;
+		}
+		t = new node;
+	}
 	switch (name)
 	{
 	case zaku:

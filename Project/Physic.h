@@ -32,7 +32,6 @@ public:
 
 class Paticlep:public Physic{
 public:
-	int deadcount;
 	Paticlep(status* in);
 	void PhyUpdate();
 };

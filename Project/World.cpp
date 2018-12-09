@@ -54,7 +54,7 @@ World::World()
 		}
 	}
 	objects[0] = new G();
-
+	objects[1] = new Paticle(1, 500,30, 500);
 }
 
 
