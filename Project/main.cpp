@@ -24,10 +24,11 @@ GLvoid DrawScene(GLvoid) {
 		glPushMatrix();
 		world.worlddraw();
 		glPopMatrix();
-		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world); // temporary function
+		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world);
 	}
 	else {
 		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		GUIdraw(world.objects[0]->myS.hp, world.objects[0]->magazin, world);
 	}
 
 	glutSwapBuffers();
