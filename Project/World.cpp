@@ -63,7 +63,7 @@ World::~World()
 
 
 void World::worlddraw() {
-	
+	//ModelInit();
 	//gluLookAt(-sin((objects[0]->myS.degree)*R)*5,2,cos((objects[0]->myS.degree)*R)*5, 0, 0, 0, 0, 1, 0);
 	glTranslated(0,-2,-5);
 	glRotated(10,1,0,0);
@@ -82,7 +82,7 @@ void World::worlddraw() {
 			int x = j*t, z = -i*t;
 			int p[4] = { field[i][j] ,field[i][j+1] ,field[i+1][j] ,field[i+1][j+1] };
 
-			glNormal3f(p[0]-p[1],1,p[0]-p[2]);
+			glNormal3f(p[0]-p[1],1,p[2]-p[0]);
 			glColor3f(0, p[0]/255.0,0);
 			glVertex3i(x, p[0], z);
 			glVertex3i(x + t, p[1], z);
@@ -327,21 +327,20 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 }
 
 void ModelInit() {
-	glNormal3f(0.0, 0.0, 1.0);
 	GLfloat qaBlack[] = { 0.0,0.0,0.0,1.0 };
 	GLfloat qaGreen[] = { 1.0,1.0,1.0,1.0 };
 	GLfloat qaWhite[] = { 0.5,0.5,0.5,0.5 };
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, qaGreen);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, qaGreen);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, qaWhite);
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 60.0);
+	glMaterialfv(GL_FRONT, GL_AMBIENT, qaBlack);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, qaBlack);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, qaWhite);
+	glMaterialf(GL_FRONT, GL_SHININESS, 3.0);
 }
 
 void DrawSun(double x, double y, double z) {
 	glPushMatrix(); {
 		glTranslated(x, y, z);
-		glColor3f(1.0, 1.0, 0.0);
-		glutSolidSphere(20, 10, 10);
+		glColor3f(1.0, 1.0, 0.9);
+		glutSolidSphere(50, 12, 12);
 	}glPopMatrix();
 }
 
@@ -350,8 +349,8 @@ void SunLight(double x, double y, double z) {
 	DrawSun(0, 1000, 0);
 
 	GLfloat qaAmbientLight[] = { 0.2,0.2,0.2,1.0 };
-	GLfloat qaDiffuseLight[] = { 0.8,0.8,0.8,1.0 };
-	GLfloat qaSpecularLight[] = { 1.0,1.0,1.0,1.0 };
+	GLfloat qaDiffuseLight[] = { 0.7,0.7,0.7,1.0 };
+	GLfloat qaSpecularLight[] = { 0.9,0.9,0.9,1.0 };
 	glLightfv(GL_LIGHT0, GL_AMBIENT, qaAmbientLight);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, qaDiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, qaSpecularLight);
