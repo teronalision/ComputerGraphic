@@ -67,14 +67,14 @@ void MouseMove(int x, int y) {
 	int oldx =WIN_W, oldy =WIN_H;
 
 	if(oldx >x)
-		taget[0]->myS.degree -= 1;
+		taget[0]->myS.degree -= 0.8;
 	else if (oldx < x)
-		taget[0]->myS.degree += 1;
+		taget[0]->myS.degree += 0.8;
 
 	if (oldy > y)
-		Graphic::sety(-0.1);
+		Graphic::sety(-0.2);
 	else if (oldy < y)
-		Graphic::sety(0.1);
+		Graphic::sety(0.2);
 
 	if(ww->state == _play)
 		glutWarpPointer(WIN_W,WIN_H);

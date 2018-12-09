@@ -4,7 +4,7 @@
 #define brake 0.1
 #define gravity 3.0/FPS
 
-static int field[101][101];
+static int field[1001][1001];
 
 class Physic
 {

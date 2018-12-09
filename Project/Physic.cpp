@@ -1,9 +1,9 @@
 #include "Physic.h"
 
 void loadmap(unsigned char* data) {
-	for (int i = 0; i < 100; i++) {
-		for (int j = 0; j < 100; j++) {
-			field[i][j] = data[i * 100 + j];
+	for (int i = 0; i < RESOLUTION; i++) {
+		for (int j = 0; j < RESOLUTION; j++) {
+			field[i][j] = data[i * RESOLUTION + j];
 		}
 	}
 }
@@ -35,13 +35,16 @@ void Unit::PhyUpdate(){
 	s.x = clamp(s.x);
 	s.z = clamp(s.z);
 
-	double tx = double(int(s.x) % 10) / 10.0;
-	double tz = double(int(s.z) % 10) / 10.0;
+	int spec = 1000 / RESOLUTION;
 
-	int p[4] = { field[int(s.z/10)][int(s.x/10)],field[int(s.z/10)][int(s.x/10)+1]
-				,field[int(s.z/10)+1][int(s.x/10)],field[int(s.z/10)+1][int(s.x/10)+1] };
+	double tx = (s.x - int(s.x)) /spec;
+	double tz = (s.x - int(s.x)) / spec;
+
+	int p[4] = { field[int(s.z/spec)][int(s.x/spec)],field[int(s.z/spec)][int(s.x/spec)+1]
+				,field[int(s.z/spec)+1][int(s.x/spec)],field[int(s.z/spec)+1][int(s.x/spec)+1] };
 
 	int floor = (1 - tx)*(1 - tz)*p[0] + (1 - tx)*tz*p[2] + tx*(1 - tz)*p[1] + tx*tz*p[3];
+	//int floor = field[int(s.z/2)][int(s.x/2)];
 	if (s.y <= floor) {
 		s.y = floor;
 		vy = 0;
@@ -83,7 +86,7 @@ bool is_crash(status a, status b) {
 	if (a.x + a.xsize < b.x - b.xsize || a.x - a.xsize > b.x + b.xsize)
 		return false;
 	//yรเ
-	if (a.y + a.ysize < b.y - abs(b.ysize) || a.y - a.ysize > b.y + abs(b.ysize))
+	if (a.y + a.ysize < b.y - 1 || a.y - a.ysize > b.y + 1)
 		return false;
 	//zรเ
 	if (a.z + a.zsize < b.z - b.zsize || a.z - a.zsize > b.z + b.zsize)
