@@ -86,6 +86,12 @@ public:
 	void draw();
 };
 
+class Damage_Particle :public Graphic {
+public:
+	Damage_Particle(status* in);
+	void draw();
+};
+
 class Jump_Particle : public Graphic {
 public:
 	Jump_Particle(status*in);

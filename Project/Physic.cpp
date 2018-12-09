@@ -62,7 +62,7 @@ void Bullp::PhyUpdate() {
 
 	s.x += vz*speed*sin(s.degree*R);
 	s.z += vz*speed*cos(s.degree*R);
-	s.y += sin(-s.ysize*R);
+	s.y += 2*sin(-s.ysize*R);
 }
 
 Paticlep::Paticlep(status* in):Physic(in) {
@@ -92,10 +92,10 @@ bool is_crash(status a, status b) {
 	return true;
 }
 
-void knockback(Physic taget, Physic s) {
-	double power = 0.3;
+void knockback(Physic* taget, Physic s) {
+	double power = 2;
 
-	taget.vx += s.vx*power;
-	taget.vy += s.vy*power;
-	taget.vz += s.vz*power;
+	taget->st->x += s.vz*sin(s.st->degree*R)*power;
+	taget->st->y += sin(-s.st->ysize*R)*power;
+	taget->st->z += s.vz*cos(s.st->degree*R)*power;
 }

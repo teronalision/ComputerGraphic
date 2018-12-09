@@ -4,15 +4,15 @@
 
 enum _name
 {
-	gundam,zaku,zaku_a,bullet,bullet_z,paticle,jumppaticle
+	gundam,zaku,zaku_a,bullet,bullet_z,paticle,jumppaticle,d_paticle
 };
 enum _hp
 {
-	hp_g = 20, hp_z = 2
+	hp_g = 20, hp_z = 0
 };
 enum _magazin
 {
-	ma_g = 10, ma_z = 3
+	ma_g = 20, ma_z = 3
 };
 
 class Object {
@@ -62,6 +62,12 @@ class Paticle :public Object {
 public:
 	int Dcount;
 	Paticle(int id, int x,int y, int z);
+	void update();
+};
+class DamagePaticle:public Object {
+public:
+	int Dcount;
+	DamagePaticle(int id, int x, int y, int z);
 	void update();
 };
 class JumpPaticle :public Object {

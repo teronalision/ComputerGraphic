@@ -179,6 +179,31 @@ void Paticle::update() {
 	}
 }
 
+DamagePaticle::DamagePaticle(int id, int x, int y, int z) :Object(id, paticle) {
+	myS.set_position(x, y, z);
+	myS.set_size(1, 1, 1);
+	myP = new Paticlep(&myS);
+	myG = new Damage_Particle(&myS);
+	Dcount = FPS * 2;
+
+	for (int i = 0; i < Particle_MAX; i++) {
+		myG->pi[i].set_position(x, y + 1, z);
+		myG->pi[i].set_size((rand() % 9 - 4) / 4.0, (rand() % 9 - 4) / 4.0, (rand() % 9 - 4) / 4.0);
+	}
+
+	std::cout << "new paticle" << std::endl;
+}
+void DamagePaticle::update() {
+	if (--Dcount < 0)
+		myS.live = false;
+
+	for (int i = 0; i < Particle_MAX; i++) {
+		myG->pi[i].x += myG->pi[i].xsize / FPS;
+		myG->pi[i].y += myG->pi[i].ysize / FPS;
+		myG->pi[i].z += myG->pi[i].zsize / FPS;
+	}
+}
+
 JumpPaticle::JumpPaticle(int id, int x, int y, int z) :Object(id, paticle) {
 	myS.set_position(x, y-1, z);
 	myS.set_size(1, 1, 1);
@@ -210,13 +235,14 @@ void que::push_q(_name name, int x, int y, int z, int d, int yd) {
 		t = head;
 	}
 	else {
-		t = head->next;
+		t = head;
 
-		while (t != NULL)
+		while (t->next != NULL)
 		{
 			t = t->next;
 		}
-		t = new node;
+		t->next = new node;
+		t = t->next;
 	}
 	switch (name)
 	{
@@ -233,6 +259,9 @@ void que::push_q(_name name, int x, int y, int z, int d, int yd) {
 	case paticle:
 		t->data = new Paticle(-1,x,y,z);
 		break;
+	case d_paticle:
+		t->data = new DamagePaticle(-1, x, y, z);
+		break;
 	case jumppaticle:
 		t->data = new JumpPaticle(-1, x, y, z);
 		break;
@@ -242,8 +271,6 @@ Object* que::pop_q() {
 	if (head == NULL)
 		return NULL;
 	Object* r = head->data;
-	node* d = head;
 	head = head->next;
-	delete d;
 	return r;
 }

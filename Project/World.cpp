@@ -106,6 +106,8 @@ void World::worldupdate() {
 				&& is_crash(objects[i]->myS, objects[j]->myS)) {
 				objects[j]->myS.hp -= objects[i]->myS.hp;
 				objects[i]->myS.live = false;
+				que::push_q(d_paticle, objects[j]->myS.x, objects[j]->myS.y, objects[j]->myS.z);
+				knockback(objects[j]->myP, *(objects[i]->myP));
 				if (objects[j]->myS.hp < 0)
 					objects[j]->myS.live = false;
 				std::cout << "Ãæµ¹ : " << j << "ÀÚÄí¿Í " << i << "ÃÑ¾Ë" << std::endl;
@@ -147,7 +149,7 @@ void World::worldupdate() {
 	
 	//pop que
 	Object* re = que::pop_q();
-	if (re != NULL) {
+	while (re != NULL) {
 		for (int i = 1; i < OBJMAX; i++) {
 			if (objects[i] == NULL) {
 				objects[i] = re;
@@ -155,10 +157,11 @@ void World::worldupdate() {
 				break;
 			}
 		}
+		re = que::pop_q();
 	}
 
 
-	if (rand() % 100 == 0) {
+	if (rand() % 300 == 0) {
 		addOBJ(zaku);
 	}
 	WaveControl();
@@ -248,7 +251,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 	}
 	else {
 		char string2[6];
-		sprintf(string2, "%2d/10", bullet);
+		sprintf(string2, "%2d/20", bullet);
 		glRasterPos2d(-230, -180);
 		len = (int)strlen(string2);
 		for (int i = 0; i < len; i++)
@@ -358,13 +361,13 @@ void World::WaveControl() {
 	static int wave = 0;
 	int time = int(worldtime) % 120;
 	if (time > 0 && wave == 0) {
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 5; i++)
 			addOBJ(zaku_a, rand() % 100 + 50, 30, rand() % 400 + 300, 90);
 
 		wave++;
 	}
 	if (time > 40 && wave == 1) {
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 8; i++)
 			addOBJ(zaku_a, rand() % 100 + 850, 30, rand() % 400 + 300, 90);
 
 		wave++;

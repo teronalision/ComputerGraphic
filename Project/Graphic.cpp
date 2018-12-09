@@ -299,6 +299,18 @@ void Zaku_Dead_Particle::draw() {
 	}
 }
 
+Damage_Particle::Damage_Particle(status* in):Graphic(in){}
+void Damage_Particle::draw() {
+	for (int i = 0; i < 4; i++) {
+		glPushMatrix(); {
+			glColor3f(1.0, 0.0, 0.0);
+			glTranslated(pi[i].x, pi[i].y, -pi[i].z);
+			glutSolidCube(0.2);
+		}glPopMatrix();
+	}
+}
+
+
 Jump_Particle::Jump_Particle(status*in) : Graphic(in) {
 
 }

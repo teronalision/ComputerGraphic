@@ -38,5 +38,5 @@ public:
 
 double clamp(double n);
 bool is_crash(status a, status b);		//AABB Check
-void knockback(Physic taget, Physic s);	//knockback
+void knockback(Physic* taget, Physic s);	//knockback
 void loadmap(unsigned char* data);
