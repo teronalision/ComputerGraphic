@@ -23,7 +23,7 @@ struct status
 		y = iy;
 		z = iz;
 	}
-	void set_size(int ix, int iy, int iz) {
+	void set_size(double ix, double iy, double iz) {
 		xsize = ix;
 		ysize = iy;
 		zsize = iz;

@@ -278,58 +278,31 @@ void Zaku_Graphic::draw_right_lower_leg(double yangle) {//
 }
 
 Zaku_Dead_Particle::Zaku_Dead_Particle(status*in) : Graphic(in) {
-	for (int i = 0; i < 100; i++) {
-		particle[i].vectorX = (double)(rand() % 10 - 5)/10;
-		particle[i].vectorY = (double)(rand() % 10 - 5)/10;
-		particle[i].vectorZ = (double)(rand() % 10 - 5)/10;
-		particle[i].x = st->x + particle[i].vectorX;
-		particle[i].y = st->y + particle[i].vectorY;
-		particle[i].y = st->z + particle[i].vectorZ;
-	}
+	
 }
 Zaku_Dead_Particle::~Zaku_Dead_Particle() {}
 
-void Zaku_Dead_Particle::Update() {
-	for (int i = 0; i < 100; i++) {
-		particle[i].x += particle[i].vectorX;
-		particle[i].y += particle[i].vectorY;
-		particle[i].z += particle[i].vectorZ;
-	}
-}
 void Zaku_Dead_Particle::draw() {
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < Particle_MAX; i++) {
 		glPushMatrix(); {
 			glColor3f(1.0, 1.0, 0.0);
-			glTranslated(particle[i].x, particle[i].y, particle[i].z);
+			glTranslated(pi[i].x, pi[i].y, -pi[i].z);
 			glutSolidCube(0.2);
 		}glPopMatrix();
 	}
 }
 
 Jump_Particle::Jump_Particle(status*in) : Graphic(in) {
-	for (int i = 0; i < 100; i++) {
-		particle[i].vectorX = (double)(rand() % 10 - 5) / 10;
-		particle[i].vectorY = (double)(rand() % 10);
-		particle[i].vectorZ = (double)(rand() % 10 - 5) / 10;
-		particle[i].x = st->x + particle[i].vectorX;
-		particle[i].y = st->y + particle[i].vectorY;
-		particle[i].y = st->z + particle[i].vectorZ;
-	}
+
 }
 Jump_Particle::~Jump_Particle() {}
 
-void Jump_Particle::Update() {
-	for (int i = 0; i < 100; i++) {
-		particle[i].x += particle[i].vectorX;
-		particle[i].y += particle[i].vectorY;
-		particle[i].z += particle[i].vectorZ;
-	}
-}
+
 void Jump_Particle::draw() {
 	for (int i = 0; i < 100; i++) {
 		glPushMatrix(); {
 			glColor3f(1.0, 1.0, 0.0);
-			glTranslated(particle[i].x, particle[i].y, particle[i].z);
+			//glTranslated(particle[i].x, particle[i].y, particle[i].z);
 			glutSolidCube(0.2);
 		}glPopMatrix();
 	}

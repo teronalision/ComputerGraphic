@@ -153,13 +153,24 @@ Paticle::Paticle(int id, int x, int y, int z):Object(id, paticle) {
 	myS.set_size(1,1,1);
 	myP = new Paticlep(&myS);
 	myG = new Zaku_Dead_Particle(&myS);
-	Dcount = FPS*5;
+	Dcount = FPS*2;
+
+	for (int i = 0; i < Particle_MAX; i++) {
+		myG->pi[i].set_position(x,y+1,z);
+		myG->pi[i].set_size((rand()%9 -4)/4.0,(rand()%9 -4)/4.0,(rand()%9 -4)/4.0);
+	}
 
 	std::cout << "new paticle" << std::endl;
 }
 void Paticle::update() {
 	if (--Dcount < 0)
 		myS.live = false;
+
+	for (int i = 0; i < Particle_MAX; i++) {
+		myG->pi[i].x += myG->pi[i].xsize/FPS;
+		myG->pi[i].y += myG->pi[i].ysize/FPS;
+		myG->pi[i].z += myG->pi[i].zsize/FPS;
+	}
 }
 
 void que::push_q(_name name, int x, int y, int z, int d) {

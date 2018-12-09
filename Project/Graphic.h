@@ -3,6 +3,7 @@
 #include "Define.h"
 
 #define GUNDAM_HEIGHT 2
+#define Particle_MAX 20
 
 typedef struct PARTICLE {
 	double x, y, z;
@@ -13,6 +14,7 @@ class Graphic
 {
 public:
 	status* st;
+	status pi[Particle_MAX];
 	Graphic(status* in);
 	~Graphic();
 
@@ -75,20 +77,15 @@ public:
 
 class Zaku_Dead_Particle : public Graphic {
 public:
-	Particle particle[100];
 	Zaku_Dead_Particle(status*in);
 	~Zaku_Dead_Particle();
-
-	void Update();
 	void draw();
 };
 
 class Jump_Particle : public Graphic {
 public:
-	Particle particle[100];
 	Jump_Particle(status*in);
 	~Jump_Particle();
 
-	void Update();
 	void draw();
 };
