@@ -9,7 +9,6 @@ class World
 public:
 	double worldtime;
 	Object* objects[OBJMAX];
-	double Yaim;
 
 	World();
 	~World();

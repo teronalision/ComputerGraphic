@@ -1,6 +1,6 @@
 #include "Graphic.h"
 
-
+double Graphic::Yaim = 0;
 Graphic::Graphic(status* in)
 {
 	st = in;
@@ -9,6 +9,13 @@ Graphic::Graphic(status* in)
 Graphic::~Graphic()
 {
 }
+void Graphic::sety(double n) {
+	Yaim += n;
+}
+double Graphic::gety() {
+	return Yaim;
+}
+
 
 Box::Box(status* in):Graphic(in) {}
 Box::~Box(){}
@@ -46,9 +53,9 @@ void Gundam::draw() {//
 }
 void Gundam::draw_body() {//
 	glPushMatrix(); {
-		draw_head();
+		draw_head(Yaim);
 		draw_left_upper_arm();
-		draw_right_upper_arm(45, 45);
+		draw_right_upper_arm(45-Yaim, 45);
 		draw_left_upper_leg();
 		draw_right_upper_leg();
 		glScaled(0.7, 1.0, (st->zsize) / (st->ysize) * 5 / 4); // -- rescale body
@@ -60,7 +67,7 @@ void Gundam::draw_body() {//
 void Gundam::draw_head(double yangle) {//
 	glPushMatrix(); {
 		glTranslated(0, (st->ysize) / 5 * 2, 0); // move to the Y-axis center of head
-		glRotated(yangle, 0, 0, 1);
+		glRotated(yangle, 0, 0, -1);
 		glScaled(1.0, 1.0, (st->zsize) / (st->ysize) * 5 / 3); // -- rescale head
 		glColor3f(0.0, 0.0, 1.0); // head color : blue
 		glutSolidCube((st->ysize) / 5); // draw head

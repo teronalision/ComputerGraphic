@@ -14,12 +14,15 @@ typedef struct PARTICLE {
 class Graphic
 {
 public:
+	static double Yaim;
 	status* st;
 	status pi[Particle_MAX];
 	Graphic(status* in);
 	~Graphic();
 
 	virtual void draw() = 0;
+	static void sety(double n);
+	static double gety();
 };
 
 class Box :public Graphic {

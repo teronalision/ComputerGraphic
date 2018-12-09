@@ -65,10 +65,10 @@ void MouseMove(int x, int y) {
 	else if (oldx < x)
 		taget[0]->myS.degree += 1;
 
-	if (oldy >y)
-		ww->Yaim -= 0.1;
+	if (oldy > y)
+		Graphic::sety(-0.1);
 	else if (oldy < y)
-		ww->Yaim += 0.1;
+		Graphic::sety(0.1);
 	oldx = x;
 	oldy = y;
 }

@@ -41,7 +41,6 @@ World::World()
 {
 	worldtime = 0;
 	srand(time(NULL));
-	Yaim = 0;
 
 	GLubyte *map;
 	BITMAPINFO *info;
@@ -67,7 +66,7 @@ void World::worlddraw() {
 	//gluLookAt(-sin((objects[0]->myS.degree)*R)*5,2,cos((objects[0]->myS.degree)*R)*5, 0, 0, 0, 0, 1, 0);
 	glTranslated(0,-2,-4);
 	glRotated(15,1,0,0);
-	glRotated(Yaim,1,0,0);
+	glRotated(Graphic::gety(),1,0,0);
 	objects[0]->myG->draw();
 
 	glRotated(objects[0]->myS.degree,0,1,0);
