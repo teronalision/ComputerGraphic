@@ -18,7 +18,7 @@ bool Object::Kill() { return true; }
 
 
 G::G() :Object(0, gundam) {
-	myS.set_position(500, 20, 500);
+	myS.set_position(450, 200, 500);
 	myS.degree = 0;
 	myS.hp = hp_g;
 	myS.set_size(1, 2, 1);
@@ -138,7 +138,7 @@ bool Zaku::Kill() {
 }
 
 Bullet::Bullet(int id, int x,int y, int z,double d, int yd):Object(id, bullet) {
-	myS.set_position(x, y, z);
+	myS.set_position(x+ sin(d*R)*10, y+0.5, z+cos(d*R)*10);
 	myS.degree = d;
 	myS.hp = 1;
 	myS.set_size(0.5, yd, 0.5);
