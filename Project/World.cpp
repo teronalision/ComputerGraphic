@@ -216,13 +216,15 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glClear(GL_DEPTH_BUFFER_BIT);
 
 		//HP_GREEN
-		glColor3f(0.0, 1.0, 0.0);
-		glBegin(GL_QUADS);
-		glVertex3d(-230, 180, 1);
-		glVertex3d(-230, 170, 1);
-		glVertex3d(-230 + hp * 6, 170, 1);
-		glVertex3d(-230 + hp * 6, 180, 1);
-		glEnd();
+		if (hp > 0) {
+			glColor3f(0.0, 1.0, 0.0);
+			glBegin(GL_QUADS);
+			glVertex3d(-230, 180, 1);
+			glVertex3d(-230, 170, 1);
+			glVertex3d(-230 + hp * 6, 170, 1);
+			glVertex3d(-230 + hp * 6, 180, 1);
+			glEnd();
+		}
 
 		//HP_RED
 		glColor3f(1.0, 0.0, 0.0);
@@ -382,6 +384,10 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glEnable(GL_LIGHTING);
 	}
 	else if (worldinfo.state == _gameover) {
+		int hour = 0;
+		int minute = 0;
+		int second = 0;
+
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
@@ -403,7 +409,7 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glGenTextures(4, textures);
 
 		glBindTexture(GL_TEXTURE_2D, textures[0]);
-		texbits = Loadbmp("Died", &texture);
+		texbits = Loadbmp("Died.bmp", &texture);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, 3, 450, 150, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texbits);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -427,9 +433,21 @@ void GUIdraw(int hp, int bullet, World worldinfo) {
 		glVertex2d(225, 75);
 		glEnd();
 
+
+		//Timer Information
+		hour = (int)(worldinfo.worldtime / 3600);
+		minute = (int)(worldinfo.worldtime - hour * 3600) / 60;
+		second = (int)(worldinfo.worldtime - hour * 3600) % 60;
+
+		glColor3f(1.0, 0.0, 0.0);
+		char string3[23];
+		sprintf(string3, "You Lived %02d : %02d : %02d", hour, minute, second);
+		glRasterPos2d(-225, -85);
+		int len = (int)strlen(string3);
+		for (int i = 0; i < len; i++)
+			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string3[i]);
+
 		glDisable(GL_TEXTURE_2D);
-
-
 
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
